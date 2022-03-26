@@ -52,17 +52,21 @@
 - Create Event [Optional]
 
 ## Navigation
+
+### Tab Navigation
+- Feed
+- Personal Profile
+- Dog Profile
+- Likes
+- Matches
+
+### Flow Navigation
 - Welcome Screen
     - No Account: Create profile screen
     - Account: Login
 - Feed
-    - Profile (Personal)
-    - Profile (of other dog)
-    - Likes
-    - Matches
+    - Dog Profile
 - Personal Profile
     - Settings [Optional]
-- Likes
-    - Feed
-    - Matches
-    - Profile (of other dog)
+- Matches
+    - Conversation
