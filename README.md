@@ -5,28 +5,29 @@
     - Mandy Yu
     - Yoomin Song
     - Shareena Wiggins
-    - Jordan 
+    - Jordan Sukhnandan
 
 - Name Ideas:
     - Pupdate
     - Furmate
+    - Pupple
 
 ## User Stories
 
 ### Required User Stories
-- User can login.
-- User can create a profile.
-- User can edit a profile.
-- User can like or not like a dog profile.
-- User can view their previous likes.
-- User can view their matches.
-- User can message a match.
+- [ ] User can login.
+- [ ] User can create a profile.
+- [ ] User can edit a profile.
+- [ ] User can like or not like a dog profile.
+- [ ] User can view their previous likes.
+- [ ] User can view their matches.
+- [ ] User can message a match.
 
 ### Optional User Stories
-- User can set their preferences for dog profiles
-- User can create an event (e.g. playdate)
-- User can view events
-- User can report a dog profile
+- [ ] User can set their preferences for dog profiles
+- [ ] User can create an event (e.g. playdate)
+- [ ] User can view events
+- [ ] User can report a dog profile
 
 ## Screen Archetypes
 - Welcome Screen
