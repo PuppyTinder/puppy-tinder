@@ -44,8 +44,9 @@
 - Likes
     - User can view previous dog profiles they've liked
     - User can tap on a previous like to view their dog profile
-- Matches
+- Matches/Inbox
     - User can tap on a match and open a conversation with them
+    - User can search for a certain conversation with match [Optional]
 - Conversation
     - User can view a messaging history
 - Settings Page [Optional]
