@@ -1,16 +1,28 @@
-# Puppy Tinder Product Spec
+Original App Design Project - README Template
+===
 
-- Description: This app will allow users to find a potential playmate for their furry companion through a Tinder-like application. 
-- Group Members:
-    - Mandy Yu
-    - Yoomin Song
-    - Shareena Wiggins
-    - Jordan Sukhnandan
+# Pupple
 
-- Name Ideas:
-    - Pupdate
-    - Furmate
-    - Pupple
+## Table of Contents
+1. [Overview](#Overview)
+1. [Product Spec](#Product-Spec)
+1. [Wireframes](#Wireframes)
+2. [Schema](#Schema)
+
+## Overview
+### Description
+A Tinder-like app that allows dog owners to find a playmate for their dogs.
+
+### App Evaluation
+[Evaluation of your app across the following attributes]
+- **Category:** Social Networking
+- **Mobile:** This app will be primarily developed for mobile but would function on a computer as well. Mobile version for this application would be more friendly to use and allows for more features.
+- **Story:** Dog owners are able to connect and match with other dog owners and potentially set up a puppy playdate.
+- **Market:** Dog owners will typically be using this app.
+- **Habit:** This app will be used in the event a dog owner is looking for nearby companions for their furry friend. Could be often and also unoften.
+- **Scope:** We hope to start off with a basic Tinder replica and apply some unique matching features into the app.
+
+## Product Spec
 
 ## User Stories
 
@@ -72,3 +84,36 @@
     - Settings [Optional]
 - Matches
     - Conversation
+
+
+## Wireframes
+
+### Launch Screen, Welcome Screen, Login Screen
+<img src="https://prnt.sc/udwqBoUIoS-X" width=600>
+
+### [BONUS] Digital Wireframes & Mockups
+
+### [BONUS] Interactive Prototype
+
+## Schema 
+[This section will be completed in Unit 9]
+### Models
+[Add table of models]
+### Networking
+- [Add list of network requests by screen ]
+- [Create basic snippets for each Parse network request]
+- [OPTIONAL: List endpoints if using existing API such as Yelp]
+# Pupple Product Spec
+
+- Description: This app will allow users to find a potential playmate for their furry companion through a Tinder-like application. 
+- Group Members:
+    - Mandy Yu
+    - Yoomin Song
+    - Shareena Wiggins
+    - Jordan Sukhnandan
+
+- Name Ideas:
+    - Pupdate
+    - Furmate
+    - Pupple
+
