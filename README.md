@@ -1,6 +1,3 @@
-Original App Design Project - README Template
-===
-
 # Pupple
 
 ## Table of Contents
