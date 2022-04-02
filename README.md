@@ -96,6 +96,9 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 ### Tab Navigation Screens
 <img src="https://i.imgur.com/q64oP71.png" width=600>
 
+###  Profiles
+<img src="https://i.imgur.com/DCJX2De.png" width=200>
+
 ###  Messages
 <img src="https://i.imgur.com/S8VVzs9.png" width=200>
 
