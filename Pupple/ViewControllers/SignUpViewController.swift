@@ -24,6 +24,27 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         initializeUI()
     }
     
+    // Go to page 2 of the sign up form and preserve the values from the first page
+    @IBAction func goToNextPage(_ sender: Any) {
+        let username = usernameTextField.text!
+        let password = passwordTextField.text!
+        let firstname = firstnameTextField.text!
+        let lastname = lastnameTextField.text!
+        let birthday = birthdayTextField.text!
+        let phone = mobileNumberTextField.text!
+        
+        if(username.isEmpty || password.isEmpty || firstname.isEmpty || lastname.isEmpty || birthday.isEmpty || phone.isEmpty )
+        {
+            showWarning()
+        }
+        else
+        {
+            self.performSegue(withIdentifier: "signUpPage2Segue", sender: nil)
+        }
+    }
+    
+    
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
@@ -46,7 +67,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @objc func donePressed() {
         //format the date string
         let dateFormat = DateFormatter()
-        dateFormat.dateStyle = .medium
+        dateFormat.dateStyle = .short
         dateFormat.timeStyle = .none
         
         birthdayTextField.text = dateFormat.string(from: datePicker.date)
@@ -64,6 +85,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         createDateKeyboard()
         self.usernameTextField.becomeFirstResponder()
     }
+    
+    // Missing text field information
+    func showWarning() {
+        let alertController: UIAlertController = UIAlertController(title: "Error!", message: "Please fill in every field.", preferredStyle: .alert)
+        let dismiss: UIAlertAction = UIAlertAction(title: "Dismiss", style: .default) { (action) -> Void in NSLog("Alert dismissed")}
+        alertController.addAction(dismiss)
+        self.present(alertController, animated: true, completion: nil)
+            
+        }
 
     /*
     // MARK: - Navigation

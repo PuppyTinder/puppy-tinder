@@ -30,10 +30,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if user != nil
             {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                self.usernameTextField.text = ""
+                self.passwordTextField.text = ""
             }
             else
             {
-                print("Error: \(error?.localizedDescription)")
+                self.showWarning()
             }
         }
     }
@@ -42,6 +44,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         return false
     }
+    
+    // When username or password is incorrect
+    func showWarning() {
+        let alertController: UIAlertController = UIAlertController(title: "Error!", message: "Incorrect username and/or password was entered.", preferredStyle: .alert)
+        let dismiss: UIAlertAction = UIAlertAction(title: "Dismiss", style: .default) { (action) -> Void in NSLog("Alert dismissed")}
+        alertController.addAction(dismiss)
+        self.present(alertController, animated: true, completion: nil)
+            
+        }
     
     /*
     // MARK: - Navigation
