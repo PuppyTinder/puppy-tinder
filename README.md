@@ -109,7 +109,7 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 [Add table of models]
 ### Networking
 [Add list of network requests by screen ]
-- * Welcome/ Login Screen
+* Welcome/ Login Screen
     * (Create/Post) Create a profile 
     * (Read/GET) Query logged in user object
 * Signup Screens
