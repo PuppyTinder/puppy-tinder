@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1728972F27FE7B4D00EEDA68 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728972E27FE7B4D00EEDA68 /* FeedViewController.swift */; };
 		17AA69FF27FD495D00C6E41D /* SignUpViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AA69FE27FD495D00C6E41D /* SignUpViewController2.swift */; };
 		17D8626527FCA4F300180D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8626427FCA4F300180D59 /* AppDelegate.swift */; };
 		17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8626627FCA4F300180D59 /* SceneDelegate.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		07F5ECA4293686987F873306 /* Pods-Pupple-PuppleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupple-PuppleUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pupple-PuppleUITests/Pods-Pupple-PuppleUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		1728972E27FE7B4D00EEDA68 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		17AA69FE27FD495D00C6E41D /* SignUpViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController2.swift; sourceTree = "<group>"; };
 		17D8626127FCA4F300180D59 /* Pupple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pupple.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17D8626427FCA4F300180D59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				17D8629827FD329D00180D59 /* WelcomeViewController.swift */,
 				17D8629A27FD430300180D59 /* SignUpViewController.swift */,
 				17AA69FE27FD495D00C6E41D /* SignUpViewController2.swift */,
+				1728972E27FE7B4D00EEDA68 /* FeedViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				17D8629927FD329D00180D59 /* WelcomeViewController.swift in Sources */,
 				17D8626927FCA4F300180D59 /* ViewController.swift in Sources */,
 				17D8626527FCA4F300180D59 /* AppDelegate.swift in Sources */,
+				1728972F27FE7B4D00EEDA68 /* FeedViewController.swift in Sources */,
 				17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
