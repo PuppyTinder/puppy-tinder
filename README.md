@@ -108,7 +108,25 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 ### Models
 [Add table of models]
 ### Networking
-- [Add list of network requests by screen ]
+[Add list of network requests by screen ]
+- * Welcome/ Login Screen
+    * (Create/Post) Create a profile 
+    * (Read/GET) Query logged in user object
+* Signup Screens
+    * (Create/Post) Create owner profile and dog’s profile 
+* Likes Screen
+    * (Read/GET) Get all the profiles that liked you and you liked 
+* Feed Screen
+    * (Read/Get) Get dogs’ profiles 
+    * (Create/Post) Like/ dislike dog profiles 
+* Matches/ Inbox Screen
+    * (Read/Get) Get all the new matches and messages with matches 
+* Personal Profile 
+    * (Update/Put) Update owner profile and dogs’ profile 
+* Message Screen 
+    * (Create/Post) Compose and send a message 
+    * (Read/Get) Get messages with another user 
+
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
 # Pupple Product Spec
