@@ -106,7 +106,64 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 ## Schema 
 [This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+
+##### User
+  | Property        | Type              | Description |
+  | --------------- | ----------------- | ------------|
+  | id              | int               | Unique id for the user (default field)|
+  | username        | string            | Username set by user |
+  | password        | String            | Password set by user |
+  | image           | File              | Profile image that user uploads |
+  | created_at      | timestamp         | Time of account creation |
+  | firstname       | string            | Users first name|
+  | lastname        | string            | Last name of the user |
+  | birthday        | date              | The birthday of the user |
+  | email           | string            | Email of the user|
+  | phone           | string            | Users phone number|
+  | dog             | ptr to dog        | Users dog   |
+  | bio             | string            | User biography: user can write about themselves|
+  | conversations   | array of convo    | Conversations that the user has|
+  | likes           | array of dog id   | Users liked dogs|
+  | likedby         | array of dog id   | Profiles that liked the user|
+  
+##### Dog
+  | Property        | Type              | Description |
+  | --------------- | ----------------- | ------------|
+  | id              | int               | Id of the dog |
+  | ownerid         | ptr ro user       | Id of the dogs owner|
+  | yearsold        | int               | Age of the dog in years|
+  | monthsold       | int               | Age of the dog in months|
+  | name            | string            | Name of the dog |
+  | gender          | string            | The gender of the dog |
+  | breed           | string            | Breed of the dog |
+  | vaccinated      | boolean           | If the dog is vaccinated or not |
+  | fixed           | boolean           | If the dog is fixed or not|
+  | images          | file array        | Images of the dog |
+  | bio             | string            | Dog biography: imformation of the dog |
+  | city            | string            | City where dog is located|
+  | state           | string            | State where dog is located |
+  
+
+##### Conversation
+  | Property        | Type              | Description |
+  | --------------- | ----------------- | ------------|
+  | id              | int               | Users id    |
+  | created_at      | timestamp         | Time of conversation creation |
+  | message         | array of msg id   | Messages in the conversation|
+  | users           | array of user id  | User ids |
+  
+  
+##### Messages
+  | Property        | Type              | Description |
+  | --------------- | ----------------- | ------------|
+  | id              | int               | Users id    |
+  | created_at      | timestamp         | Time message was sent |
+  | message         | string            | Messages that were sent|
+  | users           | ptr to user       | User ids |
+  | convo_id        | ptr to convo      | conversation id |
+
+
+
 ### Networking
 [Add list of network requests by screen ]
 * Welcome/ Login Screen
