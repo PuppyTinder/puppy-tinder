@@ -18,9 +18,11 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
     @IBOutlet weak var neuteredTextField: UITextField!
     
     // Array of options for picker views
+    let genders = ["","Male", "Female"]
     let choices = ["", "Yes", "No"]
     let sizes = ["", "Small", "Medium", "Large"]
     
+    var genderPickerView = UIPickerView()
     var vaccinatedPickerView = UIPickerView()
     var neuteredPickerView = UIPickerView()
     var sizePickerView = UIPickerView()
@@ -36,7 +38,7 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initalizeUI()
+        initializeUI()
     }
     
     
@@ -51,10 +53,7 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         let lastname = defaults.string(forKey: LASTNAME_KEY)
         let birthday = defaults.string(forKey: BIRTHDAY_KEY)
         let phone = defaults.string(forKey: MOBILE_NUMBER_KEY)
-        //debug for values
-        print(username)
-        print(birthday)
-        print(phone)
+        
         let dog_name = nameTextField.text!
         let dog_gender = genderTextField.text!
         let breed = genderTextField.text!
@@ -80,20 +79,46 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
             neutered = false
         }
         
-        // Set values in backend
+        // Sign up the user
         user.username = username
         user.password = password
         user["firstname"] = firstname
         user["lastname"] = lastname
         user["birthday"] = birthday
         user["phone_number"] = phone
+        
+        user.signUpInBackground { (success, error) in
+            if (success)
+            {
+    
+            }
+            else
+            {
+                print("Error: \(error?.localizedDescription)")
+            }
+        }
+        
+        // Sign up the dog
         dog["name"] = dog_name
         dog["gender"] = dog_gender
         dog["breed"] = breed
         dog["size"] = size
         dog["vaccinated"] = vaccinated
         dog["fixed"] = neutered
-        dog["ownerid"] = PFUser.current()!
+        //dog["ownerid"] = user
+        //dog["ownerid"] = PFUser.current()!
+        dog.setObject(user, forKey: "ownerid")
+        dog.saveInBackground { success, error in
+            if (success)
+            {
+                self.signUpSuccess()
+                self.dismiss(animated: true, completion: nil)
+            }
+            else
+            {
+                self.signUpFailure()
+            }
+        }
         
         resetDefaults()
     }
@@ -114,6 +139,22 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         neuteredTextField.text = ""
     }
     
+    func signUpSuccess() {
+        let alertController: UIAlertController = UIAlertController(title: "Hurray", message: "Successfully signed up!", preferredStyle: .alert)
+        let dismiss: UIAlertAction = UIAlertAction(title: "Dismiss", style: .default) { (action) -> Void in NSLog("Alert dismissed")}
+        alertController.addAction(dismiss)
+        self.present(alertController, animated: true, completion: nil)
+            
+        }
+    
+    func signUpFailure() {
+        let alertController: UIAlertController = UIAlertController(title: "Error", message: "Failed to sign up!", preferredStyle: .alert)
+        let dismiss: UIAlertAction = UIAlertAction(title: "Dismiss", style: .default) { (action) -> Void in NSLog("Alert dismissed")}
+        alertController.addAction(dismiss)
+        self.present(alertController, animated: true, completion: nil)
+            
+        }
+    
     /* -----  PickerView Functions ----- */
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int
@@ -127,20 +168,28 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         {
             return choices.count
         }
-        else
+        else if pickerView.tag == 3
         {
             return sizes.count
+        }
+        else
+        {
+            return genders.count
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if(pickerView.tag == 1) || pickerView.tag == 2
+        if pickerView.tag == 1 || pickerView.tag == 2
         {
             return choices[row]
         }
-        else
+        else if pickerView.tag == 3
         {
             return sizes[row]
+        }
+        else
+        {
+            return genders[row]
         }
     }
     
@@ -155,10 +204,15 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
             neuteredTextField.text = choices[row]
             neuteredTextField.resignFirstResponder()
         }
-        else
+        else if pickerView.tag == 3
         {
             sizeTextField.text = sizes[row]
             sizeTextField.resignFirstResponder()
+        }
+        else
+        {
+            genderTextField.text = genders[row]
+            genderTextField.resignFirstResponder()
         }
     }
     
@@ -167,7 +221,7 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         return false
     }
     
-    func initalizeUI() {
+    func initializeUI() {
         nameTextField.delegate = self
         genderTextField.delegate = self
         breedTextField.delegate = self
@@ -184,9 +238,13 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         sizePickerView.delegate = self
         sizePickerView.dataSource = self
         sizePickerView.tag = 3
+        genderPickerView.delegate = self
+        genderPickerView.dataSource = self
+        genderPickerView.tag = 4
         sizeTextField.inputView = sizePickerView
         vaccinatedTextField.inputView = vaccinatedPickerView
         neuteredTextField.inputView = neuteredPickerView
+        genderTextField.inputView = genderPickerView
         
         self.nameTextField.becomeFirstResponder()
     }
