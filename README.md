@@ -147,7 +147,7 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 ##### Conversation
   | Property        | Type              | Description |
   | --------------- | ----------------- | ------------|
-  | id              | int               | Users id    |
+  | id              | int               | Conversation id    |
   | created_at      | timestamp         | Time of conversation creation |
   | message         | array of msg id   | Messages in the conversation|
   | users           | array of user id  | User ids |
@@ -156,9 +156,9 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 ##### Messages
   | Property        | Type              | Description |
   | --------------- | ----------------- | ------------|
-  | id              | int               | Users id    |
+  | id              | int               | Messages id |
   | created_at      | timestamp         | Time message was sent |
-  | message         | string            | Messages that were sent|
+  | message         | string            | Content of the messages|
   | users           | ptr to user       | User ids |
   | convo_id        | ptr to convo      | conversation id |
 
