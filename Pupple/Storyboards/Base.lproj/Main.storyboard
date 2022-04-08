@@ -163,13 +163,26 @@
                                     <action selector="onLogin:" destination="15D-8g-EuK" eventType="touchUpInside" id="NlP-MH-aU6"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j01-Mv-3gd">
+                                <rect key="frame" x="132" y="594" width="150" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="6zl-ub-rAR"/>
+                                    <constraint firstAttribute="width" constant="150" id="c0p-PU-M5U"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Forgot Password">
+                                    <fontDescription key="titleFontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9YA-HC-YZV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="j01-Mv-3gd" firstAttribute="centerX" secondItem="m0H-ch-XKT" secondAttribute="centerX" id="7bV-XD-rQb"/>
                             <constraint firstItem="kf0-lq-hH5" firstAttribute="leading" secondItem="9YA-HC-YZV" secondAttribute="leading" constant="60" id="BIj-CX-6a1"/>
                             <constraint firstItem="MvV-0T-Ru8" firstAttribute="top" secondItem="kf0-lq-hH5" secondAttribute="bottom" constant="32" id="IbJ-6t-Kfv"/>
                             <constraint firstItem="Vho-V3-qDF" firstAttribute="leading" secondItem="9YA-HC-YZV" secondAttribute="leading" constant="60" id="Jyb-0A-7F0"/>
+                            <constraint firstItem="j01-Mv-3gd" firstAttribute="top" secondItem="MvV-0T-Ru8" secondAttribute="bottom" constant="16" id="ME5-Oc-OcN"/>
                             <constraint firstItem="fQS-j1-cXs" firstAttribute="top" secondItem="Vho-V3-qDF" secondAttribute="bottom" constant="8" id="OCQ-b0-Hz2"/>
                             <constraint firstItem="ksJ-2R-Wd2" firstAttribute="top" secondItem="9YA-HC-YZV" secondAttribute="top" constant="253" id="S2o-lw-zhQ"/>
                             <constraint firstItem="ksJ-2R-Wd2" firstAttribute="centerX" secondItem="m0H-ch-XKT" secondAttribute="centerX" id="WdM-ai-gi4"/>
@@ -312,6 +325,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="setUsername:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="Tyq-2p-Kb2"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rJ6-kP-m4c">
                                 <rect key="frame" x="189" y="387" width="190" height="30"/>
@@ -321,6 +337,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="setPassword:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="2Ck-Qf-Tgw"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="eg: Parker" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hVY-Mc-xrj">
                                 <rect key="frame" x="189" y="433" width="190" height="30"/>
@@ -330,6 +349,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="setFirstName:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="s9b-WI-zpG"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="eg: Morales" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pde-4E-ZfM">
                                 <rect key="frame" x="189" y="479" width="190" height="30"/>
@@ -339,6 +361,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="setLastName:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="iAl-RS-F9o"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MM/DD/YY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PcF-Za-CGf">
                                 <rect key="frame" x="189" y="525" width="190" height="30"/>
@@ -348,6 +373,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="setDOB:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="8l0-Ka-2j3"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="718-123-4567" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Ju-YS-VbZ">
                                 <rect key="frame" x="189" y="571" width="190" height="30"/>
@@ -357,6 +385,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="setMobileNumber:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="hby-CF-3c7"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ne-Eh-rrU">
                                 <rect key="frame" x="138.5" y="659" width="118" height="40"/>
@@ -591,6 +622,9 @@
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" red="0.76862745099999996" green="0.64313725489999995" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="onSignUp:" destination="h1v-me-OPL" eventType="touchUpInside" id="Ms9-Ug-IyA"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spayed/Neutered?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOf-QQ-E9z">
                                 <rect key="frame" x="24" y="558" width="142" height="30"/>

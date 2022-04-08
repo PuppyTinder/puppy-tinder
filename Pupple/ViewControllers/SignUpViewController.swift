@@ -18,10 +18,51 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mobileNumberTextField: UITextField!
     
     let datePicker = UIDatePicker()
+    let defaults = UserDefaults.standard // Used to store the currently entered user information and pass it on to the next segue
+    
+    // Keys to access the values passed in
+    let USERNAME_KEY = "Username Key"
+    let PASSWORD_KEY = "Password Key"
+    let FIRSTNAME_KEY = "Firstname Key"
+    let LASTNAME_KEY = "Lastname Key"
+    let BIRTHDAY_KEY = "Birthday Key"
+    let MOBILE_NUMBER_KEY = "Mobile Number Key"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeUI()
+    }
+    
+   /* ------ Functions to store user input ------ */
+    
+    @IBAction func setUsername(_ sender: Any) {
+        let username = usernameTextField.text!
+        defaults.set(username, forKey: USERNAME_KEY)
+    }
+    
+    @IBAction func setPassword(_ sender: Any) {
+        let password = passwordTextField.text!
+        defaults.set(password, forKey: PASSWORD_KEY)
+    }
+    
+    @IBAction func setFirstName(_ sender: Any) {
+        let firstname = firstnameTextField.text!
+        defaults.set(firstname, forKey: FIRSTNAME_KEY)
+    }
+    
+    @IBAction func setLastName(_ sender: Any) {
+        let lastname = lastnameTextField.text!
+        defaults.set(lastname, forKey: LASTNAME_KEY)
+    }
+    
+    @IBAction func setDOB(_ sender: Any) {
+        let birthday = birthdayTextField.text!
+        defaults.set(birthday, forKey: BIRTHDAY_KEY)
+    }
+    
+    @IBAction func setMobileNumber(_ sender: Any) {
+        let phone = mobileNumberTextField.text!
+        defaults.set(phone, forKey: MOBILE_NUMBER_KEY)
     }
     
     // Go to page 2 of the sign up form and preserve the values from the first page
@@ -40,10 +81,19 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         else
         {
             self.performSegue(withIdentifier: "signUpPage2Segue", sender: nil)
+            resetInput()
         }
     }
     
-    
+    func resetInput()
+    {
+        usernameTextField.text = ""
+        passwordTextField.text = ""
+        firstnameTextField.text = ""
+        lastnameTextField.text = ""
+        birthdayTextField.text = ""
+        mobileNumberTextField.text = ""
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
