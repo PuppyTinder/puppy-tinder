@@ -44,15 +44,18 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
     
     @IBAction func onSignUp(_ sender: Any) {
         
-        let user = PFUser() // Get the current user object
         let dog = PFObject(className: "Dog") // Get the current dog object
         
-        let username = defaults.string(forKey: USERNAME_KEY)
-        let password = defaults.string(forKey: PASSWORD_KEY)
-        let firstname = defaults.string(forKey: FIRSTNAME_KEY)
-        let lastname = defaults.string(forKey: LASTNAME_KEY)
-        let birthday = defaults.string(forKey: BIRTHDAY_KEY)
-        let phone = defaults.string(forKey: MOBILE_NUMBER_KEY)
+        let username = defaults.string(forKey: USERNAME_KEY)!
+        let password = defaults.string(forKey: PASSWORD_KEY)!
+        
+        // Temporarily login the user
+        PFUser.logInWithUsername(inBackground: username, password: password) { user, error in
+            if (user != nil)
+            {
+                
+            }
+        }
         
         let dog_name = nameTextField.text!
         let dog_gender = genderTextField.text!
@@ -79,25 +82,6 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
             neutered = false
         }
         
-        // Sign up the user
-        user.username = username
-        user.password = password
-        user["firstname"] = firstname
-        user["lastname"] = lastname
-        user["birthday"] = birthday
-        user["phone_number"] = phone
-        
-        user.signUpInBackground { (success, error) in
-            if (success)
-            {
-    
-            }
-            else
-            {
-                print("Error: \(error?.localizedDescription)")
-            }
-        }
-        
         // Sign up the dog
         dog["name"] = dog_name
         dog["gender"] = dog_gender
@@ -105,9 +89,8 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         dog["size"] = size
         dog["vaccinated"] = vaccinated
         dog["fixed"] = neutered
-        //dog["ownerid"] = user
-        //dog["ownerid"] = PFUser.current()!
-        dog.setObject(user, forKey: "ownerid")
+        dog["ownerid"] = PFUser.current()!
+        
         dog.saveInBackground { success, error in
             if (success)
             {
@@ -120,7 +103,30 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
             }
         }
         
+        PFUser.logOut()
         resetDefaults()
+    }
+    
+    //Cancel the signup process and directs user back to the welcome screen
+    @IBAction func cancelSignUp(_ sender: Any) {
+        let username = defaults.string(forKey: USERNAME_KEY)!
+        let password = defaults.string(forKey: PASSWORD_KEY)!
+        
+        // Temporarily login the user
+        PFUser.logInWithUsername(inBackground: username, password: password) { user, error in
+            if (user != nil)
+            {
+                
+            }
+        }
+        let user = PFUser.current()!
+        user.deleteInBackground()
+        resetDefaults()
+        
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let WelcomeViewController = main.instantiateViewController(withIdentifier: "WelcomeViewController")
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return}
+        delegate.window?.rootViewController = WelcomeViewController
     }
     
     func resetDefaults()

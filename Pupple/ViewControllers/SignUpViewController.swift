@@ -74,14 +74,25 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         let birthday = birthdayTextField.text!
         let phone = mobileNumberTextField.text!
         
-        if(username.isEmpty || password.isEmpty || firstname.isEmpty || lastname.isEmpty || birthday.isEmpty || phone.isEmpty )
-        {
-            showWarning()
-        }
-        else
-        {
-            self.performSegue(withIdentifier: "signUpPage2Segue", sender: nil)
-            resetInput()
+        let user = PFUser()
+        
+        user.username = username
+        user.password = password
+        user["firstname"] = firstname
+        user["lastname"] = lastname
+        user["birthday"] = birthday
+        user["phone_number"] = phone
+        
+        user.signUpInBackground { (success, error) in
+            if (success)
+            {
+                self.resetInput()
+                self.performSegue(withIdentifier: "signUpPage2Segue", sender: nil)
+            }
+            else
+            {
+                self.showWarning()
+            }
         }
     }
     
