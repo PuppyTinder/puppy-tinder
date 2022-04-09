@@ -11,7 +11,7 @@
         <!--WelcomeViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="WelcomeViewController" id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="Pupple" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeViewController" title="WelcomeViewController" id="BYZ-38-t0r" customClass="WelcomeViewController" customModule="Pupple" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,6 +78,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="O3B-Mr-n1I" secondAttribute="trailing" constant="69" id="nyD-mx-nBW"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="J72-ag-EPz"/>
                     <connections>
                         <outlet property="createAccountButton" destination="XBo-Er-BL6" id="XNh-ev-Iwf"/>
                         <outlet property="loginButton" destination="O3B-Mr-n1I" id="QN4-eZ-fy2"/>
@@ -396,17 +397,11 @@
                                     <constraint firstAttribute="height" constant="40" id="X1H-3T-Y0N"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled">
+                                <buttonConfiguration key="configuration" style="filled" title="Next">
                                     <backgroundConfiguration key="background" cornerRadius="20" strokeWidth="3">
                                         <color key="strokeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </backgroundConfiguration>
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Next">
-                                            <attributes>
-                                                <font key="NSFont" size="20" name="Helvetica"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                                    <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" red="0.76862745098039209" green="0.64313725490196072" blue="0.51764705882352935" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
@@ -607,18 +602,11 @@
                                     <constraint firstAttribute="width" constant="118" id="d5P-45-FVW"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled">
+                                <buttonConfiguration key="configuration" style="filled" title="Sign Up">
                                     <backgroundConfiguration key="background" cornerRadius="20" strokeWidth="3">
                                         <color key="strokeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </backgroundConfiguration>
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Sign Up">
-                                            <attributes>
-                                                <font key="NSFont" size="20" name="Helvetica"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                                    <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" red="0.76862745099999996" green="0.64313725489999995" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
@@ -636,6 +624,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzC-hB-dTK">
+                                <rect key="frame" x="142" y="693" width="118" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Avw-QV-vVC"/>
+                                    <constraint firstAttribute="width" constant="118" id="GWO-Ei-dlv"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Cancel">
+                                    <backgroundConfiguration key="background" cornerRadius="20" strokeWidth="3">
+                                        <color key="strokeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" red="0.76862745098039209" green="0.64313725490196072" blue="0.51764705882352935" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="cancelSignUp:" destination="h1v-me-OPL" eventType="touchUpInside" id="QMc-Qe-qeh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yoe-Gi-HU8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -651,8 +658,10 @@
                             <constraint firstItem="sjP-zl-oK3" firstAttribute="top" secondItem="nbr-BZ-Bre" secondAttribute="bottom" constant="16" id="KKH-Ww-biN"/>
                             <constraint firstAttribute="trailing" secondItem="86C-nD-UFb" secondAttribute="trailing" constant="16" id="KdO-bP-U8E"/>
                             <constraint firstItem="Yoe-Gi-HU8" firstAttribute="trailing" secondItem="RVC-al-SLE" secondAttribute="trailing" constant="16" id="Kmz-pn-Ts5"/>
+                            <constraint firstItem="IzC-hB-dTK" firstAttribute="top" secondItem="Zaw-Yo-Swj" secondAttribute="bottom" constant="8" id="NEn-bC-94H"/>
                             <constraint firstItem="Yoe-Gi-HU8" firstAttribute="trailing" secondItem="nbr-BZ-Bre" secondAttribute="trailing" constant="16" id="Oqb-cN-o3s"/>
                             <constraint firstItem="Zaw-Yo-Swj" firstAttribute="top" secondItem="FOf-QQ-E9z" secondAttribute="bottom" constant="57" id="Q0n-XN-xts"/>
+                            <constraint firstItem="IzC-hB-dTK" firstAttribute="centerX" secondItem="DpC-31-xrR" secondAttribute="centerX" id="RP2-lo-MpI"/>
                             <constraint firstItem="FOf-QQ-E9z" firstAttribute="top" secondItem="bQ7-b4-ec5" secondAttribute="bottom" constant="16" id="SWc-Gh-E4J"/>
                             <constraint firstItem="RVC-al-SLE" firstAttribute="leading" secondItem="FOf-QQ-E9z" secondAttribute="trailing" constant="30" id="UuT-bP-CXJ"/>
                             <constraint firstItem="bkh-Z8-iWd" firstAttribute="top" secondItem="8Yt-1z-ZMf" secondAttribute="bottom" constant="16" id="YCa-cp-wwb"/>
