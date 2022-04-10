@@ -7,9 +7,11 @@
 
 import UIKit
 import Parse
+import AlamofireImage
 
-class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var dogImageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var breedTextField: UITextField!
@@ -39,8 +41,39 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeUI()
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        
+        // Pushes view up when keyboard appears
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    
+    @IBAction func onCameraButton(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera)
+        {
+            picker.sourceType = .camera
+        }
+        else
+        {
+            picker.sourceType = .photoLibrary
+        }
+        
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] as! UIImage
+        let size = CGSize(width: 141, height: 133)
+        let scaledImage = image.af.imageScaled(to: size)
+        dogImageView.image = scaledImage
+        
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func onSignUp(_ sender: Any) {
         
@@ -82,6 +115,9 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
             neutered = false
         }
         
+        let imageData = dogImageView.image!.pngData()
+        let file = PFFileObject(name: "dog.png", data: imageData!)
+        
         // Sign up the dog
         dog["name"] = dog_name
         dog["gender"] = dog_gender
@@ -94,6 +130,8 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         dog.saveInBackground { success, error in
             if (success)
             {
+                dog["dog_photo"] = file
+                dog.saveInBackground()
                 self.signUpSuccess()
                 self.dismiss(animated: true, completion: nil)
             }
@@ -235,6 +273,9 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         vaccinatedTextField.delegate = self
         neuteredTextField.delegate = self
         
+        dogImageView.layer.masksToBounds = true
+        dogImageView.layer.cornerRadius = dogImageView.bounds.width/2
+        
         vaccinatedPickerView.delegate = self
         vaccinatedPickerView.dataSource = self
         vaccinatedPickerView.tag = 1
@@ -254,6 +295,23 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         
         self.nameTextField.becomeFirstResponder()
     }
+    
+    @objc func adjustInputView(notification: Notification)
+    {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
+        
+        if notification.name == UIResponder.keyboardWillShowNotification
+        {
+            let adjustmentHeight = keyboardFrame.height - view.safeAreaInsets.bottom
+            self.view.frame.origin.y -= adjustmentHeight
+        }
+        else
+        {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

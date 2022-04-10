@@ -7,9 +7,11 @@
 
 import UIKit
 import Parse
+import AlamofireImage
 
-class SignUpViewController: UIViewController, UITextFieldDelegate {
+class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var firstnameTextField: UITextField!
@@ -31,9 +33,40 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeUI()
+     
+        // Pushes view up when keyboard appears
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
    /* ------ Functions to store user input ------ */
+    
+    // Will launch camera when image is selected
+    @IBAction func onCameraButton(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera)
+        {
+            picker.sourceType = .camera
+        }
+        else
+        {
+            picker.sourceType = .photoLibrary
+        }
+        
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] as! UIImage
+        let size = CGSize(width: 141, height: 133)
+        let scaledImage = image.af.imageScaled(to: size)
+        userImageView.image = scaledImage
+        
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func setUsername(_ sender: Any) {
         let username = usernameTextField.text!
@@ -75,6 +108,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         let phone = mobileNumberTextField.text!
         
         let user = PFUser()
+        let imageData = userImageView.image!.pngData()
+        let file = PFFileObject(name: "user.png", data: imageData!)
         
         user.username = username
         user.password = password
@@ -86,6 +121,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         user.signUpInBackground { (success, error) in
             if (success)
             {
+                user["user_photo"] = file
+                user.saveInBackground()
                 self.resetInput()
                 self.performSegue(withIdentifier: "signUpPage2Segue", sender: nil)
             }
@@ -143,6 +180,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.birthdayTextField.delegate = self
         self.mobileNumberTextField.delegate = self
         
+        userImageView.layer.masksToBounds = true
+        userImageView.layer.cornerRadius = userImageView.bounds.width/2
+        
         createDateKeyboard()
         self.usernameTextField.becomeFirstResponder()
     }
@@ -155,6 +195,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.present(alertController, animated: true, completion: nil)
             
         }
+    
+    @objc func adjustInputView(notification: Notification)
+    {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
+        
+        if notification.name == UIResponder.keyboardWillShowNotification && passwordTextField.isEditing == false
+        {
+            let adjustmentHeight = keyboardFrame.height - view.safeAreaInsets.bottom
+            self.view.frame.origin.y -= adjustmentHeight
+        }
+        else
+        {
+            self.view.frame.origin.y = 0
+        }
+    }
 
     /*
     // MARK: - Navigation
