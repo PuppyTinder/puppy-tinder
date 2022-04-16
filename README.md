@@ -84,11 +84,11 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 ### Figma
 [Figma Link](https://www.figma.com/file/6FvZexl2m7K3RwQXaSSBr7/Puppy-Tinder-Project?node-id=0%3A1)
 
-### Launch Screen and Welcome Screen
+### Launch, Welcome, and Login Screen
+<p float="left"> 
 <img src="https://i.imgur.com/RHWwVh9.png" width=400>
-
-### Login Screen
 <img src="https://i.imgur.com/U0nY2ez.png" width=200>
+</p>
 
 ### Signup Screens
 <img src="https://i.imgur.com/GZoFE4j.png" width=1000>
