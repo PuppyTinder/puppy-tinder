@@ -2,16 +2,17 @@
 
 ## Table of Contents
 1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
-2. [Schema](#Schema)
+2. [Product Spec](#Product-Spec)
+3. [Wireframes](#Wireframes)
+4. [Schema](#Schema)
+5. [GIF Updates](#Updates) 
 
 ## Overview
 ### Description
 A Tinder-like app that allows dog owners to find a playmate for their dogs.
 
 ### App Evaluation
-[Evaluation of your app across the following attributes]
+
 - **Category:** Social Networking
 - **Mobile:** This app will be primarily developed for mobile but would function on a computer as well. Mobile version for this application would be more friendly to use and allows for more features.
 - **Story:** Dog owners are able to connect and match with other dog owners and potentially set up a puppy playdate.
@@ -106,7 +107,7 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 <img src="https://i.imgur.com/FXbtcXs.gif" width=300>
 
 ## Schema 
-[This section will be completed in Unit 9]
+
 ### Models
 
 ##### User
@@ -167,7 +168,7 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 
 
 ### Networking
-[Add list of network requests by screen ]
+
 * Welcome/ Login Screen
     * (Create/Post) Create a profile 
     * (Read/GET) Query logged in user object
@@ -188,17 +189,18 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
-# Pupple Product Spec
 
-- Description: This app will allow users to find a potential playmate for their furry companion through a Tinder-like application. 
-- Group Members:
-    - Mandy Yu
-    - Yoomin Song
-    - Shareena Wiggins
-    - Jordan Sukhnandan
+## Updates
 
-- Name Ideas:
-    - Pupdate
-    - Furmate
-    - Pupple
+### Sprint 1
+
+- User can see a stylized icon and launch & welcome screen.
+- User can create an account with a profile.
+- User can login.
+
+<p float="left">
+  <img src="http://g.recordit.co/PLhFfi40g6.gif" width="300" />
+  <img src="https://i.imgur.com/6cNhrWK.png" width="300" /> 
+
+</p>
 
