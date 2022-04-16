@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1728972F27FE7B4D00EEDA68 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728972E27FE7B4D00EEDA68 /* FeedViewController.swift */; };
+		175473662803EA2600FC685C /* SignupSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175473652803EA2600FC685C /* SignupSuccessViewController.swift */; };
 		17AA69FF27FD495D00C6E41D /* SignUpViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AA69FE27FD495D00C6E41D /* SignUpViewController2.swift */; };
 		17D8626527FCA4F300180D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8626427FCA4F300180D59 /* AppDelegate.swift */; };
 		17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8626627FCA4F300180D59 /* SceneDelegate.swift */; };
@@ -21,6 +22,21 @@
 		17D8629727FD327200180D59 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8629627FD327200180D59 /* LoginViewController.swift */; };
 		17D8629927FD329D00180D59 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8629827FD329D00180D59 /* WelcomeViewController.swift */; };
 		17D8629B27FD430300180D59 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8629A27FD430300180D59 /* SignUpViewController.swift */; };
+		17E686A32806915D00C4015C /* SwipeableCardViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686A22806915D00C4015C /* SwipeableCardViewDataSource.swift */; };
+		17E686A52806939B00C4015C /* SwipeableCardViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686A42806939B00C4015C /* SwipeableCardViewDelegate.swift */; };
+		17E686A72806946000C4015C /* SwipeableCardViewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686A62806946000C4015C /* SwipeableCardViewCard.swift */; };
+		17E686A9280695C500C4015C /* SwipeableCardViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686A8280695C500C4015C /* SwipeableCardViewContainer.swift */; };
+		17E686AB2806961F00C4015C /* SwipeableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686AA2806961F00C4015C /* SwipeableViewDelegate.swift */; };
+		17E686AD28069C9100C4015C /* SwipeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686AC28069C9100C4015C /* SwipeableView.swift */; };
+		17E686AF28069D0700C4015C /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686AE28069D0700C4015C /* NibView.swift */; };
+		17E686B128069E9800C4015C /* UIViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686B028069E9800C4015C /* UIViewConstraints.swift */; };
+		17E686B328077E9000C4015C /* SwipeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686B228077E9000C4015C /* SwipeDirection.swift */; };
+		17E686B528077F1F00C4015C /* CGPoint+Swipeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686B428077F1F00C4015C /* CGPoint+Swipeable.swift */; };
+		17E686B728077F5000C4015C /* CGRect+Swipeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686B628077F5000C4015C /* CGRect+Swipeable.swift */; };
+		17E686B9280784CB00C4015C /* SwipeableCardViewCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17E686B8280784CB00C4015C /* SwipeableCardViewCard.xib */; };
+		17E686BB280786B100C4015C /* SampleSwipeableCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17E686BA280786B100C4015C /* SampleSwipeableCard.xib */; };
+		17E686BD28078C6E00C4015C /* SampleSwipeableCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686BC28078C6E00C4015C /* SampleSwipeableCard.swift */; };
+		17E686BF28078CFE00C4015C /* SampleSwipeableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686BE28078CFE00C4015C /* SampleSwipeableCellViewModel.swift */; };
 		AF77B25351452F349A587607 /* Pods_Pupple_PuppleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3215CAEF2A721764AE6F4FBF /* Pods_Pupple_PuppleUITests.framework */; };
 		AFBE01C2D60C5400FF71EECF /* Pods_PuppleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80BA0B35038069A625970E8B /* Pods_PuppleTests.framework */; };
 		B391D79FCB234E22AAE0A570 /* Pods_Pupple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E11C50E34EA7C4C49FE0CB /* Pods_Pupple.framework */; };
@@ -46,6 +62,7 @@
 /* Begin PBXFileReference section */
 		07F5ECA4293686987F873306 /* Pods-Pupple-PuppleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupple-PuppleUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pupple-PuppleUITests/Pods-Pupple-PuppleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1728972E27FE7B4D00EEDA68 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		175473652803EA2600FC685C /* SignupSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupSuccessViewController.swift; sourceTree = "<group>"; };
 		17AA69FE27FD495D00C6E41D /* SignUpViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController2.swift; sourceTree = "<group>"; };
 		17D8626127FCA4F300180D59 /* Pupple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pupple.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17D8626427FCA4F300180D59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +80,21 @@
 		17D8629627FD327200180D59 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		17D8629827FD329D00180D59 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		17D8629A27FD430300180D59 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		17E686A22806915D00C4015C /* SwipeableCardViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardViewDataSource.swift; sourceTree = "<group>"; };
+		17E686A42806939B00C4015C /* SwipeableCardViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardViewDelegate.swift; sourceTree = "<group>"; };
+		17E686A62806946000C4015C /* SwipeableCardViewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardViewCard.swift; sourceTree = "<group>"; };
+		17E686A8280695C500C4015C /* SwipeableCardViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCardViewContainer.swift; sourceTree = "<group>"; };
+		17E686AA2806961F00C4015C /* SwipeableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableViewDelegate.swift; sourceTree = "<group>"; };
+		17E686AC28069C9100C4015C /* SwipeableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableView.swift; sourceTree = "<group>"; };
+		17E686AE28069D0700C4015C /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
+		17E686B028069E9800C4015C /* UIViewConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewConstraints.swift; sourceTree = "<group>"; };
+		17E686B228077E9000C4015C /* SwipeDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeDirection.swift; sourceTree = "<group>"; };
+		17E686B428077F1F00C4015C /* CGPoint+Swipeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Swipeable.swift"; sourceTree = "<group>"; };
+		17E686B628077F5000C4015C /* CGRect+Swipeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Swipeable.swift"; sourceTree = "<group>"; };
+		17E686B8280784CB00C4015C /* SwipeableCardViewCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeableCardViewCard.xib; sourceTree = "<group>"; };
+		17E686BA280786B100C4015C /* SampleSwipeableCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SampleSwipeableCard.xib; sourceTree = "<group>"; };
+		17E686BC28078C6E00C4015C /* SampleSwipeableCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleSwipeableCard.swift; sourceTree = "<group>"; };
+		17E686BE28078CFE00C4015C /* SampleSwipeableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleSwipeableCellViewModel.swift; sourceTree = "<group>"; };
 		1B1332EA5544C2BA38C70FD3 /* Pods-Pupple-PuppleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupple-PuppleUITests.release.xcconfig"; path = "Target Support Files/Pods-Pupple-PuppleUITests/Pods-Pupple-PuppleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3215CAEF2A721764AE6F4FBF /* Pods_Pupple_PuppleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pupple_PuppleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80BA0B35038069A625970E8B /* Pods_PuppleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PuppleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +158,7 @@
 		17D8626327FCA4F300180D59 /* Pupple */ = {
 			isa = PBXGroup;
 			children = (
+				17E686A12806911A00C4015C /* SwipeableCardFolder */,
 				17D8629527FD31BD00180D59 /* Storyboards */,
 				17D8629427FD31A400180D59 /* ViewControllers */,
 				17D8626427FCA4F300180D59 /* AppDelegate.swift */,
@@ -162,6 +195,7 @@
 				17D8629A27FD430300180D59 /* SignUpViewController.swift */,
 				17AA69FE27FD495D00C6E41D /* SignUpViewController2.swift */,
 				1728972E27FE7B4D00EEDA68 /* FeedViewController.swift */,
+				175473652803EA2600FC685C /* SignupSuccessViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -173,6 +207,28 @@
 				17D8626A27FCA4F300180D59 /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		17E686A12806911A00C4015C /* SwipeableCardFolder */ = {
+			isa = PBXGroup;
+			children = (
+				17E686A22806915D00C4015C /* SwipeableCardViewDataSource.swift */,
+				17E686A42806939B00C4015C /* SwipeableCardViewDelegate.swift */,
+				17E686A62806946000C4015C /* SwipeableCardViewCard.swift */,
+				17E686A8280695C500C4015C /* SwipeableCardViewContainer.swift */,
+				17E686AA2806961F00C4015C /* SwipeableViewDelegate.swift */,
+				17E686AC28069C9100C4015C /* SwipeableView.swift */,
+				17E686AE28069D0700C4015C /* NibView.swift */,
+				17E686B028069E9800C4015C /* UIViewConstraints.swift */,
+				17E686B228077E9000C4015C /* SwipeDirection.swift */,
+				17E686B428077F1F00C4015C /* CGPoint+Swipeable.swift */,
+				17E686B628077F5000C4015C /* CGRect+Swipeable.swift */,
+				17E686B8280784CB00C4015C /* SwipeableCardViewCard.xib */,
+				17E686BA280786B100C4015C /* SampleSwipeableCard.xib */,
+				17E686BC28078C6E00C4015C /* SampleSwipeableCard.swift */,
+				17E686BE28078CFE00C4015C /* SampleSwipeableCellViewModel.swift */,
+			);
+			path = SwipeableCardFolder;
 			sourceTree = "<group>";
 		};
 		40536E49586341F31456B98F /* Pods */ = {
@@ -307,7 +363,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17E686BB280786B100C4015C /* SampleSwipeableCard.xib in Resources */,
 				17D8627127FCA4F300180D59 /* LaunchScreen.storyboard in Resources */,
+				17E686B9280784CB00C4015C /* SwipeableCardViewCard.xib in Resources */,
 				17D8626E27FCA4F300180D59 /* Assets.xcassets in Resources */,
 				17D8626C27FCA4F300180D59 /* Main.storyboard in Resources */,
 			);
@@ -438,13 +496,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				17AA69FF27FD495D00C6E41D /* SignUpViewController2.swift in Sources */,
+				17E686AB2806961F00C4015C /* SwipeableViewDelegate.swift in Sources */,
 				17D8629B27FD430300180D59 /* SignUpViewController.swift in Sources */,
+				17E686B328077E9000C4015C /* SwipeDirection.swift in Sources */,
 				17D8629727FD327200180D59 /* LoginViewController.swift in Sources */,
+				175473662803EA2600FC685C /* SignupSuccessViewController.swift in Sources */,
+				17E686AF28069D0700C4015C /* NibView.swift in Sources */,
+				17E686A72806946000C4015C /* SwipeableCardViewCard.swift in Sources */,
 				17D8629927FD329D00180D59 /* WelcomeViewController.swift in Sources */,
 				17D8626927FCA4F300180D59 /* ViewController.swift in Sources */,
 				17D8626527FCA4F300180D59 /* AppDelegate.swift in Sources */,
+				17E686A32806915D00C4015C /* SwipeableCardViewDataSource.swift in Sources */,
 				1728972F27FE7B4D00EEDA68 /* FeedViewController.swift in Sources */,
+				17E686AD28069C9100C4015C /* SwipeableView.swift in Sources */,
+				17E686B728077F5000C4015C /* CGRect+Swipeable.swift in Sources */,
+				17E686A52806939B00C4015C /* SwipeableCardViewDelegate.swift in Sources */,
+				17E686A9280695C500C4015C /* SwipeableCardViewContainer.swift in Sources */,
+				17E686BF28078CFE00C4015C /* SampleSwipeableCellViewModel.swift in Sources */,
+				17E686BD28078C6E00C4015C /* SampleSwipeableCard.swift in Sources */,
 				17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */,
+				17E686B128069E9800C4015C /* UIViewConstraints.swift in Sources */,
+				17E686B528077F1F00C4015C /* CGPoint+Swipeable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
