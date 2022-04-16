@@ -24,7 +24,8 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-- [x] User can see a stylized launch and welcome screen.
+- [x] User can see a stylized launch screen and icon.
+- [x] User can see a stylized welcome screen.
 - [x] User can login.
 - [x] User can create a profile.
 * User can edit a profile.
