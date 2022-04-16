@@ -29,13 +29,13 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 - [x] User can see a stylized welcome screen.
 - [x] User can login.
 - [x] User can create a profile.
-* User can edit a profile.
 * User can like or not like a dog profile.
 * User can view their previous likes.
 * User can view their matches.
 * User can message a match.
 
 **Optional Nice-to-have Stories**
+* User can edit a profile.
 * User can set their preferences for dog profiles
 * User can create an event (e.g. playdate)
 * User can view events
