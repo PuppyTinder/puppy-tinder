@@ -87,7 +87,7 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 ### Launch, Welcome, and Login Screen
 <p float="left"> 
 <img src="https://i.imgur.com/RHWwVh9.png" width=400>
-<img src="https://i.imgur.com/U0nY2ez.png" width=200>
+<img src="https://i.imgur.com/U0nY2ez.png" width=220>
 </p>
 
 ### Signup Screens
@@ -200,7 +200,7 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 
 <p float="left">
   <img src="http://g.recordit.co/PLhFfi40g6.gif" width="300" />
-  <img src="https://i.imgur.com/6cNhrWK.png" width="300" /> 
+  <img src="https://i.imgur.com/6cNhrWK.png" width="290" /> 
 
 </p>
 
