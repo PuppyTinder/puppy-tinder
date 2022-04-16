@@ -8,6 +8,8 @@ target 'Pupple' do
   # Pods for Pupple
   pod 'Parse'
   pod 'AlamofireImage'
+  pod 'Koloda'
+  pod 'pop', '~> 1.0'
 
   target 'PuppleTests' do
     inherit! :search_paths

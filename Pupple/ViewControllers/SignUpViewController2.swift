@@ -37,6 +37,7 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
     let LASTNAME_KEY = "Lastname Key"
     let BIRTHDAY_KEY = "Birthday Key"
     let MOBILE_NUMBER_KEY = "Mobile Number Key"
+    let LOCATION_KEY = "Location Key"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +93,7 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         
         let dog_name = nameTextField.text!
         let dog_gender = genderTextField.text!
-        let breed = genderTextField.text!
+        let breed = breedTextField.text!
         let size = sizeTextField.text!
         var vaccinated : Bool?
         var neutered : Bool?
@@ -132,17 +133,17 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
             {
                 dog["dog_photo"] = file
                 dog.saveInBackground()
-                self.signUpSuccess()
-                self.dismiss(animated: true, completion: nil)
+                //self.signUpSuccess()
+                //self.dismiss(animated: true, completion: nil)
+                self.performSegue(withIdentifier: "signupSuccessSegue", sender: nil)
+                PFUser.logOut()
+                self.resetDefaults()
             }
             else
             {
                 self.signUpFailure()
             }
         }
-        
-        PFUser.logOut()
-        resetDefaults()
     }
     
     //Cancel the signup process and directs user back to the welcome screen
@@ -160,6 +161,7 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         let user = PFUser.current()!
         user.deleteInBackground()
         resetDefaults()
+        PFUser.logOut()
         
         let main = UIStoryboard(name: "Main", bundle: nil)
         let WelcomeViewController = main.instantiateViewController(withIdentifier: "WelcomeViewController")
@@ -175,6 +177,7 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         defaults.removeObject(forKey: LASTNAME_KEY)
         defaults.removeObject(forKey: BIRTHDAY_KEY)
         defaults.removeObject(forKey: MOBILE_NUMBER_KEY)
+        defaults.removeObject(forKey: LOCATION_KEY)
         nameTextField.text = ""
         genderTextField.text = ""
         breedTextField.text = ""

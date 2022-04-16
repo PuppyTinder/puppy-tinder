@@ -18,6 +18,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     @IBOutlet weak var lastnameTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!
     @IBOutlet weak var mobileNumberTextField: UITextField!
+    @IBOutlet weak var locationTextField: UITextField!
     
     let datePicker = UIDatePicker()
     let defaults = UserDefaults.standard // Used to store the currently entered user information and pass it on to the next segue
@@ -29,6 +30,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     let LASTNAME_KEY = "Lastname Key"
     let BIRTHDAY_KEY = "Birthday Key"
     let MOBILE_NUMBER_KEY = "Mobile Number Key"
+    let LOCATION_KEY = "Location Key"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +100,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         defaults.set(phone, forKey: MOBILE_NUMBER_KEY)
     }
     
+    @IBAction func setLocation(_ sender: Any) {
+        let location = locationTextField.text!
+        defaults.set(location, forKey: LOCATION_KEY)
+    }
+    
     // Go to page 2 of the sign up form and preserve the values from the first page
     @IBAction func goToNextPage(_ sender: Any) {
         let username = usernameTextField.text!
@@ -106,6 +113,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         let lastname = lastnameTextField.text!
         let birthday = birthdayTextField.text!
         let phone = mobileNumberTextField.text!
+        let location = locationTextField.text!
         
         let user = PFUser()
         let imageData = userImageView.image!.pngData()
@@ -117,6 +125,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         user["lastname"] = lastname
         user["birthday"] = birthday
         user["phone_number"] = phone
+        user["location"] = location
         
         user.signUpInBackground { (success, error) in
             if (success)
@@ -141,6 +150,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         lastnameTextField.text = ""
         birthdayTextField.text = ""
         mobileNumberTextField.text = ""
+        locationTextField.text = ""
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -179,6 +189,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         self.lastnameTextField.delegate = self
         self.birthdayTextField.delegate = self
         self.mobileNumberTextField.delegate = self
+        self.locationTextField.delegate = self
         
         userImageView.layer.masksToBounds = true
         userImageView.layer.cornerRadius = userImageView.bounds.width/2
