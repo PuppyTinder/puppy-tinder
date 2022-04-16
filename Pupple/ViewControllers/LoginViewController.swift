@@ -29,7 +29,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         PFUser.logInWithUsername(inBackground: username, password: password) { (user, error) in
             if user != nil
             {
-                self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                //self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                let main = UIStoryboard(name: "Main", bundle: nil)
+                let tabBarController = main.instantiateViewController(withIdentifier: "HomeTabBarController")
+                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return}
+                delegate.window?.rootViewController = tabBarController
                 self.usernameTextField.text = ""
                 self.passwordTextField.text = ""
             }
