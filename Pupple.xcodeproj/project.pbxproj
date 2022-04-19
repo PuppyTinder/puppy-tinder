@@ -26,6 +26,7 @@
 		17E686C7280B5B2200C4015C /* KolodaCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17E686C6280B5B2200C4015C /* KolodaCardView.xib */; };
 		17E686C9280B5B7300C4015C /* KolodaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686C8280B5B7300C4015C /* KolodaCardView.swift */; };
 		17E959F7280F45BB00CF56BA /* DogProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E959F6280F45BB00CF56BA /* DogProfileFeedViewController.swift */; };
+		17E95A00280F6B2600CF56BA /* UIViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E959FF280F6B2600CF56BA /* UIViewConstraints.swift */; };
 		AF77B25351452F349A587607 /* Pods_Pupple_PuppleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3215CAEF2A721764AE6F4FBF /* Pods_Pupple_PuppleUITests.framework */; };
 		AFBE01C2D60C5400FF71EECF /* Pods_PuppleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80BA0B35038069A625970E8B /* Pods_PuppleTests.framework */; };
 		B391D79FCB234E22AAE0A570 /* Pods_Pupple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E11C50E34EA7C4C49FE0CB /* Pods_Pupple.framework */; };
@@ -73,6 +74,7 @@
 		17E686C6280B5B2200C4015C /* KolodaCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KolodaCardView.xib; sourceTree = "<group>"; };
 		17E686C8280B5B7300C4015C /* KolodaCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KolodaCardView.swift; sourceTree = "<group>"; };
 		17E959F6280F45BB00CF56BA /* DogProfileFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogProfileFeedViewController.swift; sourceTree = "<group>"; };
+		17E959FF280F6B2600CF56BA /* UIViewConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewConstraints.swift; sourceTree = "<group>"; };
 		1B1332EA5544C2BA38C70FD3 /* Pods-Pupple-PuppleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupple-PuppleUITests.release.xcconfig"; path = "Target Support Files/Pods-Pupple-PuppleUITests/Pods-Pupple-PuppleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3215CAEF2A721764AE6F4FBF /* Pods_Pupple_PuppleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pupple_PuppleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80BA0B35038069A625970E8B /* Pods_PuppleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PuppleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,6 +196,7 @@
 				17E686AE28069D0700C4015C /* NibView.swift */,
 				17E686C6280B5B2200C4015C /* KolodaCardView.xib */,
 				17E686C8280B5B7300C4015C /* KolodaCardView.swift */,
+				17E959FF280F6B2600CF56BA /* UIViewConstraints.swift */,
 			);
 			path = KolodaCardFolder;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17AA69FF27FD495D00C6E41D /* SignUpViewController2.swift in Sources */,
+				17E95A00280F6B2600CF56BA /* UIViewConstraints.swift in Sources */,
 				17D8629B27FD430300180D59 /* SignUpViewController.swift in Sources */,
 				17D8629727FD327200180D59 /* LoginViewController.swift in Sources */,
 				175473662803EA2600FC685C /* SignupSuccessViewController.swift in Sources */,
