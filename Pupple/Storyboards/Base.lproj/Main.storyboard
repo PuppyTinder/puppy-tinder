@@ -217,66 +217,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="134" translatesAutoresizingMaskIntoConstraints="NO" id="CAe-56-T4n">
-                                <rect key="frame" x="46" y="568" width="322" height="80"/>
-                                <subviews>
-                                    <button clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duL-uk-ITN">
-                                        <rect key="frame" x="0.0" y="0.0" width="94" height="80"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="Reject" title=""/>
-                                    </button>
-                                    <button clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28E-5f-mbd">
-                                        <rect key="frame" x="228" y="0.0" width="94" height="80"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="Like"/>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="NUx-fp-uY6"/>
-                                    <constraint firstAttribute="width" constant="322" id="j5u-j6-ilb"/>
-                                </constraints>
-                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RFZ-22-W7S" customClass="KolodaView" customModule="Koloda">
-                                <rect key="frame" x="45" y="72" width="324" height="488"/>
+                                <rect key="frame" x="24" y="131" width="375" height="580"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Puppy" translatesAutoresizingMaskIntoConstraints="NO" id="b0K-UY-Jgc">
-                                        <rect key="frame" x="-10" y="-12" width="345" height="390"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Ownerpfp" translatesAutoresizingMaskIntoConstraints="NO" id="NI9-7x-JPr">
-                                        <rect key="frame" x="0.0" y="410" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="male_gender" translatesAutoresizingMaskIntoConstraints="NO" id="plY-Cc-yNq">
-                                        <rect key="frame" x="279" y="439" width="21" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUp-Re-krP">
-                                        <rect key="frame" x="81" y="410" width="33" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgt-aU-h7d">
+                                        <rect key="frame" x="30.5" y="254.5" width="314" height="71"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Uh Oh!  There are currently no new dogs.">
+                                                <attributes>
+                                                    <font key="NSFont" size="20" name="HelveticaNeue-Bold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" ">
+                                                <attributes>
+                                                    <font key="NSFont" size="20" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Brooklyn, NY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSb-ux-rn0">
-                                        <rect key="frame" x="81" y="439" width="99" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Golden Retriever" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCD-jN-gdl">
-                                        <rect key="frame" x="196" y="409" width="128" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7j-0w-RJL">
+                                        <rect key="frame" x="112.5" y="333.5" width="150" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="g7V-aj-XK4"/>
+                                            <constraint firstAttribute="width" constant="150" id="l4B-CT-rhh"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Reset Cards">
+                                            <backgroundConfiguration key="background" cornerRadius="20" strokeWidth="3">
+                                                <color key="strokeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </backgroundConfiguration>
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="baseBackgroundColor" red="0.76862745098039209" green="0.64313725490196072" blue="0.51764705882352935" alpha="1" colorSpace="calibratedRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="resetCards:" destination="DBe-J3-TKt" eventType="touchUpInside" id="SWM-ju-tUB"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="488" id="coi-Ql-3HW"/>
-                                    <constraint firstAttribute="width" constant="324" id="zHd-Xw-s6S"/>
+                                    <constraint firstItem="tgt-aU-h7d" firstAttribute="centerY" secondItem="RFZ-22-W7S" secondAttribute="centerY" id="Eh2-kE-Pi7"/>
+                                    <constraint firstItem="k7j-0w-RJL" firstAttribute="top" secondItem="tgt-aU-h7d" secondAttribute="bottom" constant="8" id="cAN-DW-87h"/>
+                                    <constraint firstAttribute="height" constant="580" id="coi-Ql-3HW"/>
+                                    <constraint firstItem="tgt-aU-h7d" firstAttribute="centerX" secondItem="RFZ-22-W7S" secondAttribute="centerX" id="maa-Oe-Igc"/>
+                                    <constraint firstItem="k7j-0w-RJL" firstAttribute="centerX" secondItem="RFZ-22-W7S" secondAttribute="centerX" id="nAS-36-0ff"/>
+                                    <constraint firstAttribute="width" constant="375" id="zHd-Xw-s6S"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -284,10 +273,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="CAe-56-T4n" firstAttribute="centerX" secondItem="KRL-9j-Wy8" secondAttribute="centerX" id="8wu-ql-4sP"/>
-                            <constraint firstItem="RFZ-22-W7S" firstAttribute="centerX" secondItem="KRL-9j-Wy8" secondAttribute="centerX" id="Fax-RE-pqY"/>
-                            <constraint firstItem="CAe-56-T4n" firstAttribute="top" secondItem="RFZ-22-W7S" secondAttribute="bottom" constant="8" id="pkz-ns-Sm8"/>
-                            <constraint firstItem="RFZ-22-W7S" firstAttribute="top" secondItem="3Tg-40-QWt" secondAttribute="top" constant="16" id="tgC-7e-wZ2"/>
+                            <constraint firstItem="RFZ-22-W7S" firstAttribute="centerY" secondItem="KRL-9j-Wy8" secondAttribute="centerY" id="Bfa-cK-5V2"/>
+                            <constraint firstItem="RFZ-22-W7S" firstAttribute="centerX" secondItem="KRL-9j-Wy8" secondAttribute="centerX" id="QCb-2V-cjL"/>
+                            <constraint firstItem="3Tg-40-QWt" firstAttribute="trailing" secondItem="RFZ-22-W7S" secondAttribute="trailing" constant="24" id="XEE-hG-T9z"/>
+                            <constraint firstItem="RFZ-22-W7S" firstAttribute="leading" secondItem="3Tg-40-QWt" secondAttribute="leading" constant="24" id="iFC-zR-5XI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Pupple" id="k8X-PF-lcG">
@@ -299,12 +288,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="dogImageView" destination="b0K-UY-Jgc" id="B1z-2P-OKf"/>
-                        <outlet property="genderImageView" destination="plY-Cc-yNq" id="nw1-qZ-0Ho"/>
-                        <outlet property="kolodaView" destination="RFZ-22-W7S" id="RX3-7L-bW9"/>
-                        <outlet property="likeButton" destination="28E-5f-mbd" id="QPR-k2-j43"/>
-                        <outlet property="ownerImageView" destination="NI9-7x-JPr" id="bqo-a5-0aH"/>
-                        <outlet property="rejectButton" destination="duL-uk-ITN" id="y3X-5E-HYk"/>
+                        <outlet property="kolodaView" destination="RFZ-22-W7S" id="kO2-cU-mAu"/>
+                        <outlet property="profileBarButton" destination="VyM-ia-Swo" id="QxX-DN-Nec"/>
+                        <outlet property="resetButton" destination="k7j-0w-RJL" id="g1E-KC-PES"/>
+                        <outlet property="resetLabel" destination="tgt-aU-h7d" id="Eb7-Pz-EgF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uj6-Ea-lrl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1221,16 +1208,11 @@
     <resources>
         <image name="Feed" width="60" height="60"/>
         <image name="Feed-Active" width="60" height="60"/>
-        <image name="Like" width="70" height="70"/>
         <image name="Likes" width="45" height="45"/>
         <image name="Likes-active" width="45" height="45"/>
         <image name="Matches" width="45" height="45"/>
         <image name="Matches-Active" width="45" height="45"/>
-        <image name="Ownerpfp" width="42" height="42"/>
-        <image name="Puppy" width="324" height="488"/>
-        <image name="Reject" width="70" height="70"/>
         <image name="logo_transparent_300x300" width="300" height="300"/>
-        <image name="male_gender" width="21" height="21"/>
         <image name="pupple_logo" width="120" height="120"/>
         <image name="upload_image" width="176" height="135"/>
         <systemColor name="systemBackgroundColor">
