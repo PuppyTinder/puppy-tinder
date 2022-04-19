@@ -40,6 +40,8 @@
 		AF77B25351452F349A587607 /* Pods_Pupple_PuppleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3215CAEF2A721764AE6F4FBF /* Pods_Pupple_PuppleUITests.framework */; };
 		AFBE01C2D60C5400FF71EECF /* Pods_PuppleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80BA0B35038069A625970E8B /* Pods_PuppleTests.framework */; };
 		B391D79FCB234E22AAE0A570 /* Pods_Pupple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E11C50E34EA7C4C49FE0CB /* Pods_Pupple.framework */; };
+		F16A6CAB280F516D00DE9652 /* LikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16A6CAA280F516D00DE9652 /* LikesViewController.swift */; };
+		F16A6CAD280F535B00DE9652 /* LikeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16A6CAC280F535B00DE9652 /* LikeCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +104,8 @@
 		BF0AFF597867123CC507DF4E /* Pods-Pupple.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupple.release.xcconfig"; path = "Target Support Files/Pods-Pupple/Pods-Pupple.release.xcconfig"; sourceTree = "<group>"; };
 		C9E11C50E34EA7C4C49FE0CB /* Pods_Pupple.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pupple.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4FB9CABF08E2225A1FD1F26 /* Pods-PuppleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PuppleTests.release.xcconfig"; path = "Target Support Files/Pods-PuppleTests/Pods-PuppleTests.release.xcconfig"; sourceTree = "<group>"; };
+		F16A6CAA280F516D00DE9652 /* LikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesViewController.swift; sourceTree = "<group>"; };
+		F16A6CAC280F535B00DE9652 /* LikeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCollectionViewCell.swift; sourceTree = "<group>"; };
 		F1A8A84E1F0EB7C5F14AB853 /* Pods-Pupple.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupple.debug.xcconfig"; path = "Target Support Files/Pods-Pupple/Pods-Pupple.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +162,7 @@
 		17D8626327FCA4F300180D59 /* Pupple */ = {
 			isa = PBXGroup;
 			children = (
+				F1075335280B41BE006C4037 /* LikesView */,
 				17E686A12806911A00C4015C /* SwipeableCardFolder */,
 				17D8629527FD31BD00180D59 /* Storyboards */,
 				17D8629427FD31A400180D59 /* ViewControllers */,
@@ -242,6 +247,15 @@
 				E4FB9CABF08E2225A1FD1F26 /* Pods-PuppleTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F1075335280B41BE006C4037 /* LikesView */ = {
+			isa = PBXGroup;
+			children = (
+				F16A6CAA280F516D00DE9652 /* LikesViewController.swift */,
+				F16A6CAC280F535B00DE9652 /* LikeCollectionViewCell.swift */,
+			);
+			path = LikesView;
 			sourceTree = "<group>";
 		};
 		F35723BEE27014E02701096B /* Frameworks */ = {
@@ -514,9 +528,11 @@
 				17E686A9280695C500C4015C /* SwipeableCardViewContainer.swift in Sources */,
 				17E686BF28078CFE00C4015C /* SampleSwipeableCellViewModel.swift in Sources */,
 				17E686BD28078C6E00C4015C /* SampleSwipeableCard.swift in Sources */,
+				F16A6CAD280F535B00DE9652 /* LikeCollectionViewCell.swift in Sources */,
 				17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */,
 				17E686B128069E9800C4015C /* UIViewConstraints.swift in Sources */,
 				17E686B528077F1F00C4015C /* CGPoint+Swipeable.swift in Sources */,
+				F16A6CAB280F516D00DE9652 /* LikesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
