@@ -133,8 +133,6 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
             {
                 dog["dog_photo"] = file
                 dog.saveInBackground()
-                //self.signUpSuccess()
-                //self.dismiss(animated: true, completion: nil)
                 self.performSegue(withIdentifier: "signupSuccessSegue", sender: nil)
                 PFUser.logOut()
                 self.resetDefaults()
