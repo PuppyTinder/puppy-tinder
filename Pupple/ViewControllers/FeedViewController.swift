@@ -23,6 +23,13 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
     var dogArray = [PFObject]() // Array of dogs to like
     var viewModels = [KolodaCardView]() // Array containing the UIView of swipeable cards
     
+    var dogName: String?
+    var ownerLocation: String?
+    var dogBreed: String?
+    var genderImageView: UIImageView?
+    var dogImageView: UIImageView?
+    var ownerImageView: UIImageView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         userProfile()
@@ -37,6 +44,55 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
             self.viewModels = data!
             self.viewModels.shuffle() // Randomize the order of cards
             self.kolodaView.reloadData()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "dogProfileSegue")
+        {
+            let dogProfileViewController: DogProfileFeedViewController = segue.destination as! DogProfileFeedViewController
+            dogProfileViewController.dogName = dogName
+            dogProfileViewController.dogImage = dogImageView?.image
+            dogProfileViewController.ownerImage = ownerImageView?.image
+            dogProfileViewController.gender = genderImageView?.image
+            dogProfileViewController.location = ownerLocation
+            dogProfileViewController.breed = dogBreed
+            
+            var queryArray = [PFObject]()
+            let query = PFQuery(className: "Dog")
+            query.whereKey("name", equalTo: dogName!)
+            query.whereKey("breed", equalTo: dogBreed!)
+            query.findObjectsInBackground { dogs, error in
+                queryArray = dogs!
+                
+                for dog in queryArray
+                {
+                    // Parse dog information
+                    let size = dog["size"] as! String
+                    let vaccinated = dog["vaccinated"] as! Bool
+                    let fixed = dog["fixed"] as! Bool
+                    
+                    dogProfileViewController.size = size
+                    
+                    if (vaccinated){ dogProfileViewController.vaccinated = "Yes"}
+                    else { dogProfileViewController.vaccinated = "No"}
+                    
+                    if (fixed){ dogProfileViewController.fixed = "Yes"}
+                    else { dogProfileViewController.fixed = "No"}
+                    
+                    // Parse owner information
+                    let dogOwner = dog["ownerid"] as! PFObject
+                    dogOwner.fetchIfNeededInBackground { owner, error in
+                        if(owner != nil)
+                        {
+                            let ownerFirstName = dogOwner["firstname"] as! String
+                            let ownerLastName = dogOwner["lastname"] as! String
+                            dogProfileViewController.ownerName = ownerFirstName + " " + ownerLastName
+                        }
+                    }
+                    
+                }
+            }
         }
     }
     
@@ -180,8 +236,13 @@ extension FeedViewController : KolodaViewDelegate{
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
-        UIApplication.shared.openURL(URL(string: "https://yalantis.com/")!)
-    
+        dogName = viewModels[index].dogNameLabel.text!
+        dogImageView = viewModels[index].dogImageView!
+        ownerImageView = viewModels[index].ownerImageView!
+        genderImageView = viewModels[index].genderImageView!
+        ownerLocation = viewModels[index].locationLabel.text!
+        dogBreed = viewModels[index].breedLabel.text!
+        self.performSegue(withIdentifier: "dogProfileSegue", sender: self)
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
