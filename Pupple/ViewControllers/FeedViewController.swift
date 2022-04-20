@@ -8,69 +8,97 @@
 import UIKit
 import Parse
 import AlamofireImage
-import SwiftUI
 import Koloda
 
-class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigationBarDelegate {
+class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigationBarDelegate{
+    
     
     @IBOutlet weak var kolodaView: KolodaView!
-    @IBOutlet weak var rejectButton: UIButton!
-    @IBOutlet weak var likeButton: UIButton!
-    
-    @IBOutlet weak var ownerImageView: UIImageView!
-    
-    @IBOutlet weak var genderImageView: UIImageView!
-    @IBOutlet weak var dogImageView: UIImageView!
+    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var resetLabel: UILabel!
+    @IBOutlet weak var profileBarButton: UIBarButtonItem!
     
     let app_color = UIColor(red: 196/255, green: 164/255, blue: 132/255, alpha: 1)
     
     var dogArray = [PFObject]() // Array of dogs to like
-    var images = [UIImage]()
-    //var viewModels = [SampleSwipeableCellViewModel]()
+    var viewModels = [KolodaCardView]() // Array containing the UIView of swipeable cards
+    
+    var dogName: String?
+    var ownerLocation: String?
+    var dogBreed: String?
+    var genderImageView: UIImageView?
+    var dogImageView: UIImageView?
+    var ownerImageView: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         userProfile()
         navBarUI()
-        //swipeableCardView.dataSource = self
-        //parse()
+        resetButton.isHidden = true
+        resetLabel.isHidden = true
+        
         kolodaView.dataSource = self
         kolodaView.delegate = self
-        kolodaView.layer.cornerRadius = 20
-        kolodaView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        dogImageView.layer.cornerRadius = 20
-        dogImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        parseImages()
+        
+        parse { data in
+            self.viewModels = data!
+            self.viewModels.shuffle() // Randomize the order of cards
+            self.kolodaView.reloadData()
+        }
     }
     
-    func parseImages()
-    {
-        let query = PFQuery(className: "Dog")
-        query.includeKeys(["name", "breed", "gender", "ownerid", "dog_photo"])
-        query.findObjectsInBackground { dogs, error in
-            if dogs != nil
-            {
-                self.dogArray = dogs!
-                for dog in self.dogArray
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "dogProfileSegue")
+        {
+            let dogProfileViewController: DogProfileFeedViewController = segue.destination as! DogProfileFeedViewController
+            dogProfileViewController.dogName = dogName
+            dogProfileViewController.dogImage = dogImageView?.image
+            dogProfileViewController.ownerImage = ownerImageView?.image
+            dogProfileViewController.gender = genderImageView?.image
+            dogProfileViewController.location = ownerLocation
+            dogProfileViewController.breed = dogBreed
+            
+            var queryArray = [PFObject]()
+            let query = PFQuery(className: "Dog")
+            query.whereKey("name", equalTo: dogName!)
+            query.whereKey("breed", equalTo: dogBreed!)
+            query.findObjectsInBackground { dogs, error in
+                queryArray = dogs!
+                
+                for dog in queryArray
                 {
-                    let dogImageFile = dog["dog_photo"] as! PFFileObject
-                    let urlString = dogImageFile.url!
-                    let dog_image_url = URL(string: urlString)!
-                    self.dogImageView.af.setImage(withURL: dog_image_url)
-                    let data = try? Data(contentsOf: dog_image_url)
-                    self.images.append(UIImage(data: data!)!)
-                    self.kolodaView.reloadData()
-                }
-                for image in self.images
-                {
-                    print(image)
+                    // Parse dog information
+                    let size = dog["size"] as! String
+                    let vaccinated = dog["vaccinated"] as! Bool
+                    let fixed = dog["fixed"] as! Bool
+                    
+                    dogProfileViewController.size = size
+                    
+                    if (vaccinated){ dogProfileViewController.vaccinated = "Yes"}
+                    else { dogProfileViewController.vaccinated = "No"}
+                    
+                    if (fixed){ dogProfileViewController.fixed = "Yes"}
+                    else { dogProfileViewController.fixed = "No"}
+                    
+                    // Parse owner information
+                    let dogOwner = dog["ownerid"] as! PFObject
+                    dogOwner.fetchIfNeededInBackground { owner, error in
+                        if(owner != nil)
+                        {
+                            let ownerFirstName = dogOwner["firstname"] as! String
+                            let ownerLastName = dogOwner["lastname"] as! String
+                            dogProfileViewController.ownerName = ownerFirstName + " " + ownerLastName
+                        }
+                    }
+                    
                 }
             }
         }
     }
     
-    /*func parse()
+    func parse(completion :@escaping ( _ data : [KolodaCardView]?) -> ())
     {
+        var cardArray = [KolodaCardView]()
         let query = PFQuery(className: "Dog")
         query.includeKeys(["name", "breed", "gender", "ownerid"])
         
@@ -81,6 +109,9 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
         query_constraint.includeKey("ownerid")
         query_constraint.whereKey("ownerid", contains: user_id)
         query.whereKey("ownerid", doesNotMatchKey: "ownerid", in: query_constraint)
+        
+        // Constraint to prevent seeing dogs that the user already liked
+        query.whereKey("likedBy", notEqualTo: user)
         
         query.findObjectsInBackground { dogs, error in
             if dogs != nil
@@ -115,15 +146,30 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                     let ownerImageFile = dog_owner["user_photo"] as! PFFileObject
                     let owner_url_string = ownerImageFile.url!
                     let owner_image_url = URL(string: owner_url_string)!
-                 
-                    let card = SampleSwipeableCellViewModel(dog_image: dog_image_url, owner_image: owner_image_url, dog_name: dog_name, breed: breed, gender: genderImage, location: location)
-                    self.viewModels.append(card)
-                    self.viewModels.shuffle() // Randomize the order of dogs displayed
-                    self.swipeableCardView.reloadData()
+    
+                    // Instantiate view for each card
+                    let cardExampleView = KolodaCardView()
+                    cardExampleView.dogNameLabel.text = dog_name
+                    cardExampleView.breedLabel.text = breed
+                    cardExampleView.locationLabel.text = location
+                    cardExampleView.genderImageView.image = genderImage
+                    cardExampleView.dogImageView.af.setImage(withURL: dog_image_url)
+                    cardExampleView.ownerImageView.af.setImage(withURL: owner_image_url)
+                    
+                    // Apply view constraints to container & imageviews
+                    cardExampleView.containerUIView.layer.borderWidth = 1
+                    cardExampleView.containerUIView.layer.cornerRadius = 20
+                    cardExampleView.containerUIView.layer.borderColor = CGColor(red: 111/255, green: 111/255, blue: 111/255, alpha: 0.2)
+                    cardExampleView.dogImageView.layer.cornerRadius = 20
+                    cardExampleView.dogImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+                    cardExampleView.ownerImageView.layer.cornerRadius = 30
+
+                    cardArray.append(cardExampleView)
                 }
+                completion(cardArray)
             }
         }
-    }*/
+    }
 
     func userProfile()
     {
@@ -147,6 +193,7 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
         navigationController?.navigationBar.delegate = self
         navigationController?.navigationBar.barTintColor = app_color
         navigationController?.tabBarItem.selectedImage = navigationController?.tabBarItem.selectedImage?.withRenderingMode(.alwaysOriginal)
+        profileBarButton.setBackButtonBackgroundVerticalPositionAdjustment(CGFloat(-8), for: UIBarMetrics.default)
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
@@ -170,43 +217,131 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return}
         delegate.window?.rootViewController = loginViewController
     }
+    
+    @IBAction func resetCards(_ sender: Any) {
+        kolodaView.resetCurrentCardIndex()
+        resetButton.isHidden = true
+        resetLabel.isHidden = true
+    }
+    
 }
 
-// MARK: - SwipeableCardViewDataSource
-
-/*extension FeedViewController extension SwipeableCardViewDataSource {
-    func numberOfCards() -> Int {
-        return viewModels.count
-    }
-    
-    func card(forItemAtIndex index: Int) -> SwipeableCardViewCard
-    {
-        let viewModel = viewModels[index]
-        let cardView = SampleSwipeableCard()
-        cardView.viewModel = viewModel
-        return cardView
-    }
-    
-    func viewForEmptyCards() -> UIView? {
-        return nil
-    }
-}*/
 
 extension FeedViewController : KolodaViewDelegate{
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-        koloda.reloadData()
+        resetButton.isHidden = false
+        resetLabel.isHidden = false
+        //kolodaView.resetCurrentCardIndex()
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
-        UIApplication.shared.openURL(URL(string: "https://yalantis.com/")!)
+        dogName = viewModels[index].dogNameLabel.text!
+        dogImageView = viewModels[index].dogImageView!
+        ownerImageView = viewModels[index].ownerImageView!
+        genderImageView = viewModels[index].genderImageView!
+        ownerLocation = viewModels[index].locationLabel.text!
+        dogBreed = viewModels[index].breedLabel.text!
+        self.performSegue(withIdentifier: "dogProfileSegue", sender: self)
+    }
+    
+    func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+        switch direction {
+        case .right:
+            var tempArray = [PFObject]()
+            let user = PFUser.current()!
+            let query = PFQuery(className: "Dog")
+            let dog_name = viewModels[index].dogNameLabel.text!
+            let dog_breed = viewModels[index].breedLabel.text!
+            query.whereKey("name", equalTo: dog_name)
+            query.whereKey("breed", equalTo: dog_breed)
+    
+            query.findObjectsInBackground { dogs, error in
+                tempArray = dogs!
+                for dog in tempArray
+                {
+                    user.addUniqueObject(dog, forKey: "likes")
+                    dog.addUniqueObject(user, forKey: "likedBy")
+                    user.saveInBackground { user, error in
+                        if error == nil
+                        {
+                            print("Liked successfully!")
+                        }
+                    }
+                }
+            }
+        case .topRight:
+            var tempArray = [PFObject]()
+            let user = PFUser.current()!
+            let query = PFQuery(className: "Dog")
+            let dog_name = viewModels[index].dogNameLabel.text!
+            let dog_breed = viewModels[index].breedLabel.text!
+            query.whereKey("name", equalTo: dog_name)
+            query.whereKey("breed", equalTo: dog_breed)
+    
+            query.findObjectsInBackground { dogs, error in
+                tempArray = dogs!
+                for dog in tempArray
+                {
+                    user.addUniqueObject(dog, forKey: "likes")
+                    dog.addUniqueObject(user, forKey: "likedBy")
+                    user.saveInBackground { user, error in
+                        if error == nil
+                        {
+                            print("Liked successfully!")
+                        }
+                    }
+                }
+            }
+        case .bottomRight:
+            var tempArray = [PFObject]()
+            let user = PFUser.current()!
+            let query = PFQuery(className: "Dog")
+            let dog_name = viewModels[index].dogNameLabel.text!
+            let dog_breed = viewModels[index].breedLabel.text!
+            query.whereKey("name", equalTo: dog_name)
+            query.whereKey("breed", equalTo: dog_breed)
+    
+            query.findObjectsInBackground { dogs, error in
+                tempArray = dogs!
+                for dog in tempArray
+                {
+                    user.addUniqueObject(dog, forKey: "likes")
+                    dog.addUniqueObject(user, forKey: "likedBy")
+                    user.saveInBackground { user, error in
+                        if error == nil
+                        {
+                            print("Liked successfully!")
+                        }
+                    }
+                }
+            }
+        case .left:
+            print("swiped left")
+        case .up:
+            print("swiped up")
+
+        case .down:
+            print("swiped down")
+
+        case .topLeft:
+            print("swiped left")
+
+        case .bottomLeft:
+            print("swiped left")
+
+        }
+    }
+    
+    func koloda(_ koloda: KolodaView, allowedDirectionsForIndex index: Int) -> [SwipeResultDirection] {
+        return [SwipeResultDirection.left, SwipeResultDirection.topLeft, SwipeResultDirection.bottomLeft, SwipeResultDirection.topRight, SwipeResultDirection.bottomRight, SwipeResultDirection.right]
     }
 }
 
 extension FeedViewController : KolodaViewDataSource{
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        images.count
+        viewModels.count
     }
     
     func kolodaSpeedThatCardShouldDrag(_ koloda: KolodaView) -> DragSpeed {
@@ -214,8 +349,15 @@ extension FeedViewController : KolodaViewDataSource{
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        return kolodaView
+        return viewModels[index]
     }
-
+    
+    func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
+        return nil
+    }
 }
+
+
+
+
 

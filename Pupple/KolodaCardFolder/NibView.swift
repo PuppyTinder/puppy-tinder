@@ -20,6 +20,7 @@ extension NibView {
             backgroundColor = .clear
             let view = loadViewFromNib()
             addEdgeConstrainedSubView(view: view)
+    
         }
 
         /// Loads a view from it's xib file.
