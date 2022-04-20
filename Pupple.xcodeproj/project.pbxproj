@@ -13,7 +13,6 @@
 		17D8626527FCA4F300180D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8626427FCA4F300180D59 /* AppDelegate.swift */; };
 		17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8626627FCA4F300180D59 /* SceneDelegate.swift */; };
 		17D8626927FCA4F300180D59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8626827FCA4F300180D59 /* ViewController.swift */; };
-		17D8626C27FCA4F300180D59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17D8626A27FCA4F300180D59 /* Main.storyboard */; };
 		17D8626E27FCA4F300180D59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17D8626D27FCA4F300180D59 /* Assets.xcassets */; };
 		17D8627127FCA4F300180D59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17D8626F27FCA4F300180D59 /* LaunchScreen.storyboard */; };
 		17D8627C27FCA4F400180D59 /* PuppleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8627B27FCA4F400180D59 /* PuppleTests.swift */; };
@@ -23,11 +22,10 @@
 		17D8629927FD329D00180D59 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8629827FD329D00180D59 /* WelcomeViewController.swift */; };
 		17D8629B27FD430300180D59 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8629A27FD430300180D59 /* SignUpViewController.swift */; };
 		17E686AF28069D0700C4015C /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686AE28069D0700C4015C /* NibView.swift */; };
-		17E686C5280B5AD000C4015C /* KolodaCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686C4280B5AD000C4015C /* KolodaCellViewModel.swift */; };
 		17E686C7280B5B2200C4015C /* KolodaCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17E686C6280B5B2200C4015C /* KolodaCardView.xib */; };
 		17E686C9280B5B7300C4015C /* KolodaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686C8280B5B7300C4015C /* KolodaCardView.swift */; };
 		17E959F7280F45BB00CF56BA /* DogProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E959F6280F45BB00CF56BA /* DogProfileFeedViewController.swift */; };
-		17E95A00280F6B2600CF56BA /* UIViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E959FF280F6B2600CF56BA /* UIViewConstraints.swift */; };
+		17E95A02280FA3E700CF56BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17E95A01280FA3E700CF56BA /* Main.storyboard */; };
 		AF77B25351452F349A587607 /* Pods_Pupple_PuppleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3215CAEF2A721764AE6F4FBF /* Pods_Pupple_PuppleUITests.framework */; };
 		AFBE01C2D60C5400FF71EECF /* Pods_PuppleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80BA0B35038069A625970E8B /* Pods_PuppleTests.framework */; };
 		B391D79FCB234E22AAE0A570 /* Pods_Pupple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E11C50E34EA7C4C49FE0CB /* Pods_Pupple.framework */; };
@@ -60,7 +58,6 @@
 		17D8626427FCA4F300180D59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17D8626627FCA4F300180D59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		17D8626827FCA4F300180D59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		17D8626B27FCA4F300180D59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		17D8626D27FCA4F300180D59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17D8627027FCA4F300180D59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17D8627227FCA4F300180D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,7 +73,7 @@
 		17E686C6280B5B2200C4015C /* KolodaCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KolodaCardView.xib; sourceTree = "<group>"; };
 		17E686C8280B5B7300C4015C /* KolodaCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KolodaCardView.swift; sourceTree = "<group>"; };
 		17E959F6280F45BB00CF56BA /* DogProfileFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogProfileFeedViewController.swift; sourceTree = "<group>"; };
-		17E959FF280F6B2600CF56BA /* UIViewConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewConstraints.swift; sourceTree = "<group>"; };
+		17E95A01280FA3E700CF56BA /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1B1332EA5544C2BA38C70FD3 /* Pods-Pupple-PuppleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupple-PuppleUITests.release.xcconfig"; path = "Target Support Files/Pods-Pupple-PuppleUITests/Pods-Pupple-PuppleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3215CAEF2A721764AE6F4FBF /* Pods_Pupple_PuppleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pupple_PuppleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80BA0B35038069A625970E8B /* Pods_PuppleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PuppleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,7 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				17D8626F27FCA4F300180D59 /* LaunchScreen.storyboard */,
-				17D8626A27FCA4F300180D59 /* Main.storyboard */,
+				17E95A01280FA3E700CF56BA /* Main.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -339,7 +336,7 @@
 				17E686C7280B5B2200C4015C /* KolodaCardView.xib in Resources */,
 				17D8627127FCA4F300180D59 /* LaunchScreen.storyboard in Resources */,
 				17D8626E27FCA4F300180D59 /* Assets.xcassets in Resources */,
-				17D8626C27FCA4F300180D59 /* Main.storyboard in Resources */,
+				17E95A02280FA3E700CF56BA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,14 +513,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		17D8626A27FCA4F300180D59 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				17D8626B27FCA4F300180D59 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		17D8626F27FCA4F300180D59 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
