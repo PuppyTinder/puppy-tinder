@@ -213,6 +213,6 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 
 <p float="left">
   <imgsrc="https://i.imgur.com/IPMf1Lu.gif" width="300"/>
-  <img src="https://i.imgur.com/Ryj945n.gif" width="300" /> 
+  <img src="https://i.imgur.com/Ryj945n.gif" width="290" /> 
 </p>
 
