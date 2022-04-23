@@ -207,9 +207,10 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 
 ### Sprint 2
 
-- User can see the view of other dogs
-- User can swipe between dog profiles
-- User can tap to see other dogs profiles 
+- User can see the view of other dogs.
+- User can swipe between dog profiles.
+- User can tap to see other dogs profiles.
+- User can refresh feed.
 
 <p float="left">
     <img src="https://i.imgur.com/kfic4lQ.gif"
