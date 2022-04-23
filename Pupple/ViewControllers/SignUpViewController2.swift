@@ -116,8 +116,6 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
             neutered = false
         }
         
-        let imageData = dogImageView.image!.pngData()
-        let file = PFFileObject(name: "dog.png", data: imageData!)
         
         // Sign up the dog
         dog["name"] = dog_name
@@ -127,14 +125,33 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         dog["vaccinated"] = vaccinated
         dog["fixed"] = neutered
         dog["ownerid"] = PFUser.current()!
-        
+       
         dog.saveInBackground { success, error in
             if (success)
             {
-                dog["dog_photo"] = file
-                dog.saveInBackground()
-                self.performSegue(withIdentifier: "signupSuccessSegue", sender: nil)
+                let defaultImageData = UIImage(named: "upload_image")!.pngData()
+                let defaultDogImage = PFFileObject(name: "default.png", data: defaultImageData!)
+                defaultDogImage?.saveInBackground({ success, error in
+                    if(success)
+                    {
+                        dog["dog_photo"] = defaultDogImage // Assign a default photo incase the user did not set one
+                        dog.saveInBackground()
+                    }
+                })
+                
+                let imageData = self.dogImageView.image!.pngData()
+                let file = PFFileObject(name: "dog.png", data: imageData!)
+                file?.saveInBackground({ success, error in
+                    if(success)
+                    {
+                        dog["dog_photo"] = file
+                        dog.saveInBackground()
+                    }
+                })
+                
+                
                 PFUser.logOut()
+                self.performSegue(withIdentifier: "signupSuccessSegue", sender: nil)
                 self.resetDefaults()
             }
             else
