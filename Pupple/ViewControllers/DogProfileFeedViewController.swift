@@ -14,31 +14,53 @@ class DogProfileFeedViewController: UIViewController {
     @IBOutlet weak var ownerView: UIView!
     
     //Dog View Outlets
-    @IBOutlet weak var dogImageView: UIImageView!
-    @IBOutlet weak var dogNameLabel: UILabel!
-    @IBOutlet weak var breedLabel: UILabel!
-    @IBOutlet weak var genderImageView: UIImageView!
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var dogAgeLabel: UILabel!
-    @IBOutlet weak var dogSizeLabel: UILabel!
-    @IBOutlet weak var dogAboutLabel: UILabel!
-    @IBOutlet weak var fixedLabel: UILabel!
-    @IBOutlet weak var vaccinatedLabel: UILabel!
+    @IBOutlet weak var dogImageView: UIImageView!{ didSet { dogImageView.image = dogImage } }
+    @IBOutlet weak var dogNameLabel: UILabel!{ didSet{ dogNameLabel.text = dogName } }
+    @IBOutlet weak var breedLabel: UILabel!{ didSet{ breedLabel.text = breed } }
+    @IBOutlet weak var genderImageView: UIImageView!{ didSet{ genderImageView.image = gender } }
+    @IBOutlet weak var locationLabel: UILabel!{ didSet{ locationLabel.text = location } }
+    @IBOutlet weak var dogAgeLabel: UILabel!{ didSet{ dogAgeLabel.text = "N/A"} }
+    @IBOutlet weak var dogSizeLabel: UILabel!{ didSet{ dogSizeLabel.text = size } }
+    @IBOutlet weak var dogAboutLabel: UILabel!{ didSet{dogAboutLabel.text = ""} }
+    @IBOutlet weak var fixedLabel: UILabel!{ didSet{ fixedLabel.text = fixed } }
+    @IBOutlet weak var vaccinatedLabel: UILabel!{ didSet{ vaccinatedLabel.text = vaccinated } }
     
     //Owner View Outlets
-    @IBOutlet weak var ownerNameLabel: UILabel!
-    @IBOutlet weak var ownerGenderLabel: UILabel!
-    @IBOutlet weak var ownerAgeLabel: UILabel!
-    @IBOutlet weak var occupationLabel: UILabel!
-    @IBOutlet weak var educationLabel: UILabel!
-    @IBOutlet weak var ownerImageView: UIImageView!
-    @IBOutlet weak var ownerAboutLabel: UILabel!
+    @IBOutlet weak var ownerNameLabel: UILabel!{ didSet{ ownerNameLabel.text = ownerName } }
+    @IBOutlet weak var ownerGenderLabel: UILabel!{ didSet{ownerGenderLabel.text = "N/A"} }
+    @IBOutlet weak var ownerAgeLabel: UILabel!{ didSet{ownerAgeLabel.text = "N/A"}}
+    @IBOutlet weak var occupationLabel: UILabel!{ didSet{occupationLabel.text = "N/A"}}
+    @IBOutlet weak var educationLabel: UILabel!{ didSet{educationLabel.text = "N/A"}}
+    @IBOutlet weak var ownerImageView: UIImageView!{ didSet{ ownerImageView.image = ownerImage } }
+    @IBOutlet weak var ownerAboutLabel: UILabel!{ didSet{ownerAboutLabel.text = ""}}
     @IBOutlet weak var ownerInstagramButton: UIButton!
     @IBOutlet weak var ownerSnapchatButton: UIButton!
+    
+    var dogName: String?
+    var dogImage: UIImage?
+    var ownerImage: UIImage?
+    var location: String?
+    var breed: String?
+    var gender: UIImage?
+    var size: String?
+    var vaccinated: String?
+    var fixed: String?
+    var ownerName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        ownerImageView.layer.cornerRadius = 50
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        dogSizeLabel.text = size
+        vaccinatedLabel.text = vaccinated
+        fixedLabel.text = fixed
+        ownerNameLabel.text = ownerName
+        //Temporary
+        ownerInstagramButton.titleLabel?.text = "N/A"
+        ownerSnapchatButton.titleLabel?.text = "N/A"
     }
     
 
