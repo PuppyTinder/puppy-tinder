@@ -29,6 +29,7 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 - [x] User can see a stylized welcome screen.
 - [x] User can login.
 - [x] User can create a profile.
+- [x] User can see other dog profiles.
 * User can like or not like a dog profile.
 * User can view their previous likes.
 * User can view their matches.
@@ -202,5 +203,20 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
   <img src="http://g.recordit.co/PLhFfi40g6.gif" width="300" />
   <img src="https://i.imgur.com/6cNhrWK.png" width="290" /> 
 
+</p>
+
+### Sprint 2
+
+- User can see the view of other dogs.
+- User can swipe between dog profiles.
+- User can tap to see other dogs profiles.
+- User can refresh feed.
+
+<p float="left">
+    <img src="https://i.imgur.com/kfic4lQ.gif"
+width="300"/>
+    <img 
+src="https://i.imgur.com/7tHtJC8.gif"
+width="300" /> 
 </p>
 
