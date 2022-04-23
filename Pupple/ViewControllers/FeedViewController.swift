@@ -93,8 +93,12 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                     
                 }
             }
-        }
+        }     else if (segue.identifier == "ProfileDetails"){
+                let userProfileViewController: UserProfileViewController = segue.destination as! UserProfileViewController
+            }
     }
+    
+    
     
     func parse(completion :@escaping ( _ data : [KolodaCardView]?) -> ())
     {
