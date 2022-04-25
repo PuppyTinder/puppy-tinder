@@ -94,7 +94,7 @@
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" title="LoginViewController" id="15D-8g-EuK" customClass="LoginViewController" customModule="Pupple" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="m0H-ch-XKT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo_transparent_300x300" translatesAutoresizingMaskIntoConstraints="NO" id="eCJ-lW-4z2">
@@ -1240,7 +1240,7 @@
                         <outlet property="neuteredTextField" destination="RVC-al-SLE" id="e0U-B7-PIk"/>
                         <outlet property="sizeTextField" destination="sjP-zl-oK3" id="afs-sj-idy"/>
                         <outlet property="vaccinatedTextField" destination="86C-nD-UFb" id="3BE-3m-OLe"/>
-                        <segue destination="8hn-Ug-jkt" kind="presentation" identifier="signupSuccessSegue" id="now-Jv-EAh"/>
+                        <segue destination="8hn-Ug-jkt" kind="presentation" identifier="signupSuccessSegue" modalPresentationStyle="fullScreen" id="now-Jv-EAh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H0j-Vy-hO6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1257,11 +1257,11 @@
             <objects>
                 <viewController title="SignupSuccessViewController" id="8hn-Ug-jkt" customClass="SignupSuccessViewController" customModule="Pupple" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yIc-2Z-5dM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="pupple_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Qi0-oY-1Lz">
-                                <rect key="frame" x="147" y="361" width="120" height="120"/>
+                                <rect key="frame" x="147" y="388" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="7tH-G5-7eH"/>
                                     <constraint firstAttribute="width" secondItem="Qi0-oY-1Lz" secondAttribute="height" multiplier="1:1" id="gad-sH-kQ3"/>
@@ -1269,7 +1269,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for signing up." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2R-T1-USX">
-                                <rect key="frame" x="88" y="489" width="238" height="28"/>
+                                <rect key="frame" x="88" y="516" width="238" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="lue-Q3-kq2"/>
                                     <constraint firstAttribute="width" constant="238" id="wRA-LO-0JG"/>
@@ -1279,7 +1279,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Pupple!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7y-L2-0NR">
-                                <rect key="frame" x="99" y="325" width="216" height="28"/>
+                                <rect key="frame" x="99" y="352" width="216" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="216" id="NSD-So-Jds"/>
                                     <constraint firstAttribute="height" constant="28" id="iGP-fC-abk"/>
@@ -1300,8 +1300,9 @@
                             <constraint firstItem="Qi0-oY-1Lz" firstAttribute="centerX" secondItem="yIc-2Z-5dM" secondAttribute="centerX" id="kPs-6b-CU7"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="jm6-AE-SHf"/>
                     <connections>
-                        <segue destination="15D-8g-EuK" kind="show" identifier="goToLoginSegue" id="3lM-sM-CTc"/>
+                        <segue destination="15D-8g-EuK" kind="presentation" identifier="goToLoginSegue" modalPresentationStyle="fullScreen" id="3lM-sM-CTc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKe-ov-Cl5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2350,7 +2351,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Jq2-qA-vAZ"/>
-        <segue reference="PRj-Jt-FEH"/>
+        <segue reference="3lM-sM-CTc"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Feed" width="60" height="60"/>
