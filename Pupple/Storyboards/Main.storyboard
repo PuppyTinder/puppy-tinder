@@ -1353,7 +1353,7 @@
                     <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleToFill" id="eE2-in-MeN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.76862745098039209" green="0.64313725490196072" blue="0.51764705882352935" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.76862745098039209" green="0.64313725490196072" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                         </textAttributes>
@@ -1441,9 +1441,16 @@
                     <tabBarItem key="tabBarItem" title="Likes" image="Likes" selectedImage="Likes-active" id="In9-Ad-lnZ">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="16"/>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NGe-nr-mTj">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleToFill" id="NGe-nr-mTj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.76862745099999996" green="0.64313725489999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="peg-KG-a10" kind="relationship" relationship="rootViewController" id="Xi0-Cq-Z8H"/>
@@ -1453,7 +1460,7 @@
             </objects>
             <point key="canvasLocation" x="2583" y="-817"/>
         </scene>
-        <!--Likes View Controller-->
+        <!--Pupple-->
         <scene sceneID="ThR-2C-2ZM">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="peg-KG-a10" customClass="LikesViewController" customModule="Pupple" customModuleProvider="target" sceneMemberID="viewController">
@@ -1618,10 +1625,17 @@
                         <viewLayoutGuide key="safeArea" id="JhM-xv-Sfn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="dKF-H7-2r2"/>
+                    <navigationItem key="navigationItem" title="Pupple" id="dKF-H7-2r2">
+                        <barButtonItem key="leftBarButtonItem" title="Profile" id="zcN-YA-zQu">
+                            <connections>
+                                <segue destination="hHh-Aw-Muk" kind="presentation" identifier="profileDetailsLikes" id="6ag-9d-r8e"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="likedByCollectionView" destination="RHU-wR-i8L" id="s0a-aQ-qOY"/>
                         <outlet property="likesCollectionView" destination="EZT-3N-hJV" id="PPm-Q0-X9I"/>
+                        <outlet property="profileBarButtonItem" destination="zcN-YA-zQu" id="dhw-Ce-rN0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eld-mI-BCm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1865,6 +1879,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="6ag-9d-r8e"/>
         <segue reference="PRj-Jt-FEH"/>
     </inferredMetricsTieBreakers>
     <resources>

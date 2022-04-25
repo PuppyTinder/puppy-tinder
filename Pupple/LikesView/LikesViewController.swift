@@ -13,6 +13,7 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
 
     @IBOutlet weak var likedByCollectionView: UICollectionView!
     @IBOutlet weak var likesCollectionView: UICollectionView!
+    @IBOutlet weak var profileBarButtonItem: UIBarButtonItem!
     
     var likedBy = [PFObject?]()
     var likes = [PFObject?]()
@@ -20,6 +21,8 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        userProfile()
+        navBarUI()
         likedByCollectionView.dataSource = self
         likedByCollectionView.delegate = self
 
@@ -127,4 +130,36 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
 
+}
+
+extension LikesViewController : UIBarPositioningDelegate, UINavigationBarDelegate {
+    
+    func userProfile()
+    {
+        let user = PFUser.current()!
+        let userImageFile = user["user_photo"] as! PFFileObject
+        userImageFile.getDataInBackground { imageData, error in
+            if imageData != nil
+            {
+                let image = UIImage(data: imageData!)
+                let size = CGSize(width: 50, height: 50)
+                let scaledImage = image!.af.imageAspectScaled(toFill: size)
+                let roundedImage = scaledImage.af.imageRounded(withCornerRadius: 20)
+                self.navigationItem.leftBarButtonItem?.setBackgroundImage(roundedImage, for: .normal, barMetrics: .default)
+            }
+        }
+        navigationItem.leftBarButtonItem?.title = ""
+    }
+    
+    func navBarUI()
+    {
+        let app_color = UIColor(red: 196/255, green: 164/255, blue: 132/255, alpha: 1)
+        navigationController?.navigationBar.delegate = self
+        navigationController?.navigationBar.barTintColor = app_color
+        profileBarButtonItem.setBackButtonBackgroundVerticalPositionAdjustment(CGFloat(-8), for: UIBarMetrics.default)
+    }
+    
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
+    }
 }
