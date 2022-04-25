@@ -39,6 +39,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         // Pushes view up when keyboard appears
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: UIControl.Event.valueChanged)
     }
     
    /* ------ Functions to store user input ------ */
@@ -162,26 +163,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     // Date of Birth TextField Input Functions
     func createDateKeyboard() {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
-        toolbar.setItems([doneButton], animated: true)
-        birthdayTextField.inputAccessoryView = toolbar
         birthdayTextField.inputView = datePicker
         
         //to only show dates
         datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .wheels
     }
     
-    @objc func donePressed() {
-        //format the date string
-        let dateFormat = DateFormatter()
-        dateFormat.dateStyle = .short
-        dateFormat.timeStyle = .none
-        
-        birthdayTextField.text = dateFormat.string(from: datePicker.date)
-        self.view.endEditing(true)
+    @objc func datePickerValueChanged(sender: UIDatePicker)
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy"
+        birthdayTextField.text = dateFormatter.string(from: sender.date)
     }
     
     func initializeUI() {
@@ -197,7 +190,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         userImageView.layer.cornerRadius = userImageView.bounds.width/2
         
         createDateKeyboard()
-        self.usernameTextField.becomeFirstResponder()
     }
     
     // Missing text field information
@@ -214,8 +206,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         guard let userInfo = notification.userInfo else {return}
         guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
         
-        if notification.name == UIResponder.keyboardWillShowNotification && passwordTextField.isEditing == false
+        if notification.name == UIResponder.keyboardWillShowNotification
         {
+            self.view.frame.origin.y = 0 // reset
             let adjustmentHeight = keyboardFrame.height - view.safeAreaInsets.bottom
             self.view.frame.origin.y -= adjustmentHeight
         }

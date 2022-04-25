@@ -310,8 +310,6 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         vaccinatedTextField.inputView = vaccinatedPickerView
         neuteredTextField.inputView = neuteredPickerView
         genderTextField.inputView = genderPickerView
-        
-        self.nameTextField.becomeFirstResponder()
     }
     
     @objc func adjustInputView(notification: Notification)
@@ -321,6 +319,7 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         
         if notification.name == UIResponder.keyboardWillShowNotification
         {
+            self.view.frame.origin.y = 0 // reset frame before adjusting
             let adjustmentHeight = keyboardFrame.height - view.safeAreaInsets.bottom
             self.view.frame.origin.y -= adjustmentHeight
         }
