@@ -41,7 +41,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gt4-L9-nPX">
                     <rect key="frame" x="76" y="488" width="120" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="120" id="auI-77-e3C"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="auI-77-e3C"/>
                         <constraint firstAttribute="height" constant="21" id="w5e-mB-Xul"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -52,16 +52,16 @@
                     <rect key="frame" x="76" y="517" width="120" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="T85-F9-Mik"/>
-                        <constraint firstAttribute="width" constant="120" id="Wg5-Zs-8aC"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="Wg5-Zs-8aC"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Golden Retriever" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyl-w0-JYt">
-                    <rect key="frame" x="246" y="488" width="128" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Golden Retriever" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyl-w0-JYt">
+                    <rect key="frame" x="231" y="488" width="128" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="128" id="52j-pR-B3Z"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="128" id="52j-pR-B3Z"/>
                         <constraint firstAttribute="height" constant="21" id="mBh-rB-PeF"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -85,10 +85,10 @@
                 <constraint firstItem="DsX-hw-sqW" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="6UZ-ef-5cW"/>
                 <constraint firstItem="d3C-WW-iJ5" firstAttribute="top" secondItem="DsX-hw-sqW" secondAttribute="bottom" constant="16" id="IbX-FE-Z7y"/>
                 <constraint firstItem="gt4-L9-nPX" firstAttribute="top" secondItem="DsX-hw-sqW" secondAttribute="bottom" constant="16" id="Lg8-A3-g8E"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="cyl-w0-JYt" secondAttribute="trailing" constant="16" id="OBC-ie-06I"/>
                 <constraint firstItem="d3C-WW-iJ5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="dJS-P3-bEq"/>
                 <constraint firstItem="DsX-hw-sqW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dUF-9D-Zgn"/>
                 <constraint firstItem="cyl-w0-JYt" firstAttribute="top" secondItem="DsX-hw-sqW" secondAttribute="bottom" constant="16" id="feT-r1-vI8"/>
-                <constraint firstItem="cyl-w0-JYt" firstAttribute="leading" secondItem="gt4-L9-nPX" secondAttribute="trailing" constant="50" id="gEk-6w-glu"/>
                 <constraint firstItem="APN-GN-LEY" firstAttribute="top" secondItem="cyl-w0-JYt" secondAttribute="bottom" constant="8" id="heO-01-SZe"/>
                 <constraint firstItem="v7P-2U-ase" firstAttribute="top" secondItem="gt4-L9-nPX" secondAttribute="bottom" constant="8" id="kGO-zg-ja7"/>
                 <constraint firstItem="gt4-L9-nPX" firstAttribute="leading" secondItem="d3C-WW-iJ5" secondAttribute="trailing" constant="8" id="pmJ-q6-u4C"/>
