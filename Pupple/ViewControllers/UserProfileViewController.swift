@@ -29,6 +29,10 @@ class UserProfileViewController: UIViewController {
     
     @IBOutlet weak var dogSizeLabel: UILabel!
     
+    @IBOutlet weak var dogAgeLabel: UILabel!{ didSet {dogAgeLabel.text = "N/A"} }
+    
+    @IBOutlet weak var dogAboutLabel: UILabel!{ didSet {dogAboutLabel.text = ""} }
+    
     @IBOutlet weak var fixedLabel: UILabel!
     
     @IBOutlet weak var vaccinatedLabel: UILabel!
@@ -37,16 +41,26 @@ class UserProfileViewController: UIViewController {
     
     @IBOutlet weak var ownerImageview: UIImageView!
     
+    @IBOutlet weak var ownerGenderLabel: UILabel!{ didSet{ownerGenderLabel.text = "N/A"}}
+    
+    @IBOutlet weak var ownerAgeLabel: UILabel!{ didSet{ownerAgeLabel.text = "N/A"}}
+    
+    @IBOutlet weak var ownerOccupationLabel: UILabel!{ didSet{ownerOccupationLabel.text = "N/A"}}
+    
+    @IBOutlet weak var ownerEducationLabel: UILabel!{ didSet{ownerEducationLabel.text = "N/A"}}
+    
     @IBOutlet weak var aboutLabel: UILabel!{ didSet{aboutLabel.text = ""}}
     
+    @IBOutlet weak var ownerInstagramButton: UIButton!
     
+    @IBOutlet weak var ownerSnapchatButton: UIButton!
     
     
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ownerImageview.layer.cornerRadius = 30
+        ownerImageview.layer.cornerRadius = 50
         
         userParse()
         
@@ -56,7 +70,7 @@ class UserProfileViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         
-        
+
     }
     
     
@@ -70,6 +84,11 @@ class UserProfileViewController: UIViewController {
         let doglocation = user["location"] as! String
         self.ownerNameLabel.text = fullName
         self.dogLocationLabel.text = doglocation
+        
+        let userImageFile = user["user_photo"] as! PFFileObject
+        let fileUrlString = userImageFile.url!
+        let fileUrl = URL(string: fileUrlString)
+        ownerImageview.af.setImage(withURL: fileUrl!)
         
         var dogs = [PFObject]()
         let query = PFQuery(className: "Dog")
