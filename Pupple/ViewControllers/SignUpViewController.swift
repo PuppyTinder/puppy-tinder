@@ -131,8 +131,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         user.signUpInBackground { (success, error) in
             if (success)
             {
-                let defaultImageData = UIImage(named: "upload_image")?.pngData()
-                user["user_photo"] = PFFileObject(name: "default.png", data: defaultImageData!) // Assign a default photo incase the user did not set one
                 user["user_photo"] = file
                 user.saveInBackground()
                 self.resetInput()
