@@ -59,8 +59,8 @@ class DogProfileFeedViewController: UIViewController {
         fixedLabel.text = fixed
         ownerNameLabel.text = ownerName
         //Temporary
-        ownerInstagramButton.titleLabel?.text = "N/A"
-        ownerSnapchatButton.titleLabel?.text = "N/A"
+        //ownerInstagramButton.titleLabel?.text = "N/A"
+        //ownerSnapchatButton.titleLabel?.text = "N/A"
     }
     
 
