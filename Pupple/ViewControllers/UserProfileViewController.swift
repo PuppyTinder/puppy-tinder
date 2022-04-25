@@ -90,6 +90,18 @@ class UserProfileViewController: UIViewController {
         let fileUrl = URL(string: fileUrlString)
         ownerImageview.af.setImage(withURL: fileUrl!)
         
+        // Calculate age
+        let birthday = user["birthday"] as! String
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy"
+        dateFormatter.date(from: birthday)
+        let calendar = Calendar.current
+        let now = Date()
+        let ageComponents = calendar.dateComponents([.year], from: dateFormatter.date(from: birthday)!, to: now)
+        let age = ageComponents.year!
+        let ageString = String(age)
+        ownerAgeLabel.text = ageString + " years old"
+        
         var dogs = [PFObject]()
         let query = PFQuery(className: "Dog")
         query.whereKey("ownerid", equalTo: user)

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 import Parse
 import AlamofireImage
 import Koloda
@@ -88,6 +89,19 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                             let ownerFirstName = dogOwner["firstname"] as! String
                             let ownerLastName = dogOwner["lastname"] as! String
                             dogProfileViewController.ownerName = ownerFirstName + " " + ownerLastName
+                            
+                            // Calculate age
+                            let birthday = dogOwner["birthday"] as! String
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "MM/dd/yy"
+                            dateFormatter.date(from: birthday)
+                            let calendar = Calendar.current
+                            let now = Date()
+                            let ageComponents = calendar.dateComponents([.year], from: dateFormatter.date(from: birthday)!, to: now)
+                            let age = ageComponents.year!
+                            let ageString = String(age)
+                            
+                            dogProfileViewController.ownerAgeLabel.text = ageString + " years old"
                         }
                     }
                     
