@@ -6,41 +6,68 @@
 //
 
 import UIKit
+import Parse
+import AlamofireImage
 
-class EditProfileViewController: UIViewController {
-
-    @IBOutlet weak var firstNameText: UITextField!
+class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate {
     
-    @IBOutlet weak var lastNameText: UITextField!
+   
+    @IBOutlet weak var firstNameTextField: UITextField!
     
-    @IBOutlet weak var locationText: UITextField!
+    @IBOutlet weak var educationTextField: UITextField!
+    @IBOutlet weak var profileImageView: UIImageView!
     
-    @IBOutlet weak var dogAgeText: UITextField!
+    @IBAction func cancelButtonTapped(_ sender: AnyObject) {
+        print("cancel")
+        self.dismiss(animated: true, completion: nil)
+    }
     
-    @IBOutlet weak var dogSize: UITextField!
+    @IBAction func doneButtonTapped(_ sender: AnyObject) {
+        let name = firstNameTextField.text!
+        let userEducation = educationTextField.text!
+     
+        let user = PFUser.current()!
+        
+        if(name != "")
+        {
+            user["firstname"] = name
+        }
+       
+        if(userEducation != "")
+        {
+            user["education"] = userEducation
+        }
+        
+        user.saveInBackground { success, error in
+            if success != nil
+            {
+                print("saved")
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     
-    @IBOutlet weak var aboutText: UITextField!
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+           
+          
+        loadUserDetails()
+           
+           // Do any additional setup after loading the view.
+       }
+    
+    func loadUserDetails(){
+        let user = PFUser.current()!
+        let userImageFile = user["user_photo"] as! PFFileObject
+        let fileUrlString = userImageFile.url!
+        let fileUrl = URL(string: fileUrlString)
+        profileImageView.af.setImage(withURL: fileUrl!)
+            
+        }
+   
 
-        // Do any additional setup after loading the view.
-    }
-    
-    
-    
-    
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
