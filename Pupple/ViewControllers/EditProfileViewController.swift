@@ -72,15 +72,24 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                     dog["age"] = dogAge
                 }
                         
-                if(fixed != "")
+                if(fixed == "Yes")
                 {
-                    dog["fixed"] = fixed
+                    dog["fixed"] = true
+                }
+                else
+                {
+                    dog["fixed"] = false
                 }
                         
-                if(vaccinated != "")
+                if(vaccinated == "Yes")
                 {
-                    dog["vaccinated"] = vaccinated
+                    dog["vaccinated"] = true
                 }
+                else
+                {
+                    dog["vaccinated"] = false
+                }
+            
                         
                 if(aboutDog != "")
                 {

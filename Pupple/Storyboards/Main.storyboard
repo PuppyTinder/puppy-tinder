@@ -1988,17 +1988,6 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emk-KV-yqD">
-                                                <rect key="frame" x="53" y="273" width="87" height="17"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="87" id="TZg-yw-JKg"/>
-                                                    <constraint firstAttribute="height" constant="17" id="nmp-Q7-WqG"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="N/A">
-                                                    <fontDescription key="titleFontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                                </buttonConfiguration>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJj-HZ-q47">
                                                 <rect key="frame" x="53" y="300" width="87" height="17"/>
                                                 <constraints>
@@ -2009,6 +1998,9 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="N/A">
                                                     <fontDescription key="titleFontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="snapchat:" destination="hHh-Aw-Muk" eventType="touchUpInside" id="gJU-xp-DqK"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k2a-Tr-hMd">
                                                 <rect key="frame" x="360" y="13" width="46" height="31"/>
@@ -2017,6 +2009,20 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="square.and.pencil" catalog="system"/>
                                                 <connections>
                                                     <segue destination="eVP-Cq-ycu" kind="show" identifier="editOwnerProfile" id="mBh-kC-3ml"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emk-KV-yqD">
+                                                <rect key="frame" x="57" y="276" width="87" height="17"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="87" id="TZg-yw-JKg"/>
+                                                    <constraint firstAttribute="height" constant="17" id="nmp-Q7-WqG"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="N/A">
+                                                    <fontDescription key="titleFontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="instagram:" destination="hHh-Aw-Muk" eventType="touchUpInside" id="5eo-NG-MKc"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -2138,7 +2144,7 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Upload photo"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dog Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dek-gQ-EL6">
-                                        <rect key="frame" x="34" y="366" width="125" height="30"/>
+                                        <rect key="frame" x="34" y="279" width="125" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -2180,16 +2186,6 @@
                                         <connections>
                                             <action selector="setLocation:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="My7-EG-OBW"/>
                                             <action selector="setMobileNumber:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="gVa-Az-mem"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Large" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uzm-mf-ACk">
-                                        <rect key="frame" x="196" y="366" width="190" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="setLocation:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="0R7-zB-lXb"/>
-                                            <action selector="setMobileNumber:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="Us1-6K-8vm"/>
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1 year 9 months" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CDh-nV-61Z">
@@ -2237,6 +2233,16 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Large" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uzm-mf-ACk">
+                                        <rect key="frame" x="196" y="279" width="190" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="setLocation:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="0R7-zB-lXb"/>
+                                            <action selector="setMobileNumber:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="Us1-6K-8vm"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                             </scrollView>
                             <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ft-rn-9GU">

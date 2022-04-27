@@ -78,6 +78,41 @@ class UserProfileViewController: UIViewController {
         let doglocation = user["location"] as! String
         self.ownerNameLabel.text = fullName
         self.dogLocationLabel.text = doglocation
+        var about = user["about"] as? String
+        if(about == nil){
+            about = ""
+        }
+        aboutLabel.text = about
+        
+        var insta = user["instagram"] as? String
+        if(insta == nil){
+            insta = ""
+        }
+        ownerInstagramButton.setTitle(insta, for: .normal)
+        
+        var occupation = user["occupation"] as? String
+        if(occupation == nil){
+            occupation = "N/A"
+        }
+        ownerOccupationLabel.text = occupation
+        
+        var education = user["education"] as? String
+        if(education == nil){
+            education = "N/A"
+        }
+        ownerEducationLabel.text = education
+        
+        var snap = user["snapchat"] as? String
+        if(snap == nil){
+            snap = "N/A"
+        }
+        ownerSnapchatButton.setTitle(snap, for: .normal)
+        
+        var gender = user["gender"] as? String
+        if(gender == nil){
+            gender = "N/A"
+        }
+        ownerGenderLabel.text = gender
         
         let userImageFile = user["user_photo"] as! PFFileObject
         let fileUrlString = userImageFile.url!
@@ -114,6 +149,23 @@ class UserProfileViewController: UIViewController {
                 let dogUrl = URL(string: url)
                 self.dogImageView.af.setImage(withURL: dogUrl!)
                 
+                var dogAge = ownerDog["age"] as? String
+                
+                if(dogAge == nil){
+                    dogAge = "N/A"
+                }
+                else
+                {
+                    dogAge = dogAge! + " years old"
+                }
+                self.dogAgeLabel.text = dogAge
+                
+                var dogAbout = ownerDog["about"] as? String
+                if(dogAbout == nil){
+                    dogAbout = ""
+                }
+                self.dogAboutLabel.text = dogAbout
+                
             }
         }
         
@@ -121,8 +173,17 @@ class UserProfileViewController: UIViewController {
     }
     
     
-        
+    @IBAction func instagram(_ sender: Any) {
+        let instaUrl = URL(string: "https://www.instagram.com/" + (ownerInstagramButton.titleLabel?.text)!)
+        UIApplication.shared.open(instaUrl!)
     }
+    
+    @IBAction func snapchat(_ sender: Any) {
+        let snapchatUrl = URL(string: "https://www.snapchat.com/add/" + (ownerSnapchatButton.titleLabel?.text)!)
+        UIApplication.shared.open(snapchatUrl!)
+    }
+    
+}
     
     
     
