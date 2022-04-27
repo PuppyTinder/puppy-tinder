@@ -86,7 +86,7 @@ class UserProfileViewController: UIViewController {
         
         var insta = user["instagram"] as? String
         if(insta == nil){
-            insta = ""
+            insta = "N/A"
         }
         ownerInstagramButton.setTitle(insta, for: .normal)
         
