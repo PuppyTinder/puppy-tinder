@@ -72,14 +72,22 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                     let size = dog["size"] as! String
                     let vaccinated = dog["vaccinated"] as! Bool
                     let fixed = dog["fixed"] as! Bool
+                    var dogAge = dog["age"] as? String
+                    var dogAbout = dog["about"] as? String
                     
                     dogProfileViewController.size = size
                     
-                    if (vaccinated){ dogProfileViewController.vaccinated = "Yes"}
-                    else { dogProfileViewController.vaccinated = "No"}
+                    if (vaccinated){ dogProfileViewController.vaccinatedLabel.text = "Yes"}
+                    else { dogProfileViewController.vaccinatedLabel.text = "No"}
                     
-                    if (fixed){ dogProfileViewController.fixed = "Yes"}
-                    else { dogProfileViewController.fixed = "No"}
+                    if (fixed){ dogProfileViewController.fixedLabel.text = "Yes"}
+                    else { dogProfileViewController.fixedLabel.text = "No"}
+                    
+                    if(dogAge == nil) { dogAge = "N/A"}
+                    dogProfileViewController.dogAgeLabel.text = dogAge
+                    
+                    if(dogAbout == nil) { dogAbout = ""}
+                    dogProfileViewController.dogAboutLabel.text = dogAbout
                     
                     // Parse owner information
                     let dogOwner = dog["ownerid"] as! PFObject
@@ -102,6 +110,29 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                             let ageString = String(age)
                             
                             dogProfileViewController.ownerAgeLabel.text = ageString + " years old"
+                            
+                            let ownerAbout = dogOwner["about"] as? String
+                            dogProfileViewController.ownerAboutLabel.text = ownerAbout
+                            
+                            var ownerEducation = dogOwner["education"] as? String
+                            if(ownerEducation == nil) { ownerEducation = "N/A"}
+                            dogProfileViewController.educationLabel.text = ownerEducation
+                            
+                            var ownerGender = dogOwner["gender"] as? String
+                            if(ownerGender == nil) { ownerGender = "N/A"}
+                            dogProfileViewController.ownerGenderLabel.text = ownerGender
+                            
+                            var ownerSnapchat = dogOwner["snapchat"] as? String
+                            if(ownerSnapchat == nil) { ownerSnapchat = "N/A"}
+                            dogProfileViewController.ownerSnapchatButton.setTitle(ownerSnapchat, for: .normal)
+                            
+                            var ownerInstagram = dogOwner["instagram"] as? String
+                            if(ownerInstagram == nil) { ownerInstagram = "N/A"}
+                            dogProfileViewController.ownerInstagramButton.setTitle(ownerInstagram, for: .normal)
+                            
+                            var ownerOccupation = dogOwner["occupation"] as? String
+                            if(ownerOccupation == nil) { ownerOccupation = "N/A" }
+                            dogProfileViewController.occupationLabel.text = ownerOccupation
                         }
                     }
                     
