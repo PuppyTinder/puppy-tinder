@@ -84,6 +84,7 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                     else { dogProfileViewController.fixedLabel.text = "No"}
                     
                     if(dogAge == nil) { dogAge = "N/A"}
+                    else { dogAge = dogAge! + " years old"}
                     dogProfileViewController.dogAgeLabel.text = dogAge
                     
                     if(dogAbout == nil) { dogAbout = ""}
