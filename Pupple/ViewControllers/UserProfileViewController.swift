@@ -55,9 +55,6 @@ class UserProfileViewController: UIViewController {
     
     @IBOutlet weak var ownerSnapchatButton: UIButton!
     
-    
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         ownerImageview.layer.cornerRadius = 50
@@ -66,13 +63,10 @@ class UserProfileViewController: UIViewController {
         
     }
     
-    
-
-    override func viewDidAppear(_ animated: Bool) {
-        
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       userParse()
     }
-    
     
     
     func userParse(){
@@ -97,7 +91,7 @@ class UserProfileViewController: UIViewController {
         dateFormatter.date(from: birthday)
         let calendar = Calendar.current
         let now = Date()
-        let ageComponents = calendar.dateComponents([.year], from: dateFormatter.date(from: birthday)!, to: now)
+        let ageComponents = calendar.dateComponents([.year], from: dateFormatter.date(from: birthday)!, to: now) 
         let age = ageComponents.year!
         let ageString = String(age)
         ownerAgeLabel.text = ageString + " years old"
@@ -129,8 +123,6 @@ class UserProfileViewController: UIViewController {
     
         
     }
-    
-    
     
     
     
