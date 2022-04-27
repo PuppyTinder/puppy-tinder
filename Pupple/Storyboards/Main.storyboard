@@ -1654,7 +1654,7 @@
             <objects>
                 <viewController storyboardIdentifier="ProfileDetails" id="hHh-Aw-Muk" customClass="UserProfileViewController" customModule="Pupple" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYX-KS-1eo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1146"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kHt-F8-Cas">
                                 <rect key="frame" x="0.0" y="44" width="414" height="1102"/>
@@ -1988,17 +1988,6 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emk-KV-yqD">
-                                                <rect key="frame" x="53" y="273" width="87" height="17"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="87" id="TZg-yw-JKg"/>
-                                                    <constraint firstAttribute="height" constant="17" id="nmp-Q7-WqG"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="N/A">
-                                                    <fontDescription key="titleFontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                                </buttonConfiguration>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJj-HZ-q47">
                                                 <rect key="frame" x="53" y="300" width="87" height="17"/>
                                                 <constraints>
@@ -2009,6 +1998,9 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="N/A">
                                                     <fontDescription key="titleFontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="snapchat:" destination="hHh-Aw-Muk" eventType="touchUpInside" id="gJU-xp-DqK"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k2a-Tr-hMd">
                                                 <rect key="frame" x="360" y="13" width="46" height="31"/>
@@ -2017,6 +2009,20 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="square.and.pencil" catalog="system"/>
                                                 <connections>
                                                     <segue destination="eVP-Cq-ycu" kind="show" identifier="editOwnerProfile" id="mBh-kC-3ml"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emk-KV-yqD">
+                                                <rect key="frame" x="57" y="276" width="87" height="17"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="87" id="TZg-yw-JKg"/>
+                                                    <constraint firstAttribute="height" constant="17" id="nmp-Q7-WqG"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="N/A">
+                                                    <fontDescription key="titleFontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="instagram:" destination="hHh-Aw-Muk" eventType="touchUpInside" id="5eo-NG-MKc"/>
                                                 </connections>
                                             </button>
                                         </subviews>
