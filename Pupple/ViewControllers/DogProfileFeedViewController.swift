@@ -22,8 +22,8 @@ class DogProfileFeedViewController: UIViewController {
     @IBOutlet weak var dogAgeLabel: UILabel!{ didSet{ dogAgeLabel.text = "N/A"} }
     @IBOutlet weak var dogSizeLabel: UILabel!{ didSet{ dogSizeLabel.text = size } }
     @IBOutlet weak var dogAboutLabel: UILabel!{ didSet{dogAboutLabel.text = ""} }
-    @IBOutlet weak var fixedLabel: UILabel!{ didSet{ fixedLabel.text = fixed } }
-    @IBOutlet weak var vaccinatedLabel: UILabel!{ didSet{ vaccinatedLabel.text = vaccinated } }
+    @IBOutlet weak var fixedLabel: UILabel!
+    @IBOutlet weak var vaccinatedLabel: UILabel!
     
     //Owner View Outlets
     @IBOutlet weak var ownerNameLabel: UILabel!{ didSet{ ownerNameLabel.text = ownerName } }
@@ -36,6 +36,7 @@ class DogProfileFeedViewController: UIViewController {
     @IBOutlet weak var ownerInstagramButton: UIButton!
     @IBOutlet weak var ownerSnapchatButton: UIButton!
     
+    // Dog variables
     var dogName: String?
     var dogImage: UIImage?
     var ownerImage: UIImage?
@@ -43,8 +44,8 @@ class DogProfileFeedViewController: UIViewController {
     var breed: String?
     var gender: UIImage?
     var size: String?
-    var vaccinated: String?
-    var fixed: String?
+    
+    // Owner variables
     var ownerName: String?
     
     override func viewDidLoad() {
@@ -55,15 +56,24 @@ class DogProfileFeedViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         dogSizeLabel.text = size
-        vaccinatedLabel.text = vaccinated
-        fixedLabel.text = fixed
         ownerNameLabel.text = ownerName
-        //Temporary
-        //ownerInstagramButton.titleLabel?.text = "N/A"
-        //ownerSnapchatButton.titleLabel?.text = "N/A"
     }
     
-
+    override func viewWillLayoutSubviews() {
+            dogAboutLabel.sizeToFit()
+            ownerAboutLabel.sizeToFit()
+        }
+    
+    
+    @IBAction func goToInstagram(_ sender: Any) {
+        let instaUrl = URL(string: "https://www.instagram.com/" + (ownerInstagramButton.titleLabel?.text)!)
+        UIApplication.shared.open(instaUrl!)
+    }
+    
+    @IBAction func goToSnapchat(_ sender: Any) {
+        let snapchatUrl = URL(string: "http://www.snapchat.com/add/" + (ownerSnapchatButton.titleLabel?.text)!)
+        UIApplication.shared.open(snapchatUrl!)
+    }
     /*
     // MARK: - Navigation
 
