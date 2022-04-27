@@ -227,3 +227,5 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     */
 
 }
+
+

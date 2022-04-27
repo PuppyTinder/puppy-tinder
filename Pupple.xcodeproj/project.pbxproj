@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1728972F27FE7B4D00EEDA68 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728972E27FE7B4D00EEDA68 /* FeedViewController.swift */; };
 		175473662803EA2600FC685C /* SignupSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175473652803EA2600FC685C /* SignupSuccessViewController.swift */; };
+		1766D52C2819A9DA00656492 /* DogBreed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1766D52B2819A9DA00656492 /* DogBreed.swift */; };
 		17AA69FF27FD495D00C6E41D /* SignUpViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AA69FE27FD495D00C6E41D /* SignUpViewController2.swift */; };
 		17D8626527FCA4F300180D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8626427FCA4F300180D59 /* AppDelegate.swift */; };
 		17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8626627FCA4F300180D59 /* SceneDelegate.swift */; };
@@ -57,6 +58,7 @@
 		07F5ECA4293686987F873306 /* Pods-Pupple-PuppleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupple-PuppleUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pupple-PuppleUITests/Pods-Pupple-PuppleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1728972E27FE7B4D00EEDA68 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		175473652803EA2600FC685C /* SignupSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupSuccessViewController.swift; sourceTree = "<group>"; };
+		1766D52B2819A9DA00656492 /* DogBreed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreed.swift; sourceTree = "<group>"; };
 		17AA69FE27FD495D00C6E41D /* SignUpViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController2.swift; sourceTree = "<group>"; };
 		17D8626127FCA4F300180D59 /* Pupple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pupple.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17D8626427FCA4F300180D59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +123,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1766D52D2819C1FE00656492 /* DogBreedModel */ = {
+			isa = PBXGroup;
+			children = (
+				1766D52B2819A9DA00656492 /* DogBreed.swift */,
+			);
+			path = DogBreedModel;
+			sourceTree = "<group>";
+		};
 		17D8625827FCA4F300180D59 = {
 			isa = PBXGroup;
 			children = (
@@ -146,8 +156,8 @@
 		17D8626327FCA4F300180D59 /* Pupple */ = {
 			isa = PBXGroup;
 			children = (
+				1766D52D2819C1FE00656492 /* DogBreedModel */,
 				F1075335280B41BE006C4037 /* LikesView */,
-				17E686A12806911A00C4015C /* SwipeableCardFolder */,
 				17E686C3280B5A9100C4015C /* KolodaCardFolder */,
 				17D8629527FD31BD00180D59 /* Storyboards */,
 				17D8629427FD31A400180D59 /* ViewControllers */,
@@ -497,19 +507,12 @@
 				17D8626527FCA4F300180D59 /* AppDelegate.swift in Sources */,
 				63DEE46028137FDE007F2431 /* UserProfileViewController.swift in Sources */,
 				1728972F27FE7B4D00EEDA68 /* FeedViewController.swift in Sources */,
-				17E686AD28069C9100C4015C /* SwipeableView.swift in Sources */,
-				17E686B728077F5000C4015C /* CGRect+Swipeable.swift in Sources */,
-				17E686A52806939B00C4015C /* SwipeableCardViewDelegate.swift in Sources */,
-				17E686A9280695C500C4015C /* SwipeableCardViewContainer.swift in Sources */,
-				17E686BF28078CFE00C4015C /* SampleSwipeableCellViewModel.swift in Sources */,
-				17E686BD28078C6E00C4015C /* SampleSwipeableCard.swift in Sources */,
 				F16A6CAD280F535B00DE9652 /* LikeCollectionViewCell.swift in Sources */,
 				17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */,
-				17E686B128069E9800C4015C /* UIViewConstraints.swift in Sources */,
-				17E686B528077F1F00C4015C /* CGPoint+Swipeable.swift in Sources */,
 				F16A6CAB280F516D00DE9652 /* LikesViewController.swift in Sources */,
 				17E686C9280B5B7300C4015C /* KolodaCardView.swift in Sources */,
 				17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */,
+				1766D52C2819A9DA00656492 /* DogBreed.swift in Sources */,
 				17E959F7280F45BB00CF56BA /* DogProfileFeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
