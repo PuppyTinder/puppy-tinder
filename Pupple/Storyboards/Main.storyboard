@@ -94,7 +94,7 @@
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" title="LoginViewController" id="15D-8g-EuK" customClass="LoginViewController" customModule="Pupple" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="m0H-ch-XKT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo_transparent_300x300" translatesAutoresizingMaskIntoConstraints="NO" id="eCJ-lW-4z2">
@@ -2351,7 +2351,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Jq2-qA-vAZ"/>
-        <segue reference="3lM-sM-CTc"/>
+        <segue reference="PRj-Jt-FEH"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Feed" width="60" height="60"/>

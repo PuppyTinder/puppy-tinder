@@ -8,6 +8,7 @@
 import UIKit
 import Parse
 import AlamofireImage
+import Alamofire
 
 class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -23,11 +24,14 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
     let genders = ["","Male", "Female"]
     let choices = ["", "Yes", "No"]
     let sizes = ["", "Small", "Medium", "Large"]
+    var breedDictionary = DogBreed(message: ["":[""]])
+    var breedArray : [String] = []
     
     var genderPickerView = UIPickerView()
     var vaccinatedPickerView = UIPickerView()
     var neuteredPickerView = UIPickerView()
     var sizePickerView = UIPickerView()
+    var breedPickerView = UIPickerView()
     
     let defaults = UserDefaults.standard
     // Keys to access the values passed from page one
@@ -47,6 +51,16 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         // Pushes view up when keyboard appears
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        requestBreeds{ data in
+            self.breedDictionary = data!
+            let array = self.breedDictionary.message!.keys.sorted()
+            for breed in array
+            {
+                self.breedArray.append(breed)
+            }
+            
+        }
     }
     
     
@@ -234,9 +248,17 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         {
             return sizes.count
         }
-        else
+        else if pickerView.tag == 4
         {
             return genders.count
+        }
+        else if pickerView.tag == 5
+        {
+            return breedArray.count
+        }
+        else
+        {
+            return 0
         }
     }
     
@@ -249,9 +271,17 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         {
             return sizes[row]
         }
-        else
+        else if pickerView.tag == 4
         {
             return genders[row]
+        }
+        else if pickerView.tag == 5
+        {
+            return breedArray[row]
+        }
+        else
+        {
+            return ""
         }
     }
     
@@ -271,10 +301,15 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
             sizeTextField.text = sizes[row]
             sizeTextField.resignFirstResponder()
         }
-        else
+        else if pickerView.tag == 4
         {
             genderTextField.text = genders[row]
             genderTextField.resignFirstResponder()
+        }
+        else if pickerView.tag == 5
+        {
+            breedTextField.text = breedArray[row]
+            breedTextField.resignFirstResponder()
         }
     }
     
@@ -306,10 +341,15 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         genderPickerView.delegate = self
         genderPickerView.dataSource = self
         genderPickerView.tag = 4
+        breedPickerView.delegate = self
+        breedPickerView.dataSource = self
+        breedPickerView.tag = 5
+        
         sizeTextField.inputView = sizePickerView
         vaccinatedTextField.inputView = vaccinatedPickerView
         neuteredTextField.inputView = neuteredPickerView
         genderTextField.inputView = genderPickerView
+        breedTextField.inputView = breedPickerView
     }
     
     @objc func adjustInputView(notification: Notification)
@@ -339,4 +379,20 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
     }
     */
 
+}
+
+extension SignUpViewController2 {
+    
+    func requestBreeds(completion :@escaping ( _ data : DogBreed?) -> ())
+    {
+        let urlString = "https://dog.ceo/api/breeds/list/all"
+        
+        // API request
+        AF.request(urlString)
+          .validate()
+          .responseDecodable(of: DogBreed.self) { (response) in
+            guard let breed = response.value else { return }
+              completion(breed)
+          }
+    }
 }
