@@ -26,6 +26,7 @@
 		17E686C9280B5B7300C4015C /* KolodaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686C8280B5B7300C4015C /* KolodaCardView.swift */; };
 		17E959F7280F45BB00CF56BA /* DogProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E959F6280F45BB00CF56BA /* DogProfileFeedViewController.swift */; };
 		17E95A02280FA3E700CF56BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17E95A01280FA3E700CF56BA /* Main.storyboard */; };
+		639177412819AA39008D6707 /* editOwnerProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639177402819AA39008D6707 /* editOwnerProfileViewController.swift */; };
 		63DEE46028137FDE007F2431 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEE45F28137FDE007F2431 /* UserProfileViewController.swift */; };
 		63FC6FF1281678ED00720AA3 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FC6FF0281678EC00720AA3 /* EditProfileViewController.swift */; };
 		AF77B25351452F349A587607 /* Pods_Pupple_PuppleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3215CAEF2A721764AE6F4FBF /* Pods_Pupple_PuppleUITests.framework */; };
@@ -80,6 +81,7 @@
 		17E95A01280FA3E700CF56BA /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1B1332EA5544C2BA38C70FD3 /* Pods-Pupple-PuppleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupple-PuppleUITests.release.xcconfig"; path = "Target Support Files/Pods-Pupple-PuppleUITests/Pods-Pupple-PuppleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3215CAEF2A721764AE6F4FBF /* Pods_Pupple_PuppleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pupple_PuppleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		639177402819AA39008D6707 /* editOwnerProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editOwnerProfileViewController.swift; sourceTree = "<group>"; };
 		63DEE45F28137FDE007F2431 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		63FC6FF0281678EC00720AA3 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		80BA0B35038069A625970E8B /* Pods_PuppleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PuppleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				F1075335280B41BE006C4037 /* LikesView */,
-				17E686A12806911A00C4015C /* SwipeableCardFolder */,
 				17E686C3280B5A9100C4015C /* KolodaCardFolder */,
 				17D8629527FD31BD00180D59 /* Storyboards */,
 				17D8629427FD31A400180D59 /* ViewControllers */,
@@ -180,6 +181,7 @@
 		17D8629427FD31A400180D59 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				639177402819AA39008D6707 /* editOwnerProfileViewController.swift */,
 				63FC6FF0281678EC00720AA3 /* EditProfileViewController.swift */,
 				63DEE45F28137FDE007F2431 /* UserProfileViewController.swift */,
 				17D8629627FD327200180D59 /* LoginViewController.swift */,
@@ -490,6 +492,7 @@
 				17D8629B27FD430300180D59 /* SignUpViewController.swift in Sources */,
 				17D8629727FD327200180D59 /* LoginViewController.swift in Sources */,
 				175473662803EA2600FC685C /* SignupSuccessViewController.swift in Sources */,
+				639177412819AA39008D6707 /* editOwnerProfileViewController.swift in Sources */,
 				17E686AF28069D0700C4015C /* NibView.swift in Sources */,
 				17D8629927FD329D00180D59 /* WelcomeViewController.swift in Sources */,
 				17D8626927FCA4F300180D59 /* ViewController.swift in Sources */,
@@ -497,16 +500,8 @@
 				17D8626527FCA4F300180D59 /* AppDelegate.swift in Sources */,
 				63DEE46028137FDE007F2431 /* UserProfileViewController.swift in Sources */,
 				1728972F27FE7B4D00EEDA68 /* FeedViewController.swift in Sources */,
-				17E686AD28069C9100C4015C /* SwipeableView.swift in Sources */,
-				17E686B728077F5000C4015C /* CGRect+Swipeable.swift in Sources */,
-				17E686A52806939B00C4015C /* SwipeableCardViewDelegate.swift in Sources */,
-				17E686A9280695C500C4015C /* SwipeableCardViewContainer.swift in Sources */,
-				17E686BF28078CFE00C4015C /* SampleSwipeableCellViewModel.swift in Sources */,
-				17E686BD28078C6E00C4015C /* SampleSwipeableCard.swift in Sources */,
 				F16A6CAD280F535B00DE9652 /* LikeCollectionViewCell.swift in Sources */,
 				17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */,
-				17E686B128069E9800C4015C /* UIViewConstraints.swift in Sources */,
-				17E686B528077F1F00C4015C /* CGPoint+Swipeable.swift in Sources */,
 				F16A6CAB280F516D00DE9652 /* LikesViewController.swift in Sources */,
 				17E686C9280B5B7300C4015C /* KolodaCardView.swift in Sources */,
 				17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */,
