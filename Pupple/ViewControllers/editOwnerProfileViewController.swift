@@ -9,7 +9,7 @@ import UIKit
 import Parse
 import AlamofireImage
 
-class editOwnerProfileViewController: UIViewController {
+class editOwnerProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -40,6 +40,20 @@ class editOwnerProfileViewController: UIViewController {
         aboutMeTextField.layer.borderWidth = 0.5
         aboutMeTextField.layer.borderColor = borderColor.cgColor
         aboutMeTextField.layer.cornerRadius = 5
+        
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        genderTextField.delegate = self
+        educationTextField.delegate = self
+        instaTextField.delegate = self
+        snapTextField.delegate = self
+        occupationTextField.delegate = self
+        aboutMeTextField.delegate = self
+        locationTextField.delegate = self
+        
+        // Pushes view up when keyboard appears
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @IBAction func CancelButtonTapped(_ sender: AnyObject) {
@@ -125,5 +139,37 @@ class editOwnerProfileViewController: UIViewController {
         let fileUrl = URL(string: fileUrlString)
         profileImageView.af.setImage(withURL: fileUrl!)
 
+    }
+    
+    @objc func adjustInputView(notification: Notification)
+    {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
+        
+        if notification.name == UIResponder.keyboardWillShowNotification
+        {
+            self.view.frame.origin.y = 0 // reset
+            let adjustmentHeight = keyboardFrame.height - view.safeAreaInsets.bottom
+            self.view.frame.origin.y -= adjustmentHeight
+        }
+        else
+        {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
+    // Remove keyboard when return is pressed
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+
+            if text == "\n" {
+                textView.resignFirstResponder()
+                return false
+            }
+            return true
     }
 }

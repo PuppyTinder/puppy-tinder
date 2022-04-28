@@ -2188,11 +2188,11 @@
                                             <action selector="setMobileNumber:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="gVa-Az-mem"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1 year 9 months" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CDh-nV-61Z">
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="eg: 5" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CDh-nV-61Z">
                                         <rect key="frame" x="196" y="411" width="190" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                         <connections>
                                             <action selector="setLocation:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="i9d-ID-IQs"/>
                                             <action selector="setMobileNumber:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="m0A-7O-2Bl"/>

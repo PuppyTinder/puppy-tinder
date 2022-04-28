@@ -148,14 +148,15 @@ class UserProfileViewController: UIViewController {
                 let dogUrl = URL(string: url)
                 self.dogImageView.af.setImage(withURL: dogUrl!)
                 
-                var dogAge = ownerDog["age"] as? String
+                let dogAgeNum = ownerDog["age"] as? Int
+                var dogAge = String(dogAgeNum!)
                 
                 if(dogAge == nil){
                     dogAge = "N/A"
                 }
                 else
                 {
-                    dogAge = dogAge! + " years old"
+                    dogAge = dogAge + " years old"
                 }
                 self.dogAgeLabel.text = dogAge
                 
