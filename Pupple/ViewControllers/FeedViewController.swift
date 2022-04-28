@@ -140,7 +140,7 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                 }
             }
         }     else if (segue.identifier == "ProfileDetails"){
-                let userProfileViewController: UserProfileViewController = segue.destination as! UserProfileViewController
+                // will perform segue to owner profile on press
             }
     }
     
