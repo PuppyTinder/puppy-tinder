@@ -63,11 +63,10 @@ class UserProfileViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-       userParse()
+    override func viewWillLayoutSubviews() {
+        aboutLabel.sizeToFit()
+        dogAboutLabel.sizeToFit()
     }
-    
     
     func userParse(){
         let user = PFUser.current()!
@@ -149,15 +148,10 @@ class UserProfileViewController: UIViewController {
                 let dogUrl = URL(string: url)
                 self.dogImageView.af.setImage(withURL: dogUrl!)
                 
-                var dogAge = ownerDog["age"] as? String
+                let dogAgeNum = ownerDog["age"] as? Int
+                var dogAge: String = "N/A"
+                if(dogAgeNum != nil) {dogAge = String(dogAgeNum!) + " years old"}
                 
-                if(dogAge == nil){
-                    dogAge = "N/A"
-                }
-                else
-                {
-                    dogAge = dogAge! + " years old"
-                }
                 self.dogAgeLabel.text = dogAge
                 
                 var dogAbout = ownerDog["about"] as? String
@@ -183,6 +177,7 @@ class UserProfileViewController: UIViewController {
         UIApplication.shared.open(snapchatUrl!)
     }
     
+    @IBAction func unwindToProfile(_send: UIStoryboardSegue){}
 }
     
     
