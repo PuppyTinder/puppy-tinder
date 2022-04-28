@@ -152,19 +152,22 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
             let query = PFQuery(className: "Dog")
             query.getObjectInBackground(withId: like.objectId!) { dog, error in
                 if dog != nil {
-//                    let imageFile = dog!["dog_photo"] as! PFFileObject
-//                    let urlString = imageFile.url!
-//                    let url = URL(string: urlString)!
+                    let imageFile = dog!["dog_photo"] as! PFFileObject
+                    let urlString = imageFile.url!
+                    let url = URL(string: urlString)!
+                    dogProfileViewController.dogImageView.af.setImage(withURL: url)
 
-                    dogProfileViewController.dogName = dog!["name"] as? String
-//                    dogProfileViewController.dogImage = UIImage(cgImage: CGImag)
-                    dogProfileViewController.breed = dog!["breed"] as? String
+                    dogProfileViewController.dogNameLabel.text = dog!["name"] as? String
+
+                    dogProfileViewController.breedLabel.text = dog!["breed"] as? String
                     
-                    dogProfileViewController.size = dog!["size"] as? String
+                    dogProfileViewController.dogSizeLabel.text = dog!["size"] as? String
 
                     let vaccinated = dog!["vaccinated"] as! Bool
                     let fixed = dog!["fixed"] as! Bool
-                    var dogAge = dog!["age"] as? String
+                    let dogAgeNum = dog!["age"] as? Int
+                    var dogAge: String = "N/A"
+                    if(dogAgeNum != nil) {dogAge = String(dogAgeNum!) + " years old"}
                     var dogAbout = dog!["about"] as? String
                     
                     if (vaccinated){ dogProfileViewController.vaccinatedLabel.text = "Yes"}
@@ -173,8 +176,6 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
                     if (fixed){ dogProfileViewController.fixedLabel.text = "Yes"}
                     else { dogProfileViewController.fixedLabel.text = "No"}
                     
-                    if(dogAge == nil) { dogAge = "N/A"}
-                    else { dogAge = dogAge! + " years old"}
                     dogProfileViewController.dogAgeLabel.text = dogAge
                     
                     if(dogAbout == nil) { dogAbout = ""}
@@ -185,13 +186,13 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
                     let ownerquery = PFUser.query()
                     ownerquery?.getObjectInBackground(withId: owner.objectId!, block: { dogowner, error in
                         if dogowner != nil {
-//                            let ownerimg = dogowner!["user_photo"] as! PFFileObject
-//                            let ownerurl = URL(string: ownerimg.url!)!
-//                            cell.ownerImageView.af.setImage(withURL: ownerurl)
-                            dogProfileViewController.location = dogowner!["location"] as? String
+                            let ownerimg = dogowner!["user_photo"] as! PFFileObject
+                            let ownerurl = URL(string: ownerimg.url!)!
+                            dogProfileViewController.ownerImageView.af.setImage(withURL: ownerurl)
+                            dogProfileViewController.locationLabel.text = dogowner!["location"] as? String
                             let ownerFirstName = dogowner!["firstname"] as! String
                             let ownerLastName = dogowner!["lastname"] as! String
-                            dogProfileViewController.ownerName = ownerFirstName + " " + ownerLastName
+                            dogProfileViewController.ownerNameLabel.text = ownerFirstName + " " + ownerLastName
                             
                             // Calculate age
                             let birthday = dogowner!["birthday"] as! String
