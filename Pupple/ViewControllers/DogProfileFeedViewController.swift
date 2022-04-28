@@ -20,13 +20,13 @@ class DogProfileFeedViewController: UIViewController {
     @IBOutlet weak var genderImageView: UIImageView!{ didSet{ genderImageView.image = gender } }
     @IBOutlet weak var locationLabel: UILabel!{ didSet{ locationLabel.text = location } }
     @IBOutlet weak var dogAgeLabel: UILabel!{ didSet{ dogAgeLabel.text = "N/A"} }
-    @IBOutlet weak var dogSizeLabel: UILabel!{ didSet{ dogSizeLabel.text = size } }
+    @IBOutlet weak var dogSizeLabel: UILabel!
     @IBOutlet weak var dogAboutLabel: UILabel!{ didSet{dogAboutLabel.text = ""} }
     @IBOutlet weak var fixedLabel: UILabel!
     @IBOutlet weak var vaccinatedLabel: UILabel!
     
     //Owner View Outlets
-    @IBOutlet weak var ownerNameLabel: UILabel!{ didSet{ ownerNameLabel.text = ownerName } }
+    @IBOutlet weak var ownerNameLabel: UILabel!
     @IBOutlet weak var ownerGenderLabel: UILabel!{ didSet{ownerGenderLabel.text = "N/A"} }
     @IBOutlet weak var ownerAgeLabel: UILabel!{ didSet{ownerAgeLabel.text = "N/A"}}
     @IBOutlet weak var occupationLabel: UILabel!{ didSet{occupationLabel.text = "N/A"}}
@@ -43,20 +43,12 @@ class DogProfileFeedViewController: UIViewController {
     var location: String?
     var breed: String?
     var gender: UIImage?
-    var size: String?
     
-    // Owner variables
-    var ownerName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         ownerImageView.layer.cornerRadius = 50
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        dogSizeLabel.text = size
-        ownerNameLabel.text = ownerName
     }
     
     override func viewWillLayoutSubviews() {
