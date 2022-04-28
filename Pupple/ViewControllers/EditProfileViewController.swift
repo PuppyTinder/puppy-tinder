@@ -9,7 +9,7 @@ import UIKit
 import Parse
 import AlamofireImage
 
-class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate {
+class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate {
     
     
    
@@ -108,6 +108,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                     destVC.dogAboutLabel.text = aboutDog
                 }
                 
+                let imageData = self.dogImageView.image!.pngData()
+                let file = PFFileObject(name: "dog.png", data: imageData!)
+                dog["dog_photo"] = file
+                destVC.dogImageView.image = UIImage(data: imageData!)
+                
                 dog.saveInBackground { success, error in
                     if success != nil
                     {
@@ -174,6 +179,33 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         }
     }
+    
+    
+    @IBAction func onCamera(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera)
+        {
+            picker.sourceType = .camera
+        }
+        else
+        {
+            picker.sourceType = .photoLibrary
+        }
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] as! UIImage
+        let size = CGSize(width: 141, height: 133)
+        let scaledImage = image.af.imageScaled(to: size)
+        dogImageView.image = scaledImage
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

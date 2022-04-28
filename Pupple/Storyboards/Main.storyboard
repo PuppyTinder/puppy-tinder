@@ -1658,8 +1658,8 @@
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYX-KS-1eo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kHt-F8-Cas">
-                                <rect key="frame" x="0.0" y="44" width="414" height="1102"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kHt-F8-Cas">
+                                <rect key="frame" x="0.0" y="44" width="414" height="1156"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voX-SN-bdG">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
@@ -2140,9 +2140,13 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="1040"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="upload_image" translatesAutoresizingMaskIntoConstraints="NO" id="bNn-FP-Ian">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="upload_image" translatesAutoresizingMaskIntoConstraints="NO" id="bNn-FP-Ian">
                                         <rect key="frame" x="157" y="49" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="1nJ-z6-Ipl" appends="YES" id="7SA-pn-5dZ"/>
+                                        </connections>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dog Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dek-gQ-EL6">
                                         <rect key="frame" x="34" y="279" width="125" height="30"/>
@@ -2285,7 +2289,11 @@
                             <constraint firstItem="0Ft-rn-9GU" firstAttribute="top" secondItem="X8H-1D-dnj" secondAttribute="top" id="wck-nb-Chf"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="s3f-xX-QOx"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="7mn-lW-jhC"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="414" height="1150"/>
                     <connections>
                         <outlet property="aboutTextVIew" destination="pye-KV-qhO" id="c7G-LA-Fpe"/>
@@ -2299,6 +2307,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IRK-la-lHj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="F6A-vQ-YgJ" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="1nJ-z6-Ipl">
+                    <connections>
+                        <action selector="onCamera:" destination="NoL-d3-5d0" id="I8e-5f-8zc"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="5573.913043478261" y="-1688.1696428571429"/>
         </scene>
@@ -2428,12 +2441,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upload_image" translatesAutoresizingMaskIntoConstraints="NO" id="UVO-OU-66z">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upload_image" translatesAutoresizingMaskIntoConstraints="NO" id="UVO-OU-66z">
                                 <rect key="frame" x="157" y="75" width="100" height="100"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Ho1-k8-1Gg"/>
                                     <constraint firstAttribute="width" constant="100" id="ZFG-yr-7cW"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="hlz-EQ-fsv" appends="YES" id="Cmg-EC-WPs"/>
+                                </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noG-lA-LIq">
                                 <rect key="frame" x="40" y="278" width="125" height="30"/>
@@ -2518,13 +2535,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OKZ-Ix-H7r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Tvb-mG-uur" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="hlz-EQ-fsv">
+                    <connections>
+                        <action selector="onCamera:" destination="eVP-Cq-ycu" id="qsW-Bh-dWJ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="5582.608695652174" y="-840.40178571428567"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6ag-9d-r8e"/>
-        <segue reference="0d3-F1-DMp"/>
+        <segue reference="Jq2-qA-vAZ"/>
+        <segue reference="8yO-YG-Ifa"/>
         <segue reference="3lM-sM-CTc"/>
     </inferredMetricsTieBreakers>
     <resources>

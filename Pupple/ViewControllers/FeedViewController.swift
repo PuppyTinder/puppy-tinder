@@ -48,6 +48,11 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "dogProfileSegue")
         {
