@@ -237,7 +237,7 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                 let size = CGSize(width: 50, height: 50)
                 let scaledImage = image!.af.imageAspectScaled(toFill: size)
                 let roundedImage = scaledImage.af.imageRounded(withCornerRadius: 20)
-                self.navigationItem.leftBarButtonItem?.setBackgroundImage(roundedImage, for: .normal, barMetrics: .default)
+                self.profileBarButton.setBackgroundImage(roundedImage, for: .normal, barMetrics: .default)
             }
         }
         navigationItem.leftBarButtonItem?.title = ""
@@ -265,14 +265,6 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
     }
     */
 
-    @IBAction func onLogout(_ sender: Any) {
-        PFUser.logOut()
-        let main = UIStoryboard(name: "Main", bundle: nil)
-        let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return}
-        delegate.window?.rootViewController = loginViewController
-    }
-    
     @IBAction func resetCards(_ sender: Any) {
         kolodaView.resetCurrentCardIndex()
         resetButton.isHidden = true
