@@ -10,6 +10,7 @@
 		1728972F27FE7B4D00EEDA68 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728972E27FE7B4D00EEDA68 /* FeedViewController.swift */; };
 		175473662803EA2600FC685C /* SignupSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175473652803EA2600FC685C /* SignupSuccessViewController.swift */; };
 		1766D52C2819A9DA00656492 /* DogBreed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1766D52B2819A9DA00656492 /* DogBreed.swift */; };
+		1766D530281A39E300656492 /* ToolbarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1766D52F281A39E300656492 /* ToolbarExtension.swift */; };
 		17AA69FF27FD495D00C6E41D /* SignUpViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AA69FE27FD495D00C6E41D /* SignUpViewController2.swift */; };
 		17D8626527FCA4F300180D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8626427FCA4F300180D59 /* AppDelegate.swift */; };
 		17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8626627FCA4F300180D59 /* SceneDelegate.swift */; };
@@ -60,6 +61,7 @@
 		1728972E27FE7B4D00EEDA68 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		175473652803EA2600FC685C /* SignupSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupSuccessViewController.swift; sourceTree = "<group>"; };
 		1766D52B2819A9DA00656492 /* DogBreed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreed.swift; sourceTree = "<group>"; };
+		1766D52F281A39E300656492 /* ToolbarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarExtension.swift; sourceTree = "<group>"; };
 		17AA69FE27FD495D00C6E41D /* SignUpViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController2.swift; sourceTree = "<group>"; };
 		17D8626127FCA4F300180D59 /* Pupple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pupple.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17D8626427FCA4F300180D59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 			path = DogBreedModel;
 			sourceTree = "<group>";
 		};
+		1766D52E281A39CA00656492 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1766D52F281A39E300656492 /* ToolbarExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		17D8625827FCA4F300180D59 = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +168,7 @@
 		17D8626327FCA4F300180D59 /* Pupple */ = {
 			isa = PBXGroup;
 			children = (
+				1766D52E281A39CA00656492 /* Extension */,
 				1766D52D2819C1FE00656492 /* DogBreedModel */,
 				F1075335280B41BE006C4037 /* LikesView */,
 				17E686C3280B5A9100C4015C /* KolodaCardFolder */,
@@ -513,6 +524,7 @@
 				1728972F27FE7B4D00EEDA68 /* FeedViewController.swift in Sources */,
 				F16A6CAD280F535B00DE9652 /* LikeCollectionViewCell.swift in Sources */,
 				17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */,
+				1766D530281A39E300656492 /* ToolbarExtension.swift in Sources */,
 				F16A6CAB280F516D00DE9652 /* LikesViewController.swift in Sources */,
 				17E686C9280B5B7300C4015C /* KolodaCardView.swift in Sources */,
 				17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */,

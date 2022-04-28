@@ -72,10 +72,12 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                     let size = dog["size"] as! String
                     let vaccinated = dog["vaccinated"] as! Bool
                     let fixed = dog["fixed"] as! Bool
-                    var dogAge = dog["age"] as? String
+                    let dogAgeNum = dog["age"] as? Int
+                    var dogAge: String = "N/A"
+                    if(dogAgeNum != nil) {dogAge = String(dogAgeNum!) + " years old"}
                     var dogAbout = dog["about"] as? String
                     
-                    dogProfileViewController.size = size
+                    dogProfileViewController.dogSizeLabel.text = size
                     
                     if (vaccinated){ dogProfileViewController.vaccinatedLabel.text = "Yes"}
                     else { dogProfileViewController.vaccinatedLabel.text = "No"}
@@ -83,8 +85,6 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                     if (fixed){ dogProfileViewController.fixedLabel.text = "Yes"}
                     else { dogProfileViewController.fixedLabel.text = "No"}
                     
-                    if(dogAge == nil) { dogAge = "N/A"}
-                    else { dogAge = dogAge! + " years old"}
                     dogProfileViewController.dogAgeLabel.text = dogAge
                     
                     if(dogAbout == nil) { dogAbout = ""}
@@ -97,7 +97,7 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                         {
                             let ownerFirstName = dogOwner["firstname"] as! String
                             let ownerLastName = dogOwner["lastname"] as! String
-                            dogProfileViewController.ownerName = ownerFirstName + " " + ownerLastName
+                            dogProfileViewController.ownerNameLabel.text = ownerFirstName + " " + ownerLastName
                             
                             // Calculate age
                             let birthday = dogOwner["birthday"] as! String
