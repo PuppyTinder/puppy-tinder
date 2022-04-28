@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20034" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20017"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -2004,9 +2004,12 @@
                                                     <action selector="snapchat:" destination="hHh-Aw-Muk" eventType="touchUpInside" id="gJU-xp-DqK"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k2a-Tr-hMd">
-                                                <rect key="frame" x="360" y="13" width="46" height="31"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k2a-Tr-hMd">
+                                                <rect key="frame" x="360" y="14" width="46" height="31"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="31" id="DuR-mA-4M9"/>
+                                                    <constraint firstAttribute="width" constant="46" id="Uoj-an-6P3"/>
+                                                </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="square.and.pencil" catalog="system"/>
                                                 <connections>
@@ -2030,6 +2033,7 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.76862745099999996" green="0.64313725489999995" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstItem="k2a-Tr-hMd" firstAttribute="top" secondItem="olh-w9-d9S" secondAttribute="top" constant="14" id="0H1-n3-Hp3"/>
                                             <constraint firstItem="rEc-HX-xPR" firstAttribute="leading" secondItem="olh-w9-d9S" secondAttribute="leading" constant="29" id="1ca-JS-XkM"/>
                                             <constraint firstItem="TZs-GZ-sfp" firstAttribute="top" secondItem="15G-jt-Mxu" secondAttribute="bottom" constant="8" id="1kN-3C-ZaM"/>
                                             <constraint firstItem="8be-vM-cZ4" firstAttribute="leading" secondItem="olh-w9-d9S" secondAttribute="leading" constant="29" id="2Ow-p5-Qvr"/>
@@ -2049,6 +2053,7 @@
                                             <constraint firstItem="yyS-Hw-CE0" firstAttribute="top" secondItem="yIy-NH-730" secondAttribute="bottom" constant="24" id="WF6-Ke-f2h"/>
                                             <constraint firstItem="vH6-9V-2U3" firstAttribute="top" secondItem="yIy-NH-730" secondAttribute="bottom" constant="24" id="Wah-Op-xPn"/>
                                             <constraint firstItem="emk-KV-yqD" firstAttribute="top" secondItem="Tms-Cf-9fZ" secondAttribute="bottom" constant="4" id="YLl-yG-za8"/>
+                                            <constraint firstAttribute="trailing" secondItem="k2a-Tr-hMd" secondAttribute="trailing" constant="8" id="YZB-zI-aia"/>
                                             <constraint firstItem="QoB-nH-NWv" firstAttribute="leading" secondItem="15G-jt-Mxu" secondAttribute="trailing" constant="21" id="ZoJ-Vr-GQc"/>
                                             <constraint firstItem="hIF-7D-uzd" firstAttribute="top" secondItem="olh-w9-d9S" secondAttribute="top" constant="55" id="aQX-nc-lvM"/>
                                             <constraint firstItem="8be-vM-cZ4" firstAttribute="top" secondItem="Tms-Cf-9fZ" secondAttribute="bottom" constant="4" id="bbv-Na-Uuq"/>
