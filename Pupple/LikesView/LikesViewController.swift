@@ -180,6 +180,9 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
                     if(dogAbout == nil) { dogAbout = ""}
                     dogProfileViewController.dogAboutLabel.text = dogAbout
                     
+                    let dogGender = dog!["gender"] as! String
+                    if(dogGender == "Male") {dogProfileViewController.genderImageView.image = UIImage(named: "male_gender")}
+                    else if (dogGender == "Female") {dogProfileViewController.genderImageView.image = UIImage(named: "female_gender")}
                     
                     let owner = dog!["ownerid"] as! PFUser
                     let ownerquery = PFUser.query()
@@ -289,6 +292,10 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
                     
                     if(dogAbout == nil) { dogAbout = ""}
                     dogProfileViewController.dogAboutLabel.text = dogAbout
+                    
+                    let dogGender = dog["gender"] as! String
+                    if(dogGender == "Male") {dogProfileViewController.genderImageView.image = UIImage(named: "male_gender")}
+                    else if (dogGender == "Female") {dogProfileViewController.genderImageView.image = UIImage(named: "female_gender")}
                     
                     
                     let owner = dog["ownerid"] as! PFUser
