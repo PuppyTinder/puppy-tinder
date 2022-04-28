@@ -177,6 +177,7 @@ class UserProfileViewController: UIViewController {
         UIApplication.shared.open(snapchatUrl!)
     }
     
+    @IBAction func unwindToProfile(_send: UIStoryboardSegue){}
 }
     
     

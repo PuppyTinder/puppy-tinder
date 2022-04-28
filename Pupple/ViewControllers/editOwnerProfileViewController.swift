@@ -56,69 +56,75 @@ class editOwnerProfileViewController: UIViewController, UITextFieldDelegate, UIT
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @IBAction func CancelButtonTapped(_ sender: AnyObject) {
-        print("cancel")
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    
-    @IBAction func DoneButtonTapped(_ sender: AnyObject){
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destVC = segue.destination as! UserProfileViewController
         
         let name = firstNameTextField.text!
-        let lastName = lastNameTextField.text
-        let gender = genderTextField.text
+        let lastName = lastNameTextField.text!
+        let gender = genderTextField.text!
         let userEducation = educationTextField.text!
-        let insta = instaTextField.text
-        let snap = snapTextField.text
-        let occupation = occupationTextField.text
-        let aboutMe = aboutMeTextField.text
-        let location = locationTextField.text
+        let insta = instaTextField.text!
+        let snap = snapTextField.text!
+        let occupation = occupationTextField.text!
+        let aboutMe = aboutMeTextField.text!
+        let location = locationTextField.text!
      
         let user = PFUser.current()!
         
         if(name != "")
         {
             user["firstname"] = name
+            let lastname = user["lastname"] as! String
+            destVC.ownerNameLabel.text = name + " " + lastname
         }
        
         if(userEducation != "")
         {
             user["education"] = userEducation
+            destVC.ownerEducationLabel.text = userEducation
         }
         
         if(lastName != "")
         {
             user["lastname"] = lastName
+            let firstname = user["firstname"] as! String
+            destVC.ownerNameLabel.text = firstname + " " + lastName
         }
         
         if(gender != "")
         {
             user["gender"] = gender
+            destVC.ownerGenderLabel.text = gender
         }
         
         if(insta != "")
         {
             user["instagram"] = insta
+            destVC.ownerInstagramButton.setTitle(insta, for: .normal)
         }
         
         if(snap != "")
         {
             user["snapchat"] = snap
+            destVC.ownerSnapchatButton.setTitle(snap, for: .normal)
         }
         
         if(occupation != "")
         {
             user["occupation"] = occupation
+            destVC.ownerOccupationLabel.text = occupation
         }
         
         if(aboutMe != "")
         {
-            user["about"] = aboutMe 
+            user["about"] = aboutMe
+            destVC.aboutLabel.text = aboutMe
         }
         
         if(location != "")
         {
             user["location"] = location
+            destVC.dogLocationLabel.text = location
         }
         
         
@@ -126,11 +132,17 @@ class editOwnerProfileViewController: UIViewController, UITextFieldDelegate, UIT
             if success != nil
             {
                 print("saved")
-                self.dismiss(animated: true)
             }
         }
-        
-    } 
+    }
+    
+    @IBAction func CancelButtonTapped(_ sender: AnyObject) {
+        print("cancel")
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func DoneButtonTapped(_ sender: AnyObject){}
     
     func loadUserDetails(){
         let user = PFUser.current()!
@@ -146,7 +158,7 @@ class editOwnerProfileViewController: UIViewController, UITextFieldDelegate, UIT
         guard let userInfo = notification.userInfo else {return}
         guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
         
-        if notification.name == UIResponder.keyboardWillShowNotification
+        if notification.name == UIResponder.keyboardWillShowNotification && firstNameTextField.isEditing == false && lastNameTextField.isEditing == false && genderTextField.isEditing == false
         {
             self.view.frame.origin.y = 0 // reset
             let adjustmentHeight = keyboardFrame.height - view.safeAreaInsets.bottom

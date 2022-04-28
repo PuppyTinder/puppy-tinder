@@ -40,8 +40,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func doneButtonTapped(_ sender: AnyObject) {
-     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destVC = segue.destination as! UserProfileViewController
         let user = PFUser.current()!
         var dogArray = [PFObject]()
         let query = PFQuery(className: "Dog")
@@ -62,55 +62,64 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 if(dogName != "")
                 {
                     dog["name"] = dogName
+                    destVC.dogNameLabel.text = dogName
                 }
                 
                         
                 if(dogSize != "")
                 {
                     dog["size"] = dogSize
+                    destVC.dogSizeLabel.text = dogSize
                 }
                         
                 if(dogAge != "")
                 {
                     dog["age"] = dogAgeNum
+                    let dogAgeString = String(dogAgeNum)
+                    destVC.dogAgeLabel.text = dogAgeString + " years old"
                 }
                         
                 if(fixed == "Yes")
                 {
                     dog["fixed"] = true
+                    destVC.fixedLabel.text = "Yes"
                 }
-                else
+                else if (fixed == "No")
                 {
                     dog["fixed"] = false
+                    destVC.fixedLabel.text = "No"
                 }
                         
                 if(vaccinated == "Yes")
                 {
                     dog["vaccinated"] = true
+                    destVC.vaccinatedLabel.text = "Yes"
                 }
-                else
+                else if(vaccinated == "No")
                 {
                     dog["vaccinated"] = false
+                    destVC.vaccinatedLabel.text = "No"
                 }
             
                         
                 if(aboutDog != "")
                 {
                     dog["about"] = aboutDog
+                    destVC.dogAboutLabel.text = aboutDog
                 }
                 
                 dog.saveInBackground { success, error in
                     if success != nil
                     {
                         print("saved")
-                        self.dismiss(animated: true)
                     }
                 }
             
             }
             }
-        
-        }
+    }
+    
+    @IBAction func doneButtonTapped(_ sender: AnyObject) {}
     
         
     
@@ -220,7 +229,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         guard let userInfo = notification.userInfo else {return}
         guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
         
-        if notification.name == UIResponder.keyboardWillShowNotification
+        if notification.name == UIResponder.keyboardWillShowNotification && dogNameTextField.isEditing == false && dogSizeTextField.isEditing == false
         {
             self.view.frame.origin.y = 0 // reset
             let adjustmentHeight = keyboardFrame.height - view.safeAreaInsets.bottom
