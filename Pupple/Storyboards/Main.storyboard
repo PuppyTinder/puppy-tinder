@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20034" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20017"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -94,7 +94,7 @@
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" title="LoginViewController" id="15D-8g-EuK" customClass="LoginViewController" customModule="Pupple" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="m0H-ch-XKT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo_transparent_300x300" translatesAutoresizingMaskIntoConstraints="NO" id="eCJ-lW-4z2">
@@ -1554,6 +1554,7 @@
                                             <outlet property="dogImageView" destination="ydl-8C-CJi" id="YGE-OG-Wz3"/>
                                             <outlet property="dogNameLabel" destination="3f8-3S-gWA" id="mTL-ol-McN"/>
                                             <outlet property="ownerImageView" destination="cVU-Iw-Gd8" id="Dlo-lh-h78"/>
+                                            <segue destination="K5u-oM-Qrc" kind="presentation" identifier="dogProfileSegueLikes" id="oS6-e0-TuQ"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1624,6 +1625,7 @@
                                             <outlet property="dogImageView" destination="8AM-d0-8O2" id="PWC-vu-arF"/>
                                             <outlet property="dogNameLabel" destination="Vn3-Rj-8Et" id="CNT-C4-P04"/>
                                             <outlet property="ownerImageView" destination="xqN-pF-itJ" id="VJq-uA-0M4"/>
+                                            <segue destination="K5u-oM-Qrc" kind="presentation" identifier="dogProfileSegueLikedBy" id="0d3-F1-DMp"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -2512,8 +2514,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Jq2-qA-vAZ"/>
-        <segue reference="PRj-Jt-FEH"/>
+        <segue reference="6ag-9d-r8e"/>
+        <segue reference="0d3-F1-DMp"/>
+        <segue reference="3lM-sM-CTc"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Feed" width="60" height="60"/>
