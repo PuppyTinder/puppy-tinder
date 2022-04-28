@@ -127,6 +127,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		170CE1B5281B0A520027BC94 /* Login & Signup */ = {
+			isa = PBXGroup;
+			children = (
+				175473652803EA2600FC685C /* SignupSuccessViewController.swift */,
+				17AA69FE27FD495D00C6E41D /* SignUpViewController2.swift */,
+				17D8629827FD329D00180D59 /* WelcomeViewController.swift */,
+				17D8629A27FD430300180D59 /* SignUpViewController.swift */,
+				17D8629627FD327200180D59 /* LoginViewController.swift */,
+			);
+			path = "Login & Signup";
+			sourceTree = "<group>";
+		};
 		1766D52D2819C1FE00656492 /* DogBreedModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +180,7 @@
 		17D8626327FCA4F300180D59 /* Pupple */ = {
 			isa = PBXGroup;
 			children = (
+				170CE1B5281B0A520027BC94 /* Login & Signup */,
 				1766D52E281A39CA00656492 /* Extension */,
 				1766D52D2819C1FE00656492 /* DogBreedModel */,
 				F1075335280B41BE006C4037 /* LikesView */,
@@ -206,12 +219,7 @@
 				639177402819AA39008D6707 /* editOwnerProfileViewController.swift */,
 				63FC6FF0281678EC00720AA3 /* EditProfileViewController.swift */,
 				63DEE45F28137FDE007F2431 /* UserProfileViewController.swift */,
-				17D8629627FD327200180D59 /* LoginViewController.swift */,
-				17D8629827FD329D00180D59 /* WelcomeViewController.swift */,
-				17D8629A27FD430300180D59 /* SignUpViewController.swift */,
-				17AA69FE27FD495D00C6E41D /* SignUpViewController2.swift */,
 				1728972E27FE7B4D00EEDA68 /* FeedViewController.swift */,
-				175473652803EA2600FC685C /* SignupSuccessViewController.swift */,
 				17E959F6280F45BB00CF56BA /* DogProfileFeedViewController.swift */,
 			);
 			path = ViewControllers;

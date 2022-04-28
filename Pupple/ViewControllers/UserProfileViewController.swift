@@ -55,14 +55,28 @@ class UserProfileViewController: UIViewController {
     
     @IBOutlet weak var ownerSnapchatButton: UIButton!
     
+    @IBOutlet weak var backButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        modalPresentationCapturesStatusBarAppearance = true
         ownerImageview.layer.cornerRadius = 50
+        self.backButton.imageView?.contentMode = .scaleAspectFill
         
         userParse()
         
     }
-    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    // Creates a new tab bar controller view to portray any edit changes when going back from profile eg: user's profile picture
+    @IBAction func goToNewTabBar(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabbarVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController") as! UITabBarController
+   
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return}
+        delegate.window?.rootViewController = tabbarVC
+        self.present(tabbarVC, animated: false, completion: nil)
+    }
     override func viewWillLayoutSubviews() {
         aboutLabel.sizeToFit()
         dogAboutLabel.sizeToFit()
@@ -180,6 +194,13 @@ class UserProfileViewController: UIViewController {
     @IBAction func unwindToProfile(_send: UIStoryboardSegue){}
     
     
+    @IBAction func onLogout(_ sender: Any) {
+        PFUser.logOut()
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return}
+        delegate.window?.rootViewController = loginViewController
+    }
 }
     
     

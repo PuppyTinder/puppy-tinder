@@ -276,12 +276,7 @@
                     <navigationItem key="navigationItem" title="Pupple" id="k8X-PF-lcG">
                         <barButtonItem key="leftBarButtonItem" title="Profile" id="VyM-ia-Swo">
                             <connections>
-                                <segue destination="hHh-Aw-Muk" kind="presentation" identifier="profileDetails" id="Jq2-qA-vAZ"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Logout" id="eks-EZ-QVG">
-                            <connections>
-                                <action selector="onLogout:" destination="DBe-J3-TKt" id="MgE-ze-sRx"/>
+                                <segue destination="hHh-Aw-Muk" kind="presentation" identifier="profileDetails" modalPresentationStyle="overFullScreen" id="Jq2-qA-vAZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1637,7 +1632,7 @@
                     <navigationItem key="navigationItem" title="Pupple" id="dKF-H7-2r2">
                         <barButtonItem key="leftBarButtonItem" title="Profile" id="zcN-YA-zQu">
                             <connections>
-                                <segue destination="hHh-Aw-Muk" kind="presentation" identifier="profileDetailsLikes" id="6ag-9d-r8e"/>
+                                <segue destination="hHh-Aw-Muk" kind="presentation" identifier="profileDetailsLikes" modalPresentationStyle="fullScreen" id="6ag-9d-r8e"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1655,11 +1650,12 @@
         <scene sceneID="x07-pp-XP0">
             <objects>
                 <viewController storyboardIdentifier="ProfileDetails" id="hHh-Aw-Muk" customClass="UserProfileViewController" customModule="Pupple" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYX-KS-1eo">
+                    <view key="view" contentMode="scaleToFill" id="yYX-KS-1eo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kHt-F8-Cas">
-                                <rect key="frame" x="0.0" y="44" width="414" height="1156"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kHt-F8-Cas">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1156"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voX-SN-bdG">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
@@ -1843,10 +1839,10 @@
                                             <constraint firstItem="AW8-od-tBg" firstAttribute="top" secondItem="dJy-q0-cth" secondAttribute="bottom" id="eVM-fZ-JJf"/>
                                             <constraint firstItem="66Y-Re-m23" firstAttribute="leading" secondItem="qVA-zS-gcD" secondAttribute="trailing" constant="16" id="fJ1-E6-FeR"/>
                                             <constraint firstItem="naW-ve-slD" firstAttribute="leading" secondItem="HhL-SD-jsJ" secondAttribute="trailing" constant="65" id="gdm-3X-d0o"/>
-                                            <constraint firstItem="leQ-wu-BEf" firstAttribute="top" secondItem="voX-SN-bdG" secondAttribute="top" id="hcU-jt-qdK"/>
                                             <constraint firstItem="AW8-od-tBg" firstAttribute="leading" secondItem="voX-SN-bdG" secondAttribute="leading" constant="35" id="iu8-FF-T6c"/>
                                             <constraint firstItem="R1L-Om-Uds" firstAttribute="top" secondItem="aQJ-8O-0ZQ" secondAttribute="bottom" constant="16" id="la6-KC-ERz"/>
                                             <constraint firstItem="lRu-HT-GIL" firstAttribute="leading" secondItem="voX-SN-bdG" secondAttribute="leading" constant="35" id="m9p-v7-u02"/>
+                                            <constraint firstItem="leQ-wu-BEf" firstAttribute="top" secondItem="voX-SN-bdG" secondAttribute="top" id="mUO-i2-d7p"/>
                                             <constraint firstItem="N3D-j9-75v" firstAttribute="top" secondItem="A6L-z6-ye6" secondAttribute="bottom" constant="8" id="moJ-RO-VBj"/>
                                             <constraint firstItem="qVA-zS-gcD" firstAttribute="top" secondItem="HhL-SD-jsJ" secondAttribute="bottom" constant="8" id="sDa-SY-nsv"/>
                                             <constraint firstItem="aQJ-8O-0ZQ" firstAttribute="top" secondItem="N3D-j9-75v" secondAttribute="bottom" constant="16" id="vAL-yR-4ko"/>
@@ -2086,22 +2082,58 @@
                                     <constraint firstAttribute="trailing" secondItem="olh-w9-d9S" secondAttribute="trailing" id="vnW-OW-ag7"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rC5-o5-g6C">
+                                <rect key="frame" x="8" y="8" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="cbo-n1-sCs"/>
+                                    <constraint firstAttribute="height" constant="45" id="enr-LV-CKR"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="BackButtonLarge"/>
+                                <connections>
+                                    <action selector="goToNewTabBar:" destination="hHh-Aw-Muk" eventType="touchUpInside" id="wOL-zf-C1j"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2P-79-4KL">
+                                <rect key="frame" x="332" y="12" width="70" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="sho-21-nHU"/>
+                                    <constraint firstAttribute="height" constant="31" id="vzN-1n-mji"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Logout">
+                                    <backgroundConfiguration key="background" cornerRadius="20" strokeWidth="3">
+                                        <color key="strokeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" red="0.76862745099999996" green="0.64313725489999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="onLogout:" destination="hHh-Aw-Muk" eventType="touchUpInside" id="v4U-U5-scO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="H6x-px-qK4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="olh-w9-d9S" firstAttribute="width" secondItem="yYX-KS-1eo" secondAttribute="width" id="2cc-Sq-82j"/>
                             <constraint firstItem="kHt-F8-Cas" firstAttribute="trailing" secondItem="H6x-px-qK4" secondAttribute="trailing" id="7wg-ce-xmp"/>
+                            <constraint firstItem="rC5-o5-g6C" firstAttribute="top" secondItem="yYX-KS-1eo" secondAttribute="top" constant="8" id="BIJ-LA-F9i"/>
                             <constraint firstItem="kHt-F8-Cas" firstAttribute="top" secondItem="H6x-px-qK4" secondAttribute="top" id="HAD-LS-tSh"/>
                             <constraint firstItem="kHt-F8-Cas" firstAttribute="leading" secondItem="H6x-px-qK4" secondAttribute="leading" id="Z09-Dk-oxF"/>
                             <constraint firstItem="voX-SN-bdG" firstAttribute="width" secondItem="yYX-KS-1eo" secondAttribute="width" id="b3d-Yw-ync"/>
+                            <constraint firstAttribute="trailing" secondItem="X2P-79-4KL" secondAttribute="trailing" constant="12" id="it1-wW-UWK"/>
+                            <constraint firstItem="rC5-o5-g6C" firstAttribute="leading" secondItem="yYX-KS-1eo" secondAttribute="leading" constant="8" id="mdD-fZ-hSw"/>
                             <constraint firstItem="kHt-F8-Cas" firstAttribute="bottom" secondItem="yYX-KS-1eo" secondAttribute="bottom" id="qa3-9s-qJK"/>
+                            <constraint firstItem="X2P-79-4KL" firstAttribute="top" secondItem="yYX-KS-1eo" secondAttribute="top" constant="12" id="zp1-Uz-TaY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JiY-2b-B7C"/>
                     <size key="freeformSize" width="414" height="1200"/>
                     <connections>
                         <outlet property="aboutLabel" destination="N9y-0Z-JNf" id="yM2-CU-5EI"/>
+                        <outlet property="backButton" destination="rC5-o5-g6C" id="Aff-fy-wTo"/>
                         <outlet property="dogAboutLabel" destination="AW8-od-tBg" id="bPj-iy-ptD"/>
                         <outlet property="dogAgeLabel" destination="weN-AE-7gM" id="PU6-bf-2f7"/>
                         <outlet property="dogBreedLabel" destination="N3D-j9-75v" id="KoB-Pj-zAg"/>
@@ -2550,6 +2582,7 @@
         <segue reference="3lM-sM-CTc"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="BackButtonLarge" width="45" height="45"/>
         <image name="Feed" width="60" height="60"/>
         <image name="Feed-Active" width="60" height="60"/>
         <image name="Likes" width="45" height="45"/>
