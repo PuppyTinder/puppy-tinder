@@ -9,7 +9,7 @@ import UIKit
 import Parse
 import AlamofireImage
 
-class editOwnerProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class editOwnerProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -127,6 +127,10 @@ class editOwnerProfileViewController: UIViewController, UITextFieldDelegate, UIT
             destVC.dogLocationLabel.text = location
         }
         
+        let imageData = self.profileImageView.image!.pngData()
+        let file = PFFileObject(name: "user.png", data: imageData!)
+        user["user_photo"] = file
+        destVC.ownerImageview.image = UIImage(data: imageData!)
         
         user.saveInBackground { success, error in
             if success != nil
@@ -151,6 +155,32 @@ class editOwnerProfileViewController: UIViewController, UITextFieldDelegate, UIT
         let fileUrl = URL(string: fileUrlString)
         profileImageView.af.setImage(withURL: fileUrl!)
 
+    }
+    
+    
+    @IBAction func onCamera(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera)
+        {
+            picker.sourceType = .camera
+        }
+        else
+        {
+            picker.sourceType = .photoLibrary
+        }
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] as! UIImage
+        let size = CGSize(width: 141, height: 133)
+        let scaledImage = image.af.imageScaled(to: size)
+        profileImageView.image = scaledImage
+        
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func adjustInputView(notification: Notification)
