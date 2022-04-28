@@ -100,7 +100,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                     if success != nil
                     {
                         print("saved")
-                        self.dismiss(animated: true, completion: nil)
+                        self.dismiss(animated: true)
                     }
                 }
             
@@ -127,7 +127,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         vaccinatedTextField.inputView = vaccinatedPickerView
         fixedTextField.inputView = fixedPickerView
-      
+        let borderColor : UIColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
+        aboutTextVIew.layer.borderWidth = 0.5
+        aboutTextVIew.layer.cornerRadius = 5
+        aboutTextVIew.layer.borderColor = borderColor.cgColor
            // Do any additional setup after loading the view.
        }
     

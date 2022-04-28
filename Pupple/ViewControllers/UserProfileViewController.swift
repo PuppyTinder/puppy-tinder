@@ -63,11 +63,10 @@ class UserProfileViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-       userParse()
+    override func viewWillLayoutSubviews() {
+        aboutLabel.sizeToFit()
+        dogAboutLabel.sizeToFit()
     }
-    
     
     func userParse(){
         let user = PFUser.current()!

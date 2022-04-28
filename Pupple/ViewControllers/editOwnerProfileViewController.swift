@@ -36,7 +36,10 @@ class editOwnerProfileViewController: UIViewController {
         super.viewDidLoad()
         profileImageView.layer.cornerRadius = 50
         loadUserDetails()
-        // Do any additional setup after loading the view.
+        let borderColor : UIColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
+        aboutMeTextField.layer.borderWidth = 0.5
+        aboutMeTextField.layer.borderColor = borderColor.cgColor
+        aboutMeTextField.layer.cornerRadius = 5
     }
     
     @IBAction func CancelButtonTapped(_ sender: AnyObject) {
@@ -76,7 +79,7 @@ class editOwnerProfileViewController: UIViewController {
         
         if(gender != "")
         {
-            user["gender"] = userEducation
+            user["gender"] = gender
         }
         
         if(insta != "")
@@ -109,7 +112,7 @@ class editOwnerProfileViewController: UIViewController {
             if success != nil
             {
                 print("saved")
-                self.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true)
             }
         }
         
