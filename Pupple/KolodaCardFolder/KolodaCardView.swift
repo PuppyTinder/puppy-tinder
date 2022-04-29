@@ -17,6 +17,7 @@ class KolodaCardView : UIView , NibView {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var breedLabel: UILabel!
     @IBOutlet weak var genderImageView: UIImageView!
+    var dogObjectId: String? // Keeps a reference to a specific dog object
     
     required init?(coder aDecoder: NSCoder)
     {

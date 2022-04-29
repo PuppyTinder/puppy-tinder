@@ -162,68 +162,75 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
         let user_id = user.objectId!
         let query_constraint = PFQuery(className: "Dog")
         query_constraint.includeKey("ownerid")
-        query_constraint.whereKey("ownerid", contains: user_id)
+        query_constraint.whereKey("ownerid", contains: user_id) // current user's dog
         query.whereKey("ownerid", doesNotMatchKey: "ownerid", in: query_constraint)
         
-        // Constraint to prevent seeing dogs that the user already liked
-        query.whereKey("likedBy", notEqualTo: user)
-        
-        query.findObjectsInBackground { dogs, error in
-            if dogs != nil
+        // Get our dog
+        query_constraint.getFirstObjectInBackground { ownerDog, error in
+            if(ownerDog != nil)
             {
-                self.dogArray = dogs!
-                for dog in self.dogArray
-                
-                {
-                    let dog_name = dog["name"] as! String
-                    let breed = dog["breed"] as! String
-                    let gender = dog["gender"] as! String
-                    let dog_owner = dog["ownerid"] as! PFObject
-                    let location = dog_owner["location"] as! String
-                    let genderImage: UIImage!
-                    
-                    // Parse the image for the dog
-                    let dogImageFile = dog["dog_photo"] as! PFFileObject
-                    let urlString = dogImageFile.url!
-                    let dog_image_url = URL(string: urlString)!
-                    
-                    // Condition to set either the male or female image
-                    if gender == "Male"
+                query.whereKey("likedBy", notEqualTo: ownerDog!) // prevents seeing dogs already liked
+                query.findObjectsInBackground { dogs, error in
+                    if dogs != nil
                     {
-                        genderImage = UIImage(named: "male_gender")
-                    }
-                    else
-                    {
-                        genderImage = UIImage(named: "female_gender")
-                    }
-                    
-                    // Parse the image for the owner
-                    let ownerImageFile = dog_owner["user_photo"] as! PFFileObject
-                    let owner_url_string = ownerImageFile.url!
-                    let owner_image_url = URL(string: owner_url_string)!
-    
-                    // Instantiate view for each card
-                    let cardExampleView = KolodaCardView()
-                    cardExampleView.dogNameLabel.text = dog_name
-                    cardExampleView.breedLabel.text = breed
-                    cardExampleView.locationLabel.text = location
-                    cardExampleView.genderImageView.image = genderImage
-                    cardExampleView.dogImageView.af.setImage(withURL: dog_image_url)
-                    cardExampleView.ownerImageView.af.setImage(withURL: owner_image_url)
-                    
-                    // Apply view constraints to container & imageviews
-                    cardExampleView.containerUIView.layer.borderWidth = 1
-                    cardExampleView.containerUIView.layer.cornerRadius = 20
-                    cardExampleView.containerUIView.layer.borderColor = CGColor(red: 111/255, green: 111/255, blue: 111/255, alpha: 0.2)
-                    cardExampleView.dogImageView.layer.cornerRadius = 20
-                    cardExampleView.dogImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-                    cardExampleView.ownerImageView.layer.cornerRadius = 30
+                        self.dogArray = dogs!
+                        for dog in self.dogArray
+                        
+                        {
+                            let dog_name = dog["name"] as! String
+                            let breed = dog["breed"] as! String
+                            let gender = dog["gender"] as! String
+                            let dog_owner = dog["ownerid"] as! PFObject
+                            let location = dog_owner["location"] as! String
+                            let genderImage: UIImage!
+                            
+                            // Parse the image for the dog
+                            let dogImageFile = dog["dog_photo"] as! PFFileObject
+                            let urlString = dogImageFile.url!
+                            let dog_image_url = URL(string: urlString)!
+                            
+                            // Condition to set either the male or female image
+                            if gender == "Male"
+                            {
+                                genderImage = UIImage(named: "male_gender")
+                            }
+                            else
+                            {
+                                genderImage = UIImage(named: "female_gender")
+                            }
+                            
+                            // Parse the image for the owner
+                            let ownerImageFile = dog_owner["user_photo"] as! PFFileObject
+                            let owner_url_string = ownerImageFile.url!
+                            let owner_image_url = URL(string: owner_url_string)!
+            
+                            // Instantiate view for each card
+                            let cardExampleView = KolodaCardView()
+                            cardExampleView.dogNameLabel.text = dog_name
+                            cardExampleView.breedLabel.text = breed
+                            cardExampleView.locationLabel.text = location
+                            cardExampleView.genderImageView.image = genderImage
+                            cardExampleView.dogImageView.af.setImage(withURL: dog_image_url)
+                            cardExampleView.ownerImageView.af.setImage(withURL: owner_image_url)
+                            cardExampleView.dogObjectId = dog.objectId!
+                         
+                            // Apply view constraints to container & imageviews
+                            cardExampleView.containerUIView.layer.borderWidth = 1
+                            cardExampleView.containerUIView.layer.cornerRadius = 20
+                            cardExampleView.containerUIView.layer.borderColor = CGColor(red: 111/255, green: 111/255, blue: 111/255, alpha: 0.2)
+                            cardExampleView.dogImageView.layer.cornerRadius = 20
+                            cardExampleView.dogImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+                            cardExampleView.ownerImageView.layer.cornerRadius = 30
 
-                    cardArray.append(cardExampleView)
+                            cardArray.append(cardExampleView)
+                        }
+                        completion(cardArray)
+                    }
                 }
-                completion(cardArray)
             }
         }
+        
+        
     }
 
     func userProfile()
@@ -295,70 +302,84 @@ extension FeedViewController : KolodaViewDelegate{
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         switch direction {
         case .right:
-            var tempArray = [PFObject]()
+            
             let user = PFUser.current()!
-            let query = PFQuery(className: "Dog")
-            let dog_name = viewModels[index].dogNameLabel.text!
-            let dog_breed = viewModels[index].breedLabel.text!
-            query.whereKey("name", equalTo: dog_name)
-            query.whereKey("breed", equalTo: dog_breed)
-    
-            query.findObjectsInBackground { dogs, error in
-                tempArray = dogs!
-                for dog in tempArray
+            
+            let userDogQuery = PFQuery(className: "Dog")
+            userDogQuery.whereKey("ownerid", equalTo: user) // Constraint to get the current user's dog
+            
+            let query = PFQuery(className: "Dog") // Get the selected dog
+            let selectedDogId = viewModels[index].dogObjectId!
+           
+            userDogQuery.getFirstObjectInBackground { ownerDog, error in
+                if(ownerDog != nil)
                 {
-                    user.addUniqueObject(dog, forKey: "likes")
-                    dog.addUniqueObject(user, forKey: "likedBy")
-                    user.saveInBackground { user, error in
-                        if error == nil
+                    query.getObjectInBackground(withId: selectedDogId) { dog, error in
+                        if(dog != nil)
                         {
-                            print("Liked successfully!")
+                            ownerDog?.addUniqueObject(dog!, forKey: "likes")
+                            dog?.addUniqueObject(ownerDog!, forKey: "likedBy")
+                            dog?.saveInBackground(block: { success, error in
+                                if(success != nil)
+                                {
+                                    print("liked!")
+                                }
+                            })
                         }
                     }
                 }
             }
+            
         case .topRight:
-            var tempArray = [PFObject]()
             let user = PFUser.current()!
-            let query = PFQuery(className: "Dog")
-            let dog_name = viewModels[index].dogNameLabel.text!
-            let dog_breed = viewModels[index].breedLabel.text!
-            query.whereKey("name", equalTo: dog_name)
-            query.whereKey("breed", equalTo: dog_breed)
-    
-            query.findObjectsInBackground { dogs, error in
-                tempArray = dogs!
-                for dog in tempArray
+            
+            let userDogQuery = PFQuery(className: "Dog")
+            userDogQuery.whereKey("ownerid", equalTo: user) // Constraint to get the current user's dog
+            
+            let query = PFQuery(className: "Dog") // Get the selected dog
+            let selectedDogId = viewModels[index].dogObjectId!
+           
+            userDogQuery.getFirstObjectInBackground { ownerDog, error in
+                if(ownerDog != nil)
                 {
-                    user.addUniqueObject(dog, forKey: "likes")
-                    dog.addUniqueObject(user, forKey: "likedBy")
-                    user.saveInBackground { user, error in
-                        if error == nil
+                    query.getObjectInBackground(withId: selectedDogId) { dog, error in
+                        if(dog != nil)
                         {
-                            print("Liked successfully!")
+                            ownerDog?.addUniqueObject(dog!, forKey: "likes")
+                            dog?.addUniqueObject(ownerDog!, forKey: "likedBy")
+                            dog?.saveInBackground(block: { success, error in
+                                if(success != nil)
+                                {
+                                    print("liked!")
+                                }
+                            })
                         }
                     }
                 }
             }
         case .bottomRight:
-            var tempArray = [PFObject]()
             let user = PFUser.current()!
-            let query = PFQuery(className: "Dog")
-            let dog_name = viewModels[index].dogNameLabel.text!
-            let dog_breed = viewModels[index].breedLabel.text!
-            query.whereKey("name", equalTo: dog_name)
-            query.whereKey("breed", equalTo: dog_breed)
-    
-            query.findObjectsInBackground { dogs, error in
-                tempArray = dogs!
-                for dog in tempArray
+            
+            let userDogQuery = PFQuery(className: "Dog")
+            userDogQuery.whereKey("ownerid", equalTo: user) // Constraint to get the current user's dog
+            
+            let query = PFQuery(className: "Dog") // Get the selected dog
+            let selectedDogId = viewModels[index].dogObjectId!
+           
+            userDogQuery.getFirstObjectInBackground { ownerDog, error in
+                if(ownerDog != nil)
                 {
-                    user.addUniqueObject(dog, forKey: "likes")
-                    dog.addUniqueObject(user, forKey: "likedBy")
-                    user.saveInBackground { user, error in
-                        if error == nil
+                    query.getObjectInBackground(withId: selectedDogId) { dog, error in
+                        if(dog != nil)
                         {
-                            print("Liked successfully!")
+                            ownerDog?.addUniqueObject(dog!, forKey: "likes")
+                            dog?.addUniqueObject(ownerDog!, forKey: "likedBy")
+                            dog?.saveInBackground(block: { success, error in
+                                if(success != nil)
+                                {
+                                    print("liked!")
+                                }
+                            })
                         }
                     }
                 }
