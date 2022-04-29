@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20034" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20017"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -937,6 +937,34 @@
                                     <action selector="goToNextPage:" destination="3qT-b1-dUu" eventType="touchUpInside" id="Ho6-v6-yCx"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKU-4S-sfX">
+                                <rect key="frame" x="15" y="213" width="100" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="2Ul-93-AzT"/>
+                                    <constraint firstAttribute="height" constant="45" id="p2j-UR-eL2"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="CameraButton"/>
+                                <connections>
+                                    <action selector="onCamera:" destination="NoL-d3-5d0" eventType="touchUpInside" id="0nd-SX-vnw"/>
+                                    <action selector="onCamera:" destination="3qT-b1-dUu" eventType="touchUpInside" id="Yjz-qD-wOV"/>
+                                    <action selector="onCamera:" destination="eVP-Cq-ycu" eventType="touchUpInside" id="ffV-QY-H6m"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hk0-Yj-d4j">
+                                <rect key="frame" x="280" y="213" width="100" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="3I0-21-v5l"/>
+                                    <constraint firstAttribute="height" constant="45" id="Tad-Zr-tbs"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="PhotoButton"/>
+                                <connections>
+                                    <action selector="onPhoto:" destination="3qT-b1-dUu" eventType="touchUpInside" id="ZJ4-X0-eX3"/>
+                                    <action selector="onPhoto:" destination="eVP-Cq-ycu" eventType="touchUpInside" id="eaF-q1-DFc"/>
+                                    <action selector="onPhoto:" destination="NoL-d3-5d0" eventType="touchUpInside" id="r4t-oe-J0R"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FY4-MK-1BB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -955,6 +983,7 @@
                             <constraint firstItem="2Ne-Eh-rrU" firstAttribute="top" secondItem="0Rx-aX-FmO" secondAttribute="bottom" constant="57" id="EWE-S8-yGA"/>
                             <constraint firstItem="u12-Ql-sJ4" firstAttribute="centerX" secondItem="4jy-go-mtd" secondAttribute="centerX" id="EcP-NM-vhe"/>
                             <constraint firstItem="zHZ-ET-8Y9" firstAttribute="leading" secondItem="FY4-MK-1BB" secondAttribute="leading" constant="24" id="F23-ax-aYX"/>
+                            <constraint firstItem="Hk0-Yj-d4j" firstAttribute="top" secondItem="u12-Ql-sJ4" secondAttribute="bottom" constant="91" id="FZr-ux-FD5"/>
                             <constraint firstItem="Rk7-Vq-pc0" firstAttribute="leading" secondItem="FY4-MK-1BB" secondAttribute="leading" constant="24" id="Ixa-mr-9dH"/>
                             <constraint firstItem="Pde-4E-ZfM" firstAttribute="top" secondItem="hVY-Mc-xrj" secondAttribute="bottom" constant="16" id="J74-Ff-Jsx"/>
                             <constraint firstItem="Rk7-Vq-pc0" firstAttribute="top" secondItem="rBU-u3-Rys" secondAttribute="bottom" constant="16" id="KfC-so-dQc"/>
@@ -972,14 +1001,17 @@
                             <constraint firstItem="sVo-1M-4M3" firstAttribute="top" secondItem="oaI-ge-tJJ" secondAttribute="bottom" constant="16" id="gLg-bM-TcZ"/>
                             <constraint firstItem="SCK-6D-q9m" firstAttribute="leading" secondItem="FY4-MK-1BB" secondAttribute="leading" constant="24" id="hDu-VA-Rxg"/>
                             <constraint firstItem="SCK-6D-q9m" firstAttribute="top" secondItem="Rk7-Vq-pc0" secondAttribute="bottom" constant="16" id="hbd-CM-875"/>
+                            <constraint firstItem="TKU-4S-sfX" firstAttribute="top" secondItem="u12-Ql-sJ4" secondAttribute="bottom" constant="91" id="iHl-ek-Sfi"/>
                             <constraint firstItem="PcF-Za-CGf" firstAttribute="top" secondItem="Pde-4E-ZfM" secondAttribute="bottom" constant="16" id="jYy-F4-6px"/>
                             <constraint firstItem="SRv-E1-aVp" firstAttribute="top" secondItem="zHZ-ET-8Y9" secondAttribute="bottom" constant="16" id="jph-zz-buf"/>
                             <constraint firstItem="hCf-Bt-BjM" firstAttribute="leading" secondItem="FY4-MK-1BB" secondAttribute="leading" constant="24" id="km0-uF-U5z"/>
                             <constraint firstItem="rJ6-kP-m4c" firstAttribute="top" secondItem="Hbb-mk-zaZ" secondAttribute="bottom" constant="16" id="mEr-VT-JH0"/>
                             <constraint firstItem="FY4-MK-1BB" firstAttribute="trailing" secondItem="hVY-Mc-xrj" secondAttribute="trailing" constant="16" id="meh-ac-DP9"/>
+                            <constraint firstItem="Hk0-Yj-d4j" firstAttribute="leading" secondItem="sVo-1M-4M3" secondAttribute="trailing" constant="12" id="mfR-p7-dr8"/>
                             <constraint firstItem="PcF-Za-CGf" firstAttribute="leading" secondItem="hCf-Bt-BjM" secondAttribute="trailing" constant="40" id="nf8-ki-XkQ"/>
                             <constraint firstItem="Pde-4E-ZfM" firstAttribute="leading" secondItem="SCK-6D-q9m" secondAttribute="trailing" constant="40" id="pCa-Lf-cTl"/>
                             <constraint firstItem="0Ju-YS-VbZ" firstAttribute="top" secondItem="PcF-Za-CGf" secondAttribute="bottom" constant="16" id="tD3-pn-gfz"/>
+                            <constraint firstItem="sVo-1M-4M3" firstAttribute="leading" secondItem="TKU-4S-sfX" secondAttribute="trailing" constant="12" id="tQW-sA-1bT"/>
                             <constraint firstItem="FY4-MK-1BB" firstAttribute="trailing" secondItem="rJ6-kP-m4c" secondAttribute="trailing" constant="16" id="vkG-VT-Ca8"/>
                             <constraint firstItem="zHZ-ET-8Y9" firstAttribute="top" secondItem="u12-Ql-sJ4" secondAttribute="bottom" constant="220" id="xK6-RS-9PF"/>
                             <constraint firstItem="hVY-Mc-xrj" firstAttribute="leading" secondItem="rBU-u3-Rys" secondAttribute="trailing" constant="40" id="zZl-gw-tys"/>
@@ -989,11 +1021,13 @@
                     <navigationItem key="navigationItem" title="Pupple" id="QMV-F7-2Bt"/>
                     <connections>
                         <outlet property="birthdayTextField" destination="PcF-Za-CGf" id="mKq-dG-xcX"/>
+                        <outlet property="cameraButton" destination="TKU-4S-sfX" id="lg7-Dm-wMm"/>
                         <outlet property="firstnameTextField" destination="hVY-Mc-xrj" id="J4R-2g-fsk"/>
                         <outlet property="lastnameTextField" destination="Pde-4E-ZfM" id="5lN-pS-J4m"/>
                         <outlet property="locationTextField" destination="20U-t6-iaz" id="PNe-fX-K1a"/>
                         <outlet property="mobileNumberTextField" destination="0Ju-YS-VbZ" id="R0c-Ep-RMk"/>
                         <outlet property="passwordTextField" destination="rJ6-kP-m4c" id="plO-tS-Xi2"/>
+                        <outlet property="photoButton" destination="Hk0-Yj-d4j" id="p8e-hu-4Z2"/>
                         <outlet property="userImageView" destination="sVo-1M-4M3" id="sRt-ou-7MU"/>
                         <outlet property="usernameTextField" destination="Hbb-mk-zaZ" id="rI9-Nj-Mwl"/>
                         <segue destination="h1v-me-OPL" kind="show" identifier="signUpPage2Segue" id="bbx-3k-7zD"/>
@@ -1182,6 +1216,34 @@
                                     <outletCollection property="gestureRecognizers" destination="H0n-7y-142" appends="YES" id="x43-Vc-Jum"/>
                                 </connections>
                             </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lY3-bP-MbO">
+                                <rect key="frame" x="18.5" y="214" width="100" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="J7s-Nm-Iel"/>
+                                    <constraint firstAttribute="width" constant="100" id="jv7-eR-LAH"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="CameraButton"/>
+                                <connections>
+                                    <action selector="onCamera:" destination="NoL-d3-5d0" eventType="touchUpInside" id="DEm-4g-Yba"/>
+                                    <action selector="onCamera:" destination="eVP-Cq-ycu" eventType="touchUpInside" id="YFT-Jd-Qy9"/>
+                                    <action selector="onCamera:" destination="h1v-me-OPL" eventType="touchUpInside" id="dZL-dp-8n2"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ua6-uA-k5b">
+                                <rect key="frame" x="283.5" y="214" width="100" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="6Ug-0j-qK7"/>
+                                    <constraint firstAttribute="width" constant="100" id="WMZ-kr-XMA"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="PhotoButton"/>
+                                <connections>
+                                    <action selector="onPhoto:" destination="h1v-me-OPL" eventType="touchUpInside" id="0Vg-ba-34L"/>
+                                    <action selector="onPhoto:" destination="eVP-Cq-ycu" eventType="touchUpInside" id="uVj-Jd-R0z"/>
+                                    <action selector="onPhoto:" destination="NoL-d3-5d0" eventType="touchUpInside" id="xO5-xm-pmy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yoe-Gi-HU8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1191,9 +1253,12 @@
                             <constraint firstItem="FOf-QQ-E9z" firstAttribute="leading" secondItem="Yoe-Gi-HU8" secondAttribute="leading" constant="24" id="3mp-zu-uS4"/>
                             <constraint firstItem="RVC-al-SLE" firstAttribute="top" secondItem="86C-nD-UFb" secondAttribute="bottom" constant="16" id="7IB-yL-9ed"/>
                             <constraint firstItem="sjP-zl-oK3" firstAttribute="leading" secondItem="FGc-Nh-SvM" secondAttribute="trailing" constant="30" id="8zj-K7-Cgz"/>
+                            <constraint firstItem="lY3-bP-MbO" firstAttribute="top" secondItem="jtP-aA-4wu" secondAttribute="bottom" constant="94" id="93a-9K-P5j"/>
                             <constraint firstItem="Yoe-Gi-HU8" firstAttribute="trailing" secondItem="VWx-0P-KT3" secondAttribute="trailing" constant="16" id="Bri-p9-XKr"/>
+                            <constraint firstItem="ua6-uA-k5b" firstAttribute="leading" secondItem="SUT-Gb-EXB" secondAttribute="trailing" constant="12" id="DbY-QU-Yk6"/>
                             <constraint firstItem="86C-nD-UFb" firstAttribute="top" secondItem="sjP-zl-oK3" secondAttribute="bottom" constant="16" id="DhG-xM-Ucq"/>
                             <constraint firstItem="Yoe-Gi-HU8" firstAttribute="trailing" secondItem="hUl-XN-OvK" secondAttribute="trailing" constant="16" id="Hql-DQ-ihG"/>
+                            <constraint firstItem="SUT-Gb-EXB" firstAttribute="leading" secondItem="lY3-bP-MbO" secondAttribute="trailing" constant="12" id="Jky-Ev-Rjk"/>
                             <constraint firstItem="sjP-zl-oK3" firstAttribute="top" secondItem="nbr-BZ-Bre" secondAttribute="bottom" constant="16" id="KKH-Ww-biN"/>
                             <constraint firstAttribute="trailing" secondItem="86C-nD-UFb" secondAttribute="trailing" constant="16" id="KdO-bP-U8E"/>
                             <constraint firstItem="Yoe-Gi-HU8" firstAttribute="trailing" secondItem="RVC-al-SLE" secondAttribute="trailing" constant="16" id="Kmz-pn-Ts5"/>
@@ -1217,6 +1282,7 @@
                             <constraint firstItem="VWx-0P-KT3" firstAttribute="leading" secondItem="bkh-Z8-iWd" secondAttribute="trailing" constant="30" id="l2p-Te-Mak"/>
                             <constraint firstItem="bQ7-b4-ec5" firstAttribute="leading" secondItem="DpC-31-xrR" secondAttribute="leading" constant="24" id="oje-JU-Igt"/>
                             <constraint firstItem="hUl-XN-OvK" firstAttribute="leading" secondItem="8Yt-1z-ZMf" secondAttribute="trailing" constant="30" id="qSU-82-hhQ"/>
+                            <constraint firstItem="ua6-uA-k5b" firstAttribute="top" secondItem="jtP-aA-4wu" secondAttribute="bottom" constant="94" id="rmE-Sm-oUU"/>
                             <constraint firstAttribute="trailing" secondItem="sjP-zl-oK3" secondAttribute="trailing" constant="16" id="rnz-ze-dtl"/>
                             <constraint firstItem="5cq-KI-8NB" firstAttribute="centerX" secondItem="DpC-31-xrR" secondAttribute="centerX" id="s2A-gr-asY"/>
                             <constraint firstItem="Zaw-Yo-Swj" firstAttribute="centerX" secondItem="DpC-31-xrR" secondAttribute="centerX" id="sQV-6q-SdC"/>
@@ -1235,10 +1301,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="breedTextField" destination="nbr-BZ-Bre" id="YdV-eB-koi"/>
+                        <outlet property="cameraButton" destination="lY3-bP-MbO" id="lYc-Fq-FX8"/>
                         <outlet property="dogImageView" destination="SUT-Gb-EXB" id="2YD-Xe-5cN"/>
                         <outlet property="genderTextField" destination="VWx-0P-KT3" id="pwm-sL-fMm"/>
                         <outlet property="nameTextField" destination="hUl-XN-OvK" id="REQ-ZA-YFN"/>
                         <outlet property="neuteredTextField" destination="RVC-al-SLE" id="e0U-B7-PIk"/>
+                        <outlet property="photoButton" destination="ua6-uA-k5b" id="118-Y6-kvy"/>
                         <outlet property="sizeTextField" destination="sjP-zl-oK3" id="afs-sj-idy"/>
                         <outlet property="vaccinatedTextField" destination="86C-nD-UFb" id="3BE-3m-OLe"/>
                         <segue destination="8hn-Ug-jkt" kind="presentation" identifier="signupSuccessSegue" modalPresentationStyle="fullScreen" id="now-Jv-EAh"/>
@@ -2298,7 +2366,25 @@
                                         <rect key="frame" x="139" y="157" width="136" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Upload photo"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Tap photo"/>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECf-nx-lVQ">
+                                        <rect key="frame" x="34" y="150" width="100" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="CameraButton"/>
+                                        <connections>
+                                            <action selector="onCamera:" destination="NoL-d3-5d0" eventType="touchUpInside" id="4jV-Tr-C9l"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zwc-LM-5D3">
+                                        <rect key="frame" x="283" y="150" width="100" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="PhotoButton"/>
+                                        <connections>
+                                            <action selector="onPhoto:" destination="NoL-d3-5d0" eventType="touchUpInside" id="Fu5-gT-FLr"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </scrollView>
@@ -2344,10 +2430,12 @@
                     <connections>
                         <outlet property="aboutTextVIew" destination="pye-KV-qhO" id="c7G-LA-Fpe"/>
                         <outlet property="ageTextField" destination="CDh-nV-61Z" id="AFZ-ZN-whZ"/>
+                        <outlet property="cameraButton" destination="ECf-nx-lVQ" id="JR4-K5-5lG"/>
                         <outlet property="dogImageView" destination="bNn-FP-Ian" id="qlc-bW-PDY"/>
                         <outlet property="dogNameTextField" destination="i4e-hY-J2k" id="sFR-r6-JEm"/>
                         <outlet property="dogSizeTextField" destination="uzm-mf-ACk" id="azi-SL-9JL"/>
                         <outlet property="fixedTextField" destination="Zuy-Zw-qah" id="oUF-HY-Ghx"/>
+                        <outlet property="photoButton" destination="Zwc-LM-5D3" id="K8E-32-WrP"/>
                         <outlet property="vaccinatedTextField" destination="nBH-zo-lnv" id="ZXp-Bg-HOk"/>
                     </connections>
                 </viewController>
@@ -2355,7 +2443,7 @@
                 <exit id="F6A-vQ-YgJ" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="1nJ-z6-Ipl">
                     <connections>
-                        <action selector="onCamera:" destination="NoL-d3-5d0" id="I8e-5f-8zc"/>
+                        <action selector="photoTapped:" destination="NoL-d3-5d0" id="bIB-fg-2Y9"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -2550,9 +2638,29 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gn8-2f-hJF">
-                                <rect key="frame" x="151" y="183" width="112" height="31"/>
+                                <rect key="frame" x="163" y="183" width="89" height="31"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Upload photo"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Tap photo"/>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWs-6y-vAP">
+                                <rect key="frame" x="29" y="176" width="100" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="CameraButton"/>
+                                <connections>
+                                    <action selector="onCamera:" destination="NoL-d3-5d0" eventType="touchUpInside" id="Rar-A9-cp6"/>
+                                    <action selector="onCamera:" destination="eVP-Cq-ycu" eventType="touchUpInside" id="sYN-NZ-aWc"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKQ-RW-Eou">
+                                <rect key="frame" x="278" y="176" width="100" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="PhotoButton"/>
+                                <connections>
+                                    <action selector="onPhoto:" destination="eVP-Cq-ycu" eventType="touchUpInside" id="8Pk-bF-xcO"/>
+                                    <action selector="onPhoto:" destination="NoL-d3-5d0" eventType="touchUpInside" id="Wbf-kq-8Wx"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Dfb-uG-0Ui"/>
@@ -2568,6 +2676,7 @@
                     <size key="freeformSize" width="398" height="1046"/>
                     <connections>
                         <outlet property="aboutMeTextField" destination="U2n-FS-ufz" id="IH7-cz-K1R"/>
+                        <outlet property="cameraButton" destination="IWs-6y-vAP" id="fkl-0K-hPl"/>
                         <outlet property="educationTextField" destination="tQg-0h-hyJ" id="20N-eP-kra"/>
                         <outlet property="firstNameTextField" destination="uMF-8t-dWA" id="O0V-QS-Fg6"/>
                         <outlet property="genderTextField" destination="h1G-Cd-tdD" id="myG-Ps-jab"/>
@@ -2575,6 +2684,7 @@
                         <outlet property="lastNameTextField" destination="c4W-Sm-i9Q" id="lsT-nz-ay9"/>
                         <outlet property="locationTextField" destination="njV-np-ceR" id="MIj-uy-K3w"/>
                         <outlet property="occupationTextField" destination="REf-lu-o4S" id="yyS-P6-WYp"/>
+                        <outlet property="photoButton" destination="pKQ-RW-Eou" id="mpv-Ac-F3C"/>
                         <outlet property="profileImageView" destination="UVO-OU-66z" id="tMe-o3-QdM"/>
                         <outlet property="snapTextField" destination="wyT-tW-DXe" id="ifd-ZL-rsN"/>
                     </connections>
@@ -2583,7 +2693,7 @@
                 <exit id="Tvb-mG-uur" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="hlz-EQ-fsv">
                     <connections>
-                        <action selector="onCamera:" destination="eVP-Cq-ycu" id="qsW-Bh-dWJ"/>
+                        <action selector="photoTap:" destination="eVP-Cq-ycu" id="y69-y0-Lp4"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -2597,6 +2707,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BackButtonLarge" width="45" height="45"/>
+        <image name="CameraButton" width="100" height="45"/>
         <image name="Feed" width="60" height="60"/>
         <image name="Feed-Active" width="60" height="60"/>
         <image name="Likes" width="45" height="45"/>
@@ -2604,6 +2715,7 @@
         <image name="Matches" width="45" height="45"/>
         <image name="Matches-Active" width="45" height="45"/>
         <image name="Ownerpfp" width="42" height="42"/>
+        <image name="PhotoButton" width="100" height="45"/>
         <image name="age_icon" width="19" height="19"/>
         <image name="education_icon" width="19" height="20"/>
         <image name="instagram" width="20" height="20"/>

@@ -19,6 +19,8 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
     @IBOutlet weak var sizeTextField: UITextField!
     @IBOutlet weak var vaccinatedTextField: UITextField!
     @IBOutlet weak var neuteredTextField: UITextField!
+    @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var photoButton: UIButton!
     
     // Array of options for picker views
     let genders = ["","Male", "Female"]
@@ -32,6 +34,7 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
     var neuteredPickerView = UIPickerView()
     var sizePickerView = UIPickerView()
     var breedPickerView = UIPickerView()
+    let imagePicker = UIImagePickerController()
     
     let defaults = UserDefaults.standard
     // Keys to access the values passed from page one
@@ -65,21 +68,39 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
     
     
     @IBAction func onCameraButton(_ sender: Any) {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true
-        
-        if UIImagePickerController.isSourceTypeAvailable(.camera)
+        if(cameraButton.isHidden == true && photoButton.isHidden == true)
         {
-            picker.sourceType = .camera
+            cameraButton.isHidden = false
+            photoButton.isHidden = false
         }
         else
         {
-            picker.sourceType = .photoLibrary
+            cameraButton.isHidden = true
+            photoButton.isHidden = true
         }
-        
-        present(picker, animated: true, completion: nil)
     }
+    
+    @IBAction func onCamera(_ sender: Any) {
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        if UIImagePickerController.isSourceTypeAvailable(.camera)
+        {
+            imagePicker.sourceType = .camera
+        }
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func onPhoto(_ sender: Any) {
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
+        {
+            imagePicker.sourceType = .photoLibrary
+        }
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.editedImage] as! UIImage
