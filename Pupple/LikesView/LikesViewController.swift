@@ -44,8 +44,8 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
                 // Log details of the failure
                 print(error.localizedDescription)
             } else if let dog = dog {
-                self.likedBy = (dog["likedBy"] as? [PFObject]) ?? []
-                self.likes = dog["likes"] as? [PFObject] ?? []
+                self.likedBy = (dog["likedBy"] as? [PFObject])?.reversed() ?? []
+                self.likes = (dog["likes"] as? [PFObject])?.reversed() ?? []
                 
                 self.likedByCollectionView.reloadData()
                 self.likesCollectionView.reloadData()
@@ -75,8 +75,8 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
                 // Log details of the failure
                 print(error.localizedDescription)
             } else if let dog = dog {
-                self.likedBy = (dog["likedBy"] as? [PFObject]) ?? []
-                self.likes = dog["likes"] as? [PFObject] ?? []
+                self.likedBy = (dog["likedBy"] as? [PFObject])?.reversed() ?? []
+                self.likes = (dog["likes"] as? [PFObject])?.reversed() ?? []
                 
                 self.likedByCollectionView.reloadData()
                 self.likesCollectionView.reloadData()
