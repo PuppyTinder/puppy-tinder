@@ -13,6 +13,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     
    
+    @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var photoButton: UIButton!
     
     @IBOutlet weak var dogNameTextField: UITextField!
     
@@ -31,6 +33,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     var vaccinatedPickerView = UIPickerView()
     var fixedPickerView = UIPickerView()
     var sizePickerView = UIPickerView()
+    let imagePicker = UIImagePickerController()
     
     let choices = ["", "Yes", "No"]
     let sizes = ["", "Small", "Medium", "Large"]
@@ -181,20 +184,37 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     
-    @IBAction func onCamera(_ sender: Any) {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true
-        
-        if UIImagePickerController.isSourceTypeAvailable(.camera)
+    @IBAction func photoTapped(_ sender: Any) {
+        if(cameraButton.isHidden == true && photoButton.isHidden == true)
         {
-            picker.sourceType = .camera
+            cameraButton.isHidden = false
+            photoButton.isHidden = false
         }
         else
         {
-            picker.sourceType = .photoLibrary
+            cameraButton.isHidden = true
+            photoButton.isHidden = true
         }
-        present(picker, animated: true, completion: nil)
+    }
+    
+    @IBAction func onCamera(_ sender: Any) {
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        if UIImagePickerController.isSourceTypeAvailable(.camera)
+        {
+            imagePicker.sourceType = .camera
+        }
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func onPhoto(_ sender: Any) {
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
+        {
+            imagePicker.sourceType = .photoLibrary
+        }
+        present(imagePicker, animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

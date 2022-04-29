@@ -11,6 +11,8 @@ import AlamofireImage
 
 class editOwnerProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var photoButton: UIButton!
     
     @IBOutlet weak var profileImageView: UIImageView!
     
@@ -31,6 +33,8 @@ class editOwnerProfileViewController: UIViewController, UITextFieldDelegate, UIT
     @IBOutlet weak var aboutMeTextField: UITextView!
     
     @IBOutlet weak var locationTextField: UITextField!
+    
+    let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,20 +162,39 @@ class editOwnerProfileViewController: UIViewController, UITextFieldDelegate, UIT
     }
     
     
-    @IBAction func onCamera(_ sender: Any) {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true
-        
-        if UIImagePickerController.isSourceTypeAvailable(.camera)
+    @IBAction func photoTap(_ sender: Any) {
+        if(cameraButton.isHidden == true && photoButton.isHidden == true)
         {
-            picker.sourceType = .camera
+            cameraButton.isHidden = false
+            photoButton.isHidden = false
         }
         else
         {
-            picker.sourceType = .photoLibrary
+            cameraButton.isHidden = true
+            photoButton.isHidden = true
         }
-        present(picker, animated: true, completion: nil)
+    }
+    
+    @IBAction func onCamera(_ sender: Any) {
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera)
+        {
+            imagePicker.sourceType = .camera
+        }
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func onPhoto(_ sender: Any) {
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
+        {
+            imagePicker.sourceType = .photoLibrary
+        }
+        present(imagePicker, animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
