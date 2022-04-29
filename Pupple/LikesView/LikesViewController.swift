@@ -130,115 +130,125 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! LikeCollectionViewCell
-        let dogProfileViewController: DogProfileFeedViewController = segue.destination as! DogProfileFeedViewController
-        
-        var collectionView = UICollectionView()
-        
-        if segue.identifier == "dogProfileSegueLikedBy" {
-            collectionView = likedByCollectionView
-        } else if segue.identifier == "dogProfileSegueLikes" {
-            collectionView = likesCollectionView
-        }
-        
-        let indexPath = collectionView.indexPath(for: cell)!
-        
-        let like = likes[indexPath.item]!
-        //print(like)
-        let query = PFQuery(className: "Dog")
-        query.getObjectInBackground(withId: like.objectId!) { dog, error in
-            if dog != nil {
-                let imageFile = dog!["dog_photo"] as! PFFileObject
-                let urlString = imageFile.url!
-                let url = URL(string: urlString)!
-                dogProfileViewController.dogImageView.af.setImage(withURL: url)
-
-                dogProfileViewController.dogNameLabel.text = dog!["name"] as? String
-
-                dogProfileViewController.breedLabel.text = dog!["breed"] as? String
-                
-                dogProfileViewController.dogSizeLabel.text = dog!["size"] as? String
-
-                let vaccinated = dog!["vaccinated"] as! Bool
-                let fixed = dog!["fixed"] as! Bool
-                let dogAgeNum = dog!["age"] as? Int
-                var dogAge: String = "N/A"
-                if(dogAgeNum != nil) {dogAge = String(dogAgeNum!) + " years old"}
-                var dogAbout = dog!["about"] as? String
-                
-                if (vaccinated){ dogProfileViewController.vaccinatedLabel.text = "Yes"}
-                else { dogProfileViewController.vaccinatedLabel.text = "No"}
-                
-                if (fixed){ dogProfileViewController.fixedLabel.text = "Yes"}
-                else { dogProfileViewController.fixedLabel.text = "No"}
-                
-                dogProfileViewController.dogAgeLabel.text = dogAge
-                
-                if(dogAbout == nil) { dogAbout = ""}
-                dogProfileViewController.dogAboutLabel.text = dogAbout
-                
-                let dogGender = dog!["gender"] as! String
-                if(dogGender == "Male") {dogProfileViewController.genderImageView.image = UIImage(named: "male_gender")}
-                else if (dogGender == "Female") {dogProfileViewController.genderImageView.image = UIImage(named: "female_gender")}
-                
-                let owner = dog!["ownerid"] as! PFUser
-                let ownerquery = PFUser.query()
-                ownerquery?.getObjectInBackground(withId: owner.objectId!, block: { dogowner, error in
-                    if let error = error {
-                        print(error)
-                    }
-                    else if let dogowner = dogowner{
-                        let ownerimg = dogowner["user_photo"] as! PFFileObject
-                        let ownerurl = URL(string: ownerimg.url!)!
-                        dogProfileViewController.ownerImageView.af.setImage(withURL: ownerurl)
-                        dogProfileViewController.locationLabel.text = dogowner["location"] as? String
-                        let ownerFirstName = dogowner["firstname"] as! String
-                        let ownerLastName = dogowner["lastname"] as! String
-                        dogProfileViewController.ownerNameLabel.text = ownerFirstName + " " + ownerLastName
-                        
-                        // Calculate age
-                        let birthday = dogowner["birthday"] as! String
-                        let dateFormatter = DateFormatter()
-                        dateFormatter.dateFormat = "MM/dd/yy"
-                        dateFormatter.date(from: birthday)
-                        let calendar = Calendar.current
-                        let now = Date()
-                        let ageComponents = calendar.dateComponents([.year], from: dateFormatter.date(from: birthday)!, to: now)
-                        let age = ageComponents.year!
-                        let ageString = String(age)
-                        
-                        dogProfileViewController.ownerAgeLabel.text = ageString + " years old"
-                        
-                        let ownerAbout = dogowner["about"] as? String
-                        dogProfileViewController.ownerAboutLabel.text = ownerAbout
-                        
-                        var ownerEducation = dogowner["education"] as? String
-                        if(ownerEducation == nil) { ownerEducation = "N/A"}
-                        dogProfileViewController.educationLabel.text = ownerEducation
-                        
-                        var ownerGender = dogowner["gender"] as? String
-                        if(ownerGender == nil) { ownerGender = "N/A"}
-                        dogProfileViewController.ownerGenderLabel.text = ownerGender
-                        
-                        var ownerSnapchat = dogowner["snapchat"] as? String
-                        if(ownerSnapchat == nil) { ownerSnapchat = "N/A"}
-                        dogProfileViewController.ownerSnapchatButton.setTitle(ownerSnapchat, for: .normal)
-                        
-                        var ownerInstagram = dogowner["instagram"] as? String
-                        if(ownerInstagram == nil) { ownerInstagram = "N/A"}
-                        dogProfileViewController.ownerInstagramButton.setTitle(ownerInstagram, for: .normal)
-                        
-                        var ownerOccupation = dogowner["occupation"] as? String
-                        if(ownerOccupation == nil) { ownerOccupation = "N/A" }
-                        dogProfileViewController.occupationLabel.text = ownerOccupation
-                    }
-                })
-
+        if ((segue.identifier?.contains("dogProfileSegue")) == true) {
+            
+            let cell = sender as! LikeCollectionViewCell
+            let dogProfileViewController: DogProfileFeedViewController = segue.destination as! DogProfileFeedViewController
+            
+            var collectionView: UICollectionView?
+            var like: PFObject!
+            if segue.identifier == "dogProfileSegueLikedBy" {
+                collectionView = likedByCollectionView
+                like = likedBy[collectionView!.indexPath(for:cell)!.item]
+            } else if segue.identifier == "dogProfileSegueLikes" {
+                collectionView = likesCollectionView
+                like = likes[collectionView!.indexPath(for:cell)!.item]
             }
+            
+            let query = PFQuery(className: "Dog")
+            query.getObjectInBackground(withId: like.objectId!) { dog, error in
+                if let error = error {
+                    print(error)
+                }
+                else if let dog = dog {
+                    let imageFile = dog["dog_photo"] as! PFFileObject
+                    let urlString = imageFile.url!
+                    let url = URL(string: urlString)!
+                    dogProfileViewController.dogImageView.af.setImage(withURL: url)
 
-        }
+                    dogProfileViewController.dogNameLabel.text = dog["name"] as? String
+
+                    dogProfileViewController.breedLabel.text = dog["breed"] as? String
+                    
+                    dogProfileViewController.dogSizeLabel.text = dog["size"] as? String
+
+                    let vaccinated = dog["vaccinated"] as! Bool
+                    let fixed = dog["fixed"] as! Bool
+                    let dogAgeNum = dog["age"] as? Int
+                    var dogAge: String = "N/A"
+                    if(dogAgeNum != nil) {dogAge = String(dogAgeNum!) + " years old"}
+                    var dogAbout = dog["about"] as? String
+                    
+                    if (vaccinated){ dogProfileViewController.vaccinatedLabel.text = "Yes"}
+                    else { dogProfileViewController.vaccinatedLabel.text = "No"}
+                    
+                    if (fixed){ dogProfileViewController.fixedLabel.text = "Yes"}
+                    else { dogProfileViewController.fixedLabel.text = "No"}
+                    
+                    dogProfileViewController.dogAgeLabel.text = dogAge
+                    
+                    if(dogAbout == nil) { dogAbout = ""}
+                    dogProfileViewController.dogAboutLabel.text = dogAbout
+                    
+                    let dogGender = dog["gender"] as! String
+                    if(dogGender == "Male") {dogProfileViewController.genderImageView.image = UIImage(named: "male_gender")}
+                    else if (dogGender == "Female") {dogProfileViewController.genderImageView.image = UIImage(named: "female_gender")}
+                    
+                    let owner = dog["ownerid"] as! PFUser
+                    let ownerquery = PFUser.query()
+                    ownerquery?.getObjectInBackground(withId: owner.objectId!, block: { dogowner, error in
+                        if let error = error {
+                            print(error)
+                        }
+                        else if let dogowner = dogowner{
+                            let ownerimg = dogowner["user_photo"] as! PFFileObject
+                            let ownerurl = URL(string: ownerimg.url!)!
+                            dogProfileViewController.ownerImageView.af.setImage(withURL: ownerurl)
+                            dogProfileViewController.locationLabel.text = dogowner["location"] as? String
+                            let ownerFirstName = dogowner["firstname"] as! String
+                            let ownerLastName = dogowner["lastname"] as! String
+                            dogProfileViewController.ownerNameLabel.text = ownerFirstName + " " + ownerLastName
+                            
+                            // Calculate age
+                            let birthday = dogowner["birthday"] as! String
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "MM/dd/yy"
+                            dateFormatter.date(from: birthday)
+                            let calendar = Calendar.current
+                            let now = Date()
+                            let ageComponents = calendar.dateComponents([.year], from: dateFormatter.date(from: birthday)!, to: now)
+                            let age = ageComponents.year!
+                            let ageString = String(age)
+                            
+                            dogProfileViewController.ownerAgeLabel.text = ageString + " years old"
+                            
+                            let ownerAbout = dogowner["about"] as? String
+                            dogProfileViewController.ownerAboutLabel.text = ownerAbout
+                            
+                            var ownerEducation = dogowner["education"] as? String
+                            if(ownerEducation == nil) { ownerEducation = "N/A"}
+                            dogProfileViewController.educationLabel.text = ownerEducation
+                            
+                            var ownerGender = dogowner["gender"] as? String
+                            if(ownerGender == nil) { ownerGender = "N/A"}
+                            dogProfileViewController.ownerGenderLabel.text = ownerGender
+                            
+                            var ownerSnapchat = dogowner["snapchat"] as? String
+                            if(ownerSnapchat == nil) { ownerSnapchat = "N/A"}
+                            dogProfileViewController.ownerSnapchatButton.setTitle(ownerSnapchat, for: .normal)
+                            
+                            var ownerInstagram = dogowner["instagram"] as? String
+                            if(ownerInstagram == nil) { ownerInstagram = "N/A"}
+                            dogProfileViewController.ownerInstagramButton.setTitle(ownerInstagram, for: .normal)
+                            
+                            var ownerOccupation = dogowner["occupation"] as? String
+                            if(ownerOccupation == nil) { ownerOccupation = "N/A" }
+                            dogProfileViewController.occupationLabel.text = ownerOccupation
+                        } //end of dogowner
+                    }) //end of dogowner query
+
+                } // end of dog
+
+            } //end of dog query
+        } // end of dog prof segue
+        else if (segue.identifier == "ProfileDetailsLikes") {
+            // will perform segue to owner profile on press
+        } // end of profile details
     } // end of function
-}
+    
+    
+
+} // end of LikesViewController
 
 extension LikesViewController : UIBarPositioningDelegate, UINavigationBarDelegate {
     
