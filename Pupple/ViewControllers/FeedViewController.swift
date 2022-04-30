@@ -302,7 +302,6 @@ extension FeedViewController : KolodaViewDelegate{
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         switch direction {
         case .right:
-            
             let user = PFUser.current()!
             
             let userDogQuery = PFQuery(className: "Dog")
@@ -319,6 +318,21 @@ extension FeedViewController : KolodaViewDelegate{
                         {
                             ownerDog?.addUniqueObject(dog!, forKey: "likes")
                             dog?.addUniqueObject(ownerDog!, forKey: "likedBy")
+                            
+                            // Handle match logic
+                            let current_likedBy = (ownerDog!["likedBy"] as? [PFObject]) ?? []
+                            if current_likedBy.count != 0
+                            {
+                                for dog_likedBy in current_likedBy
+                                {
+                                    if(dog_likedBy.objectId! == selectedDogId)
+                                    {
+                                        ownerDog?.addUniqueObject(dog!, forKey: "matches")
+                                        dog?.addUniqueObject(ownerDog!, forKey: "matches")
+                                    }
+                                }
+                            }
+                            
                             dog?.saveInBackground(block: { success, error in
                                 if(success != nil)
                                 {
@@ -347,6 +361,21 @@ extension FeedViewController : KolodaViewDelegate{
                         {
                             ownerDog?.addUniqueObject(dog!, forKey: "likes")
                             dog?.addUniqueObject(ownerDog!, forKey: "likedBy")
+                            
+                            // Handle match logic
+                            let current_likedBy = (ownerDog!["likedBy"] as? [PFObject]) ?? []
+                            if current_likedBy.count != 0
+                            {
+                                for dog_likedBy in current_likedBy
+                                {
+                                    if(dog_likedBy.objectId! == selectedDogId)
+                                    {
+                                        ownerDog?.addUniqueObject(dog!, forKey: "matches")
+                                        dog?.addUniqueObject(ownerDog!, forKey: "matches")
+                                    }
+                                }
+                            }
+                            
                             dog?.saveInBackground(block: { success, error in
                                 if(success != nil)
                                 {
@@ -374,6 +403,21 @@ extension FeedViewController : KolodaViewDelegate{
                         {
                             ownerDog?.addUniqueObject(dog!, forKey: "likes")
                             dog?.addUniqueObject(ownerDog!, forKey: "likedBy")
+                            
+                            // Handle match logic
+                            let current_likedBy = (ownerDog!["likedBy"] as? [PFObject]) ?? []
+                            if current_likedBy.count != 0
+                            {
+                                for dog_likedBy in current_likedBy
+                                {
+                                    if(dog_likedBy.objectId! == selectedDogId)
+                                    {
+                                        ownerDog?.addUniqueObject(dog!, forKey: "matches")
+                                        dog?.addUniqueObject(ownerDog!, forKey: "matches")
+                                    }
+                                }
+                            }
+                            
                             dog?.saveInBackground(block: { success, error in
                                 if(success != nil)
                                 {
