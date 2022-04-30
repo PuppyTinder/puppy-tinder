@@ -68,13 +68,27 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
         return likes.count
     }
     
-    static func exists(arr: [PFObject], target: PFObject) -> Bool {
+    static func exists(arr: [PFObject?], target: PFObject) -> Bool {
         for obj in arr {
-            if obj.objectId == target.objectId {
+            if obj?.objectId == target.objectId {
                 return true
             }
         }
         return false
+    }
+    
+    static func matches(lhs: [PFObject?], rhs: [PFObject?]) -> Bool {
+        if lhs.count != rhs.count {
+            return false
+        }
+        
+        for (idx, obj) in lhs.enumerated() {
+            if obj?.objectId != rhs[idx]?.objectId {
+                return false
+            }
+        }
+        
+        return true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,14 +106,14 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
                 self.likesCollectionView.contentOffset.x = 0
                 self.likedByCollectionView.contentOffset.x = 0
                 
-                self.likes = []
-                self.likedBy = []
+                let o_likes = self.likes
+                let o_likedBy = self.likedBy
                 
                 let matches = dog["matches"] as? [PFObject] ?? []
                 let likedBy = (dog["likedBy"] as? [PFObject]) ?? []
             
                 for like in likedBy {
-                    if !LikesViewController.exists(arr: matches, target: like) && !self.likedBy.contains(like) {
+                    if !LikesViewController.exists(arr: matches, target: like) && !LikesViewController.exists(arr: self.likedBy, target: like) {
                         self.likedBy.insert(like, at: 0)
                     }
                 }
@@ -107,13 +121,16 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
                 let likes = (dog["likes"] as? [PFObject]) ?? []
     
                 for like in likes {
-                    if !LikesViewController.exists(arr: matches, target: like) && !self.likes.contains(like) {
+                    if !LikesViewController.exists(arr: matches, target: like) && !LikesViewController.exists(arr: self.likes, target: like) {
                         self.likes.insert(like, at: 0)
                     }
                 }
                 
-                self.likedByCollectionView.reloadData()
-                self.likesCollectionView.reloadData()
+                if (!LikesViewController.matches(lhs: o_likes, rhs: self.likes) || !LikesViewController.matches(lhs: o_likedBy, rhs: self.likedBy)) {
+                    self.likedByCollectionView.reloadData()
+                    self.likesCollectionView.reloadData()
+                }
+                
             }
         }
         
