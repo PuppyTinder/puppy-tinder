@@ -14,10 +14,10 @@ class MatchandMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabelView: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
-    /*
+/*
     @IBOutlet weak var unreadMessageCountLabel: UILabel!
     @IBOutlet weak var unreadMessageCountView: UIView!
-    */
+*/
     
     override func awakeFromNib() {
         super.awakeFromNib()
