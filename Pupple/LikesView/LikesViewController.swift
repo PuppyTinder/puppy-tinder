@@ -126,9 +126,12 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
                     }
                 }
                 
-                if (!LikesViewController.matches(lhs: o_likes, rhs: self.likes) || !LikesViewController.matches(lhs: o_likedBy, rhs: self.likedBy)) {
-                    self.likedByCollectionView.reloadData()
+                if !LikesViewController.matches(lhs: o_likes, rhs: self.likes) {
                     self.likesCollectionView.reloadData()
+                }
+                
+                if !LikesViewController.matches(lhs: o_likedBy, rhs: self.likedBy) {
+                    self.likedByCollectionView.reloadData()
                 }
                 
             }
