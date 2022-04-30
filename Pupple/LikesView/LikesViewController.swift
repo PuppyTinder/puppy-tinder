@@ -68,6 +68,15 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
         return likes.count
     }
     
+    static func exists(arr: [PFObject], target: PFObject) -> Bool {
+        for obj in arr {
+            if obj.objectId == target.objectId {
+                return true
+            }
+        }
+        return false
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -83,12 +92,14 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
                 self.likesCollectionView.contentOffset.x = 0
                 self.likedByCollectionView.contentOffset.x = 0
                 
+                self.likes = []
+                self.likedBy = []
+                
                 let matches = dog["matches"] as? [PFObject] ?? []
-                print(matches)
                 let likedBy = (dog["likedBy"] as? [PFObject]) ?? []
             
                 for like in likedBy {
-                    if !matches.contains(like) && !self.likedBy.contains(like){
+                    if !LikesViewController.exists(arr: matches, target: like) && !self.likedBy.contains(like) {
                         self.likedBy.insert(like, at: 0)
                     }
                 }
@@ -96,7 +107,7 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
                 let likes = (dog["likes"] as? [PFObject]) ?? []
     
                 for like in likes {
-                    if !matches.contains(like) && !self.likes.contains(like) {
+                    if !LikesViewController.exists(arr: matches, target: like) && !self.likes.contains(like) {
                         self.likes.insert(like, at: 0)
                     }
                 }
