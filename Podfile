@@ -10,7 +10,8 @@ target 'Pupple' do
   pod 'AlamofireImage'
   pod 'Koloda'
   pod 'pop', '~> 1.0'
-
+  pod 'MessageKit'
+  
   target 'PuppleTests' do
     inherit! :search_paths
     # Pods for testing
