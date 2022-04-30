@@ -35,22 +35,25 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
         likesCollectionView.dataSource = self
         likesCollectionView.delegate = self
 
-        let user = PFUser.current()!
-
-        let query = PFQuery(className: "Dog")
-        query.whereKey("ownerid", equalTo: user)
-        query.getFirstObjectInBackground { (dog: PFObject?, error: Error?) in
-            if let error = error {
-                // Log details of the failure
-                print(error.localizedDescription)
-            } else if let dog = dog {
-                self.likedBy = (dog["likedBy"] as? [PFObject])?.reversed() ?? []
-                self.likes = (dog["likes"] as? [PFObject])?.reversed() ?? []
-                
-                self.likedByCollectionView.reloadData()
-                self.likesCollectionView.reloadData()
-            }
-        }
+        // unnecessary because viewdidappear gets called anyway
+//        let user = PFUser.current()!
+//
+//        let query = PFQuery(className: "Dog")
+//        query.whereKey("ownerid", equalTo: user)
+//        query.getFirstObjectInBackground { (dog: PFObject?, error: Error?) in
+//            if let error = error {
+//                // Log details of the failure
+//                print(error.localizedDescription)
+//            } else if let dog = dog {
+//                let matches = dog["matches"] as? [PFObject]
+//                print("MATCHES:", matches)
+//                self.likedBy = (dog["likedBy"] as? [PFObject])?.reversed() ?? []
+//                self.likes = (dog["likes"] as? [PFObject])?.reversed() ?? []
+//
+//                self.likedByCollectionView.reloadData()
+//                self.likesCollectionView.reloadData()
+//            }
+//        }
         
         // Do any additional setup after loading the view.
     }
@@ -65,7 +68,9 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
         return likes.count
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         let user = PFUser.current()!
 
         let query = PFQuery(className: "Dog")
@@ -75,8 +80,26 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
                 // Log details of the failure
                 print(error.localizedDescription)
             } else if let dog = dog {
-                self.likedBy = (dog["likedBy"] as? [PFObject])?.reversed() ?? []
-                self.likes = (dog["likes"] as? [PFObject])?.reversed() ?? []
+                self.likesCollectionView.contentOffset.x = 0
+                self.likedByCollectionView.contentOffset.x = 0
+                
+                let matches = dog["matches"] as? [PFObject] ?? []
+                print(matches)
+                let likedBy = (dog["likedBy"] as? [PFObject]) ?? []
+            
+                for like in likedBy {
+                    if !matches.contains(like) && !self.likedBy.contains(like){
+                        self.likedBy.insert(like, at: 0)
+                    }
+                }
+                
+                let likes = (dog["likes"] as? [PFObject]) ?? []
+    
+                for like in likes {
+                    if !matches.contains(like) && !self.likes.contains(like) {
+                        self.likes.insert(like, at: 0)
+                    }
+                }
                 
                 self.likedByCollectionView.reloadData()
                 self.likesCollectionView.reloadData()
