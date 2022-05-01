@@ -1654,7 +1654,7 @@
                                         <size key="customSize" width="104" height="95"/>
                                         <connections>
                                             <outlet property="avatarImageView" destination="9cp-Qr-qqV" id="tN0-DY-bcd"/>
-                                            <outlet property="nameLabel" destination="OMW-v0-42G" id="Ojd-6e-gdP"/>
+                                            <outlet property="puppyNameLabel" destination="OMW-v0-42G" id="BRv-It-K9q"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -2881,7 +2881,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="6ag-9d-r8e"/>
-        <segue reference="8yO-YG-Ifa"/>
+        <segue reference="0d3-F1-DMp"/>
         <segue reference="PRj-Jt-FEH"/>
     </inferredMetricsTieBreakers>
     <resources>
