@@ -18,7 +18,6 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var profileBarButton: UIBarButtonItem!
     //MARK: - Vars
     var matches = [PFObject]() // creates an empty array of matches
-    var matchesUser = [PFObject]()
     let app_color = UIColor(red: 196/255, green: 164/255, blue: 132/255, alpha: 1)
     
     override func viewDidLoad() {
@@ -43,8 +42,8 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     //MARK: - match Query
-    // i) get user's dog's match that has an array of other dogs
-    // ii) save that array of dog?
+    // i) get the user's dog that has an array of matches containing the matched dogs
+    // ii) save the array of matched dogs
     
     func matchQuery() {
         
@@ -52,10 +51,7 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
         
         let userDogquery = PFQuery(className: "Dog")
         userDogquery.includeKeys(["name", "matches", "dog_photo", "ownerid"])
-        userDogquery.whereKey("ownerid", equalTo: user) // contrasint to get the current user's dog
-        
-        let userDogOwnerquery = PFQuery(className: "_User")
-        userDogOwnerquery.includeKeys(["user_photo","firstname"])
+        userDogquery.whereKey("ownerid", equalTo: user) // constraint to get the current user's dog
         
         var dogArray = [PFObject]()
         userDogquery.findObjectsInBackground { userDog, error in
@@ -65,20 +61,11 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
                 for currentUserDog in dogArray {
                     let dogMatches = currentUserDog["matches"] as! [PFObject]
                     self.matches = dogMatches
-                    
-                    for dog in dogMatches
-                    {
-                        let matchOwner = dog["ownerid"] as! PFObject
-                        userDogOwnerquery.getObjectInBackground(withId: matchOwner.objectId!) { owner, error in
-                            self.matchesUser.append(owner!)
-                            self.messageTableView.reloadData()
-                        }
-                    }
-    
-                    self.matchCollectionView.reloadData() //reload the data
+                    self.matchCollectionView.reloadData() //reload the collection view data
+                    self.messageTableView.reloadData() //reload the table view data
                 }
             }
-        }// end of first query
+        }// end of query
      
         
     }
@@ -87,7 +74,6 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentMatchCollectionViewCell", for: indexPath) as! RecentMatchCollectionViewCell // grab the cell
-        //print(matches[indexPath.item].objectId)
         let match = matches[indexPath.item] as! PFObject// grab a particular match
         cell.puppyNameLabel.text = match["name"] as? String
         
@@ -95,8 +81,6 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
         let imageUrl = imageFile.url!
         let url = URL(string: imageUrl)
         
-        //MARK: - GOTTA MAKE THE IMAGE ROUND!!!!!
-
         cell.avatarImageView.af.setImage(withURL: url!)
 
         return cell
@@ -121,15 +105,26 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
         let url = URL(string: imageUrl)
         
         cell.dogImageView.af.setImage(withURL: url!)
-        cell.dogImageView.layer.cornerRadius = cell.dogImageView.frame.height/2
         
-        let matchUser = matchesUser[indexPath.row]
-        let userImageFile = matchUser["user_photo"] as! PFFileObject
-        let userImageUrl = userImageFile.url!
-        let userUrl = URL(string: userImageUrl)
+        let matchOwner = match["ownerid"] as! PFUser
+        let userDogOwnerquery = PFQuery(className: "_User")
+        userDogOwnerquery.includeKeys(["user_photo","firstname"])
         
-        cell.userImageView.af.setImage(withURL: userUrl!)
-        cell.userImageView.layer.cornerRadius = cell.userImageView.frame.height/2
+        userDogOwnerquery.getObjectInBackground(withId: matchOwner.objectId!) { owner, error in
+            if owner != nil
+            {
+                let userImageFile = owner!["user_photo"] as! PFFileObject
+                let userImageUrl = userImageFile.url!
+                let userUrl = URL(string: userImageUrl)
+                
+                cell.userImageView.af.setImage(withURL: userUrl!)
+            }
+            else
+            {
+                print("Owner not found.")
+            }
+        }
+        
         return cell
     }
 }
