@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class RecentMatchCollectionViewCell: UICollectionViewCell {
     
@@ -13,4 +14,9 @@ class RecentMatchCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var puppyNameLabel: UILabel!
     
+    override func layoutSubviews() {
+        avatarImageView.image = avatarImageView.image?.af.imageAspectScaled(toFill: CGSize(width: 80, height: 80))
+        avatarImageView.layer.cornerRadius = (avatarImageView.frame.height/2)
+        avatarImageView.clipsToBounds = true
+    }
 }
