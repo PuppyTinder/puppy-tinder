@@ -10,8 +10,8 @@ import UIKit
 class MatchandMessageTableViewCell: UITableViewCell {
     
     // MARK: - IBOutlets
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var nameLabelView: UILabel!
+    @IBOutlet weak var dogImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
 /*
@@ -22,7 +22,7 @@ class MatchandMessageTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-//      unreadMessageCountView.layer.cornerRadius = unreadMessageCountView.frame.width / 2
+      //unreadMessageCountView.layer.cornerRadius = unreadMessageCountView.frame.width / 2
 
     }
 

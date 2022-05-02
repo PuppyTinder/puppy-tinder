@@ -12,4 +12,5 @@ class RecentMatchCollectionViewCell: UICollectionViewCell {
     // MARK: - IBOutlets
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var puppyNameLabel: UILabel!
+    
 }
