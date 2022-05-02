@@ -1579,35 +1579,35 @@
                                 <color key="textColor" red="0.90675723679999998" green="0.14193740029999999" blue="0.17174544899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vvz-i4-E5t">
-                                <rect key="frame" x="8" y="95" width="398" height="300"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vvz-i4-E5t">
+                                <rect key="frame" x="12" y="98" width="391" height="137"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="reQ-OR-n5g"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gjk-GX-03p">
-                                    <size key="itemSize" width="264" height="223"/>
+                                    <size key="itemSize" width="117" height="136"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecentMatchCollectionViewCell" id="jZJ-M9-PUC" customClass="RecentMatchCollectionViewCell" customModule="Pupple" customModuleProvider="target">
-                                        <rect key="frame" x="5" y="38.5" width="264" height="223"/>
+                                        <rect key="frame" x="5" y="0.5" width="117" height="136"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DLs-rx-W5v">
-                                            <rect key="frame" x="0.0" y="0.0" width="264" height="223"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="117" height="136"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noMatch" translatesAutoresizingMaskIntoConstraints="NO" id="9cp-Qr-qqV">
-                                                    <rect key="frame" x="92" y="8" width="80" height="80"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="noMatch" translatesAutoresizingMaskIntoConstraints="NO" id="9cp-Qr-qqV">
+                                                    <rect key="frame" x="17.5" y="8" width="80" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="3nZ-Db-crS"/>
                                                         <constraint firstAttribute="height" constant="80" id="VA4-E3-nGg"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMW-v0-42G">
-                                                    <rect key="frame" x="107" y="75" width="50" height="148"/>
+                                                    <rect key="frame" x="33.5" y="75" width="50" height="61"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="10" id="bTm-CK-3ze"/>
                                                         <constraint firstAttribute="width" constant="50" id="lJS-O5-ZPd"/>
@@ -1625,7 +1625,7 @@
                                                 <constraint firstItem="OMW-v0-42G" firstAttribute="centerX" secondItem="DLs-rx-W5v" secondAttribute="centerX" id="Xck-9S-0JM"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="264" height="223"/>
+                                        <size key="customSize" width="117" height="136"/>
                                         <connections>
                                             <outlet property="avatarImageView" destination="9cp-Qr-qqV" id="tN0-DY-bcd"/>
                                             <outlet property="puppyNameLabel" destination="OMW-v0-42G" id="BRv-It-K9q"/>
