@@ -1787,6 +1787,8 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="150" height="250"/>
                                         <connections>
+                                            <outlet property="cellView" destination="CMK-OC-Mop" id="wnh-nT-r72"/>
+                                            <outlet property="contentView" destination="CMK-OC-Mop" id="X5S-XY-OtL"/>
                                             <outlet property="dogBreedLabel" destination="L9T-Jk-Fkq" id="w5z-UP-t9h"/>
                                             <outlet property="dogImageView" destination="8AM-d0-8O2" id="PWC-vu-arF"/>
                                             <outlet property="dogNameLabel" destination="Vn3-Rj-8Et" id="CNT-C4-P04"/>
@@ -1859,6 +1861,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="150" height="250"/>
                                         <connections>
+                                            <outlet property="cellView" destination="Ou1-8f-Cyk" id="flj-4M-lBX"/>
                                             <outlet property="dogBreedLabel" destination="gfT-eQ-EZ4" id="ulW-4G-5Pr"/>
                                             <outlet property="dogImageView" destination="ydl-8C-CJi" id="YGE-OG-Wz3"/>
                                             <outlet property="dogNameLabel" destination="3f8-3S-gWA" id="mTL-ol-McN"/>
@@ -3065,8 +3068,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Uiy-4s-txx"/>
-        <segue reference="STN-mr-VmD"/>
+        <segue reference="6ag-9d-r8e"/>
+        <segue reference="oS6-e0-TuQ"/>
         <segue reference="PRj-Jt-FEH"/>
     </inferredMetricsTieBreakers>
     <resources>

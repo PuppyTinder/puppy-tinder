@@ -15,7 +15,7 @@ class RecentMatchCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var puppyNameLabel: UILabel!
     
     override func layoutSubviews() {
-        avatarImageView.image = avatarImageView.image?.af.imageAspectScaled(toFill: CGSize(width: 80, height: 80))
+        avatarImageView.image = avatarImageView.image?.af.imageAspectScaled(toFill: CGSize(width: avatarImageView.frame.width, height: avatarImageView.frame.height))
         avatarImageView.layer.cornerRadius = (avatarImageView.frame.height/2)
         avatarImageView.clipsToBounds = true
     }

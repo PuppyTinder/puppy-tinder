@@ -23,11 +23,11 @@ class MatchandMessageTableViewCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-        dogImageView.image = dogImageView.image?.af.imageAspectScaled(toFill: CGSize(width: 60, height: 60))
+        dogImageView.image = dogImageView.image?.af.imageAspectScaled(toFill: CGSize(width: dogImageView.frame.width, height: dogImageView.frame.height))
         dogImageView.layer.cornerRadius = dogImageView.frame.height/2
         dogImageView.clipsToBounds = true
         
-        userImageView.image = userImageView.image?.af.imageAspectScaled(toFill: CGSize(width: 30, height: 30))
+        userImageView.image = userImageView.image?.af.imageAspectScaled(toFill: CGSize(width: userImageView.frame.width, height: userImageView.frame.height))
         userImageView.layer.cornerRadius = userImageView.frame.height/2
         userImageView.clipsToBounds = true
     }
