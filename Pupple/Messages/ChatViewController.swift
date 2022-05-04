@@ -77,14 +77,6 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         configureMessageCollectionView()
         configureMessageInputBar()
     
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-//        print("CONVERSATION FROM CHATVIEWCONTROLLER", conversation)
-//        self.dbmessages = self.conversation!["messages"] as? [PFObject]
         self.getConversation { data in
             self.conversation = data!
             self.dbmessages = (self.conversation!["messages"] as! [PFObject])
@@ -100,25 +92,67 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
             }
             
         }
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+//        print("CONVERSATION FROM CHATVIEWCONTROLLER", conversation)
+//        self.dbmessages = self.conversation!["messages"] as? [PFObject]
+        
+//        let predicate = NSPredicate(format: "(sender = \(matchdog!["ownerid"]) AND recipient = \(user)) OR (sender = \(user) AND sender=\(matchdog!["ownerid"]))")
+        
         /// HANDLE LIVE QUERY HERE!
-        let query = PFQuery(className: "Message")
-        query.includeKeys(["content", "sender"])
-        query.whereKey("sender", equalTo: matchdog!["ownerid"])
-        query.whereKey("recipient", equalTo: user)
-        
-        
-        subscription = client.subscribe(query)
-                      // handle creation events, we can also listen for update, leave, enter events
-                             .handle(Event.created) { _, msg in
-                                 print("Something was updated!!! \(msg)")
+//        let users = [ as! PFObject, user as PFObject]
 //
-                                 self.messages.append(Message(text: msg["content"] as! String, user: User(senderId: self.user.objectId!, displayName: self.user["firstname"] as! String), messageId: msg.objectId!, date: msg.createdAt!))
+//        let other =
+//        print(users)
+//        let query = PFQuery(className: "Conversation")
+//        query.whereKey("users", containsAllObjectsIn: (users as [Any]))
+//        query.includeKeys(["messages"])
+        
+        let q = PFQuery(className: "Message")
+//        q.whereKey(", matchesQuery: query)
+        q.includeKeys(["content", "sender", "recipient"])
+//        query.whereKey("recipient", containedIn: [matchdog!["ownerid"], user])
+//
+//
+        subscription = client.subscribe(q)
+//                      // handle creation events, we can also listen for update, leave, enter events
+                             .handle(Event.created) { _, msg in
+                                 print("Something was created!!! \(msg)")
+
+
+                                 let other = (self.matchdog!["ownerid"] as! PFUser).objectId
+                                 let sender = (msg["sender"] as! PFUser).objectId
+                                 let recipient = (msg["recipient"] as! PFUser).objectId
+                                 let content = msg["content"] as! String
                                  
+                                 print("Sender:", sender)
+                                 print("User:", self.user.objectId)
+                    
+                                 print("Recipient:", recipient)
+                                 print("Other guy:", other)
+                                 if (sender == self.user.objectId && recipient == other) || (sender == other && recipient == self.user.objectId) {
+                                     print("message received to right conversation")
+                                     self.messages.append(Message(text: content, user: User(senderId: self.user.objectId!, displayName: self.user["firstname"] as! String), messageId: msg.objectId!, date: msg.createdAt!))
+                                 }
+                                 
+
                                  DispatchQueue.main.async {
                                      self.messagesCollectionView.reloadData()
                                  }
 
                              }
+        
+//        let predicate = NSPredicate(format:"playerName != 'Michael Yabuti' AND playerAge > 18")
+//        let query = PFQuery(className: "GameScore", predicate: predicate)
+//        
+        
+        
+
         
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -132,39 +166,32 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }
 
     func getConversation(completion : @escaping ( _ data : PFObject? ) -> ()) {
-        let user = PFUser.current()!
+        let users = [self.matchdog!["ownerid"], user]
+        
+    
+        let query = PFQuery(className: "Conversation")
+        query.whereKey("users", containsAllObjectsIn: users as [Any])
+        query.includeKeys(["messages"])
+        query.getFirstObjectInBackground { convo, error in
+            if let error = error {
+                if(error.localizedDescription == "No results matched the query.") {
+                    let newConversation = PFObject(className: "Conversation")
+                    newConversation["users"] = users
+                    newConversation["messages"] = []
+                    newConversation.saveInBackground()
 
-        let query = PFQuery(className: "Dog")
-        query.whereKey("ownerid", equalTo: user)
-        query.getFirstObjectInBackground { (dog: PFObject?, error: Error?) in
-            if let error = error { print(error) }
-            else if let dog = dog {
-                let dogs = [self.matchdog, dog]
-                let query = PFQuery(className: "Conversation")
-                query.whereKey("dogs", containsAllObjectsIn: dogs as [Any])
-                query.includeKeys(["messages"])
-                query.getFirstObjectInBackground { convo, error in
-                    if let error = error {
-                        if(error.localizedDescription == "No results matched the query.") {
-                            let newConversation = PFObject(className: "Conversation")
-                            newConversation["dogs"] = dogs
-                            newConversation["messages"] = []
-                            newConversation.saveInBackground()
+                    completion(newConversation)
+                    
+                } else { print(error) } //Error other than no conversation matching query
 
-                            completion(newConversation)
-                            
-                        } else { print(error) } //Error other than no conversation matching query
+            } else if let convo = convo {
+                print("CONVO FROM MATCHES:", convo)
+                
+                completion(convo)
 
-                    } else if let convo = convo {
-                        print("CONVO FROM MATCHES:", convo)
-                        
-                        completion(convo)
-
-                        
-                    } // end of let convo = convo
-                } // end of query
-            } //end of let dog = dog
-        }//end of get objec
+                
+            } // end of let convo = convo
+        }
     }
     
 
@@ -197,7 +224,6 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }
     
     func currentSender() -> SenderType {
-        
         return User(senderId: self.user.objectId!, displayName: self.user["firstname"] as! String)
     }
     

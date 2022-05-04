@@ -128,12 +128,12 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let chatViewController = ChatViewController()
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let chatViewController = ChatViewController()
 //        let matchdog = matches[indexPath.row]
         
-        chatViewController.matchdog = matches[indexPath.row]
-        self.navigationController?.present(chatViewController, animated: true, completion: nil)
+//        chatViewController.matchdog = matches[indexPath.row]
+//        self.navigationController?.present(chatViewController, animated: true, completion: nil)
 //        parseConversation(matchdog: matchdog) { data in
 //            print(data)
 //            chatViewController.conversation = data!
@@ -180,40 +180,33 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
 //            } //end of let dog = dog
 //        }//end of get object query
 //
-    }
+//    }
     
-    func parseConversation(matchdog : PFObject, completion: @escaping ( _ data: PFObject? ) -> ())  {
-    
-        let user = PFUser.current()!
-        
-        let query = PFQuery(className: "Dog")
-        query.whereKey("ownerid", equalTo: user)
-        query.getFirstObjectInBackground { (dog: PFObject?, error: Error?) in
-            if let error = error { print(error) }
-            else if let dog = dog {
-                let dogs = [matchdog, dog]
-        
-                let query = PFQuery(className: "Conversation")
-                query.whereKey("dogs", containsAllObjectsIn: dogs as [Any])
-
-                query.getFirstObjectInBackground { convo, error in
-                    if let error = error {
-                        if(error.localizedDescription == "No results matched the query.") {
-                            let newConversation = PFObject(className: "Conversation")
-                            newConversation["dogs"] = dogs
-                            newConversation["messages"] = []
-                            newConversation.saveInBackground()
-                            completion(newConversation)
-                        
-                        } else { print(error) } //Error other than no conversation matching query
-
-                    } else if let convo = convo {
-                        completion(convo)
-                    } // end of let convo = convo
-                } // end of query
-            } //end of let dog = dog
-        }//end of get object query
-    } // end of parse conversation
+//    func parseConversation(matchdog : PFObject, completion: @escaping ( _ data: PFObject? ) -> ())  {
+//
+//        let user = PFUser.current()!
+//        let users = [matchdog["ownerid"], user]
+//
+//        let query = PFQuery(className: "Conversation")
+//        query.whereKey("users", containsAllObjectsIn: users as [Any])
+//
+//        query.getFirstObjectInBackground { convo, error in
+//            if let error = error {
+//                if(error.localizedDescription == "No results matched the query.") {
+//                    let newConversation = PFObject(className: "Conversation")
+//                    newConversation["users"] = users
+//                    newConversation["messages"] = []
+//                    newConversation.saveInBackground()
+//                    completion(newConversation)
+//
+//                } else { print(error) } //Error other than no conversation matching query
+//
+//            } else if let convo = convo {
+//                completion(convo)
+//            } // end of let convo = convo
+//        } // end of query
+//
+//    } // end of parse conversation
 }
 
 extension RecentMatchViewController {
