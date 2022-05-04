@@ -58,6 +58,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     var matchdog : PFObject?
     
     
+    
 //    private(set) lazy var refreshControl: UIRefreshControl = {
 //        let control = UIRefreshControl()
 //        control.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
@@ -75,7 +76,6 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         
         configureMessageCollectionView()
         configureMessageInputBar()
-        print("matchdog", matchdog)
     
         // Do any additional setup after loading the view.
     }
@@ -103,7 +103,8 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         /// HANDLE LIVE QUERY HERE!
         let query = PFQuery(className: "Message")
         query.includeKeys(["content", "sender"])
-//        query.whereKey("objectId", equalTo: self.conversation?.objectId)
+        query.whereKey("sender", equalTo: matchdog!["ownerid"])
+        query.whereKey("recipient", equalTo: user)
         
         
         subscription = client.subscribe(query)
@@ -243,6 +244,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         msg["content"] = text
         msg["sender"] = self.user
         msg["conversation"] = self.conversation
+        msg["recipient"] = self.matchdog!["ownerid"]
 
 //        self.conversation?.add(msg, forKey: "messages")
 //        self.conversation?.saveInBackground(block: { success, error in
