@@ -37,6 +37,7 @@
 		AF77B25351452F349A587607 /* Pods_Pupple_PuppleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3215CAEF2A721764AE6F4FBF /* Pods_Pupple_PuppleUITests.framework */; };
 		AFBE01C2D60C5400FF71EECF /* Pods_PuppleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80BA0B35038069A625970E8B /* Pods_PuppleTests.framework */; };
 		B391D79FCB234E22AAE0A570 /* Pods_Pupple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E11C50E34EA7C4C49FE0CB /* Pods_Pupple.framework */; };
+		F14396CC2821A6C40072B4CF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14396CB2821A6C40072B4CF /* ChatViewController.swift */; };
 		F16A6CAB280F516D00DE9652 /* LikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16A6CAA280F516D00DE9652 /* LikesViewController.swift */; };
 		F16A6CAD280F535B00DE9652 /* LikeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16A6CAC280F535B00DE9652 /* LikeCollectionViewCell.swift */; };
 		F16A6CAF280F629400DE9652 /* UIViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16A6CAE280F629400DE9652 /* UIViewConstraints.swift */; };
@@ -99,6 +100,7 @@
 		BF0AFF597867123CC507DF4E /* Pods-Pupple.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupple.release.xcconfig"; path = "Target Support Files/Pods-Pupple/Pods-Pupple.release.xcconfig"; sourceTree = "<group>"; };
 		C9E11C50E34EA7C4C49FE0CB /* Pods_Pupple.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pupple.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4FB9CABF08E2225A1FD1F26 /* Pods-PuppleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PuppleTests.release.xcconfig"; path = "Target Support Files/Pods-PuppleTests/Pods-PuppleTests.release.xcconfig"; sourceTree = "<group>"; };
+		F14396CB2821A6C40072B4CF /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		F16A6CAA280F516D00DE9652 /* LikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesViewController.swift; sourceTree = "<group>"; };
 		F16A6CAC280F535B00DE9652 /* LikeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCollectionViewCell.swift; sourceTree = "<group>"; };
 		F16A6CAE280F629400DE9652 /* UIViewConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewConstraints.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		17D8626327FCA4F300180D59 /* Pupple */ = {
 			isa = PBXGroup;
 			children = (
+				F14396C62821A2CC0072B4CF /* Messages */,
 				44A6CF3A281D914B007F1252 /* Match */,
 				170CE1B5281B0A520027BC94 /* Login & Signup */,
 				1766D52E281A39CA00656492 /* Extension */,
@@ -282,6 +285,14 @@
 				F16A6CAC280F535B00DE9652 /* LikeCollectionViewCell.swift */,
 			);
 			path = LikesView;
+			sourceTree = "<group>";
+		};
+		F14396C62821A2CC0072B4CF /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				F14396CB2821A6C40072B4CF /* ChatViewController.swift */,
+			);
+			path = Messages;
 			sourceTree = "<group>";
 		};
 		F35723BEE27014E02701096B /* Frameworks */ = {
@@ -552,6 +563,7 @@
 				F16A6CAD280F535B00DE9652 /* LikeCollectionViewCell.swift in Sources */,
 				17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */,
 				1766D530281A39E300656492 /* ToolbarExtension.swift in Sources */,
+				F14396CC2821A6C40072B4CF /* ChatViewController.swift in Sources */,
 				F16A6CAB280F516D00DE9652 /* LikesViewController.swift in Sources */,
 				17E686C9280B5B7300C4015C /* KolodaCardView.swift in Sources */,
 				17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */,

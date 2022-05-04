@@ -32,4 +32,5 @@ class MatchandMessageTableViewCell: UITableViewCell {
         userImageView.clipsToBounds = true
     }
 
+    
 }

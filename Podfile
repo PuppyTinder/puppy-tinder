@@ -11,6 +11,7 @@ target 'Pupple' do
   pod 'Koloda'
   pod 'pop', '~> 1.0'
   pod 'MessageKit'
+  pod 'ParseLiveQuery'
   
   target 'PuppleTests' do
     inherit! :search_paths
