@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20034" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20017"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -1630,6 +1630,7 @@
                                             <outlet property="lastMessageLabel" destination="od7-HT-tOO" id="91Y-zd-zrR"/>
                                             <outlet property="userImageView" destination="AyI-qe-bm3" id="ed0-T9-itO"/>
                                             <outlet property="userNameLabel" destination="mbH-bF-6lZ" id="dXS-aK-wb4"/>
+                                            <segue destination="k3p-yh-D4d" kind="presentation" identifier="conversationSegue" id="sqh-cQ-Q1w"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2418,6 +2419,21 @@
             </objects>
             <point key="canvasLocation" x="4662.3188405797109" y="-1095.5357142857142"/>
         </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="dZr-sY-9BR">
+            <objects>
+                <viewController id="k3p-yh-D4d" customClass="ChatViewController" customModule="Pupple" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qAm-hO-WH9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="9Mo-ng-O33"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bey-uI-Nbv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4661" y="-1922"/>
+        </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="byd-Ux-qtP">
             <objects>
@@ -3068,8 +3084,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6ag-9d-r8e"/>
-        <segue reference="oS6-e0-TuQ"/>
+        <segue reference="Uiy-4s-txx"/>
+        <segue reference="STN-mr-VmD"/>
         <segue reference="PRj-Jt-FEH"/>
     </inferredMetricsTieBreakers>
     <resources>
