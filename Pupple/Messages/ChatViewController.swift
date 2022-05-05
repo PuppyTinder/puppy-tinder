@@ -222,6 +222,22 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
 
     }  // end of configure Avatar
     
+    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        if message.sender.senderId == user.objectId
+        {
+            return UIColor(red: 196/255, green: 164/255, blue: 132/255, alpha: 1)
+        }
+        return UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
+    }
+    
+    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+        if message.sender.senderId == user.objectId
+        {
+          return MessageStyle.bubbleTail(.bottomRight, .curved)
+        }
+        return MessageStyle.bubbleTail(.bottomLeft, .curved)
+    }
+    
 }
 
 extension ChatViewController {
