@@ -98,8 +98,12 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
                                  let recipient = (msg["recipient"] as! PFUser).objectId
                                  let content = msg["content"] as! String
                                  
-                                 if (sender == self.user.objectId && recipient == other) || (sender == other && recipient == self.user.objectId) {
+                                 if (sender == self.user.objectId && recipient == other)  {
                                      self.messages.append(Message(text: content, user: User(senderId: self.user.objectId!, displayName: self.user["firstname"] as! String), messageId: msg.objectId!, date: msg.createdAt!))
+                                 }
+                                 else if (sender == other && recipient == self.user.objectId)
+                                 {
+                                     self.messages.append(Message(text: content, user: User(senderId: other!, displayName: self.matchUser!["firstname"] as! String), messageId: msg.objectId!, date: msg.createdAt!))
                                  }
                                  
 
