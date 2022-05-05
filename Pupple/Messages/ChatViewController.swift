@@ -11,39 +11,11 @@ import Parse
 import ParseLiveQuery
 import InputBarAccessoryView
 
-struct User: SenderType, Equatable {
-    var senderId: String
-    var displayName: String
-}
-
-struct Message: MessageType {
-    var user: User
-    
-    var messageId: String
-    var sender: SenderType {
-        return user
-    }
-    
-    var sentDate: Date
-    var kind: MessageKind
-    
-    private init(kind: MessageKind, user: User, messageId: String, date: Date) {
-        self.kind = kind
-        self.user = user
-        self.messageId = messageId
-        self.sentDate = date
-    }
-    
-    init(text: String, user: User, messageId: String, date: Date) {
-        self.init(kind: .text(text), user: user, messageId: messageId, date: date)
-    }
-}
-
 
 class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
 
-    var dbmessages: [PFObject]?
-    var messages: [MessageType] = []
+    var dbmessages: [PFObject]? // messages loaded from conversation in backend
+    var messages: [MessageType] = [] // messages displayed on the view
     
     var client : ParseLiveQuery.Client! = ParseLiveQuery.Client(
         server: "wss://pupple.b4a.io",
@@ -55,9 +27,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     var subscription: Subscription<PFObject>!
     
     var user : PFUser = PFUser.current()!
-    var matchdog : PFObject?
-    
-    
+    var matchdog : PFObject? // dog of the matched user passed in from RecentMatchViewController
     
 //    private(set) lazy var refreshControl: UIRefreshControl = {
 //        let control = UIRefreshControl()
@@ -73,6 +43,9 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.setHidesBackButton(true, animated: false) // Hide the original back button because it doesn't dismiss/pop properly
+        self.tabBarController?.tabBar.isHidden = true
+        backButton()
         
         configureMessageCollectionView()
         configureMessageInputBar()
@@ -84,7 +57,19 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
             self.messages = []
 
             for msg in self.dbmessages! {
-                self.messages.append(Message(text: msg["content"] as! String, user: User(senderId: self.user.objectId!, displayName: self.user["firstname"] as! String), messageId: msg.objectId!, date: msg.createdAt!))
+                let sender = msg["sender"] as! PFUser // user that sent the message
+                let other = self.matchdog!["ownerid"] as! PFUser // matched user
+                let otherUser = PFQuery(className: "_User") // query to get matched user's photo data
+                // Check whether the sender of the message is the current user or the matched user
+                if(sender.objectId! == self.user.objectId!)
+                {
+                    self.messages.append(Message(text: msg["content"] as! String, user: User(senderId: self.user.objectId!, displayName: self.user["firstname"] as! String), messageId: msg.objectId!, date: msg.createdAt!))
+                }
+                else if(sender.objectId! == other.objectId!)
+                {
+                    self.messages.append(Message(text: msg["content"] as! String, user: User(senderId: other.objectId!, displayName: "Match"), messageId: msg.objectId!, date: msg.createdAt!))
+                }
+                
             }
             
             DispatchQueue.main.async {
@@ -93,35 +78,16 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
             }
             
         }
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        print("CONVERSATION FROM CHATVIEWCONTROLLER", conversation)
-//        self.dbmessages = self.conversation!["messages"] as? [PFObject]
-        
-//        let predicate = NSPredicate(format: "(sender = \(matchdog!["ownerid"]) AND recipient = \(user)) OR (sender = \(user) AND sender=\(matchdog!["ownerid"]))")
-        
-        /// HANDLE LIVE QUERY HERE!
-//        let users = [ as! PFObject, user as PFObject]
-//
-//        let other =
-//        print(users)
-//        let query = PFQuery(className: "Conversation")
-//        query.whereKey("users", containsAllObjectsIn: (users as [Any]))
-//        query.includeKeys(["messages"])
-        
         let q = PFQuery(className: "Message")
-//        q.whereKey(", matchesQuery: query)
         q.includeKeys(["content", "sender", "recipient"])
-//        query.whereKey("recipient", containedIn: [matchdog!["ownerid"], user])
-//
-//
+
         subscription = client.subscribe(q)
-//                      // handle creation events, we can also listen for update, leave, enter events
+                            // handle creation events, we can also listen for update, leave, enter events
                              .handle(Event.created) { _, msg in
                                  print("Something was created!!! \(msg)")
 
@@ -141,16 +107,9 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
                                      self.messagesCollectionView.scrollToLastItem(animated: true)
                                  }
 
-                             }
-        
-//        let predicate = NSPredicate(format:"playerName != 'Michael Yabuti' AND playerAge > 18")
-//        let query = PFQuery(className: "GameScore", predicate: predicate)
-//        
-        
-        
-
-        
+                             }// end of handle event
     }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         let query = PFQuery(className: "Message")
@@ -158,7 +117,6 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         
         /// DISCONNECT LIVE QUERY HERE
         client.unsubscribe(query)
-        
     }
 
     func getConversation(completion : @escaping ( _ data : PFObject? ) -> ()) {
@@ -181,11 +139,9 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
                 } else { print(error) } //Error other than no conversation matching query
 
             } else if let convo = convo {
-                print("CONVO FROM MATCHES:", convo)
                 
                 completion(convo)
 
-                
             } // end of let convo = convo
         }
     }
@@ -232,26 +188,77 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }
     
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        avatarView.isHidden = true //temporary because i cant figure out uiimages for the life of me
+        //avatarView.isHidden = true //temporary because i cant figure out uiimages for the life of me
+        let other = self.matchdog!["ownerid"] as! PFUser // matched user
+        let otherUser = PFQuery(className: "_User") // query to get matched user's photo data
         
-        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
-            layout.setMessageIncomingAvatarSize(.zero)
-            layout.setMessageOutgoingAvatarSize(.zero)
+        if user.objectId! == message.sender.senderId
+        {
+            let userImageFile = user["user_photo"] as! PFFileObject
+            userImageFile.getDataInBackground { data, error in
+                if let data = data
+                {
+                    avatarView.set(avatar: Avatar(image: UIImage(data: data), initials: ""))
+                }
+            }
+            
         }
-    }
+        else if message.sender.senderId == other.objectId!
+        {
+            otherUser.getObjectInBackground(withId: other.objectId!) { matchUser, error in
+                if let matchUser = matchUser
+                {
+                    let matchedUserImageFile = matchUser["user_photo"] as! PFFileObject
+                    matchedUserImageFile.getDataInBackground { data, error in
+                        if let data = data
+                        {
+                            avatarView.set(avatar: Avatar(image: UIImage(data: data), initials: ""))
+                        }
+                    }
+                }
+            }
+            
+        }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    }  // end of configure Avatar
     
+    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        if message.sender.senderId == user.objectId
+        {
+            return UIColor(red: 196/255, green: 164/255, blue: 132/255, alpha: 1)
+        }
+        return UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
+    }
+    
+    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+        if message.sender.senderId == user.objectId
+        {
+          return MessageStyle.bubbleTail(.bottomRight, .curved)
+        }
+        return MessageStyle.bubbleTail(.bottomLeft, .curved)
+    }
+    
+}
+
+extension ChatViewController {
+    // Back button
+    
+    func backButton(){
+        let back = UIBarButtonItem(image: UIImage(named: "BackButton"), style: .done, target: nil, action: #selector(returnBack))
+        navigationItem.setLeftBarButton(back, animated: false)
+    }
+    
+    @objc func returnBack() {
+        self.dismiss(animated: false, completion: {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabbarVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController") as! UITabBarController
+            tabbarVC.selectedIndex = 2
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return}
+            delegate.window?.rootViewController = tabbarVC
+            delegate.window?.makeKeyAndVisible()
+            self.navigationController?.popToRootViewController(animated: true)
+        })
+    }
 }
 
 

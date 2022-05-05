@@ -144,8 +144,10 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                     
                 }
             }
-        }     else if (segue.identifier == "ProfileDetails"){
+        }     else if (segue.identifier == "profileDetails"){
                 // will perform segue to owner profile on press
+            let profileViewController: UserProfileViewController = segue.destination as! UserProfileViewController
+            profileViewController.segueName = segue.identifier
             }
     }
     
@@ -262,16 +264,10 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
         return .topAttached
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func goToProfile(_ sender: Any) {
+        self.performSegue(withIdentifier: "profileDetails", sender: self)
     }
-    */
-
+    
     @IBAction func resetCards(_ sender: Any) {
         kolodaView.resetCurrentCardIndex()
         resetButton.isHidden = true

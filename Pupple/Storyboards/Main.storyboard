@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20034" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20017"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -276,7 +276,7 @@
                     <navigationItem key="navigationItem" title="Pupple" id="k8X-PF-lcG">
                         <barButtonItem key="leftBarButtonItem" title="Profile" id="VyM-ia-Swo">
                             <connections>
-                                <segue destination="hHh-Aw-Muk" kind="presentation" identifier="profileDetails" modalPresentationStyle="overFullScreen" id="Jq2-qA-vAZ"/>
+                                <action selector="goToProfile:" destination="DBe-J3-TKt" id="WnV-4V-OWv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -286,6 +286,7 @@
                         <outlet property="resetButton" destination="k7j-0w-RJL" id="g1E-KC-PES"/>
                         <outlet property="resetLabel" destination="tgt-aU-h7d" id="Eb7-Pz-EgF"/>
                         <segue destination="K5u-oM-Qrc" kind="presentation" identifier="dogProfileSegue" id="8yO-YG-Ifa"/>
+                        <segue destination="hHh-Aw-Muk" kind="show" identifier="profileDetails" id="6aK-4Z-0hI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uj6-Ea-lrl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1630,7 +1631,6 @@
                                             <outlet property="lastMessageLabel" destination="od7-HT-tOO" id="91Y-zd-zrR"/>
                                             <outlet property="userImageView" destination="AyI-qe-bm3" id="ed0-T9-itO"/>
                                             <outlet property="userNameLabel" destination="mbH-bF-6lZ" id="dXS-aK-wb4"/>
-                                            <segue destination="k3p-yh-D4d" kind="presentation" identifier="conversationSegue" id="sqh-cQ-Q1w"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1664,7 +1664,7 @@
                     <navigationItem key="navigationItem" title="Pupple" id="6I9-UY-0SZ">
                         <barButtonItem key="leftBarButtonItem" title="Profile" id="yWg-W3-OJk">
                             <connections>
-                                <segue destination="hHh-Aw-Muk" kind="presentation" identifier="profileDetailsMatches" modalPresentationStyle="fullScreen" id="Uiy-4s-txx"/>
+                                <action selector="goToProfile:" destination="wGw-qk-hPT" id="OQj-Z1-kTv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1672,6 +1672,8 @@
                         <outlet property="matchCollectionView" destination="vvz-i4-E5t" id="csX-qc-1Hi"/>
                         <outlet property="messageTableView" destination="FUP-qA-sCL" id="i8D-Zf-Ohg"/>
                         <outlet property="profileBarButton" destination="yWg-W3-OJk" id="CWy-KQ-rld"/>
+                        <segue destination="k3p-yh-D4d" kind="show" identifier="conversationSegue" id="Isl-ii-xzV"/>
+                        <segue destination="hHh-Aw-Muk" kind="show" identifier="profileDetailsMatches" id="vde-f4-w1l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vFj-Ys-fCn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1891,7 +1893,7 @@
                     <navigationItem key="navigationItem" title="Pupple" id="dKF-H7-2r2">
                         <barButtonItem key="leftBarButtonItem" title="Profile" id="zcN-YA-zQu">
                             <connections>
-                                <segue destination="hHh-Aw-Muk" kind="presentation" identifier="profileDetailsLikes" modalPresentationStyle="fullScreen" id="6ag-9d-r8e"/>
+                                <action selector="goToProfile:" destination="peg-KG-a10" id="g6O-Wz-9xJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1899,18 +1901,19 @@
                         <outlet property="likedByCollectionView" destination="RHU-wR-i8L" id="s0a-aQ-qOY"/>
                         <outlet property="likesCollectionView" destination="EZT-3N-hJV" id="PPm-Q0-X9I"/>
                         <outlet property="profileBarButtonItem" destination="zcN-YA-zQu" id="dhw-Ce-rN0"/>
+                        <segue destination="hHh-Aw-Muk" kind="show" identifier="profileDetailsLikes" id="k7o-V7-DkQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eld-mI-BCm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3408.6956521739135" y="-818.30357142857144"/>
         </scene>
-        <!--User Profile View Controller-->
+        <!--Profile-->
         <scene sceneID="x07-pp-XP0">
             <objects>
                 <viewController storyboardIdentifier="ProfileDetails" id="hHh-Aw-Muk" customClass="UserProfileViewController" customModule="Pupple" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yYX-KS-1eo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1146"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kHt-F8-Cas">
@@ -2341,58 +2344,33 @@
                                     <constraint firstAttribute="trailing" secondItem="olh-w9-d9S" secondAttribute="trailing" id="vnW-OW-ag7"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rC5-o5-g6C">
-                                <rect key="frame" x="8" y="8" width="45" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="cbo-n1-sCs"/>
-                                    <constraint firstAttribute="height" constant="45" id="enr-LV-CKR"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="BackButtonLarge"/>
-                                <connections>
-                                    <action selector="goToNewTabBar:" destination="hHh-Aw-Muk" eventType="touchUpInside" id="wOL-zf-C1j"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2P-79-4KL">
-                                <rect key="frame" x="332" y="12" width="70" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="sho-21-nHU"/>
-                                    <constraint firstAttribute="height" constant="31" id="vzN-1n-mji"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Logout">
-                                    <backgroundConfiguration key="background" cornerRadius="20" strokeWidth="3">
-                                        <color key="strokeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </backgroundConfiguration>
-                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="baseBackgroundColor" red="0.76862745099999996" green="0.64313725489999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="onLogout:" destination="hHh-Aw-Muk" eventType="touchUpInside" id="v4U-U5-scO"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="H6x-px-qK4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="olh-w9-d9S" firstAttribute="width" secondItem="yYX-KS-1eo" secondAttribute="width" id="2cc-Sq-82j"/>
                             <constraint firstItem="kHt-F8-Cas" firstAttribute="trailing" secondItem="H6x-px-qK4" secondAttribute="trailing" id="7wg-ce-xmp"/>
-                            <constraint firstItem="rC5-o5-g6C" firstAttribute="top" secondItem="yYX-KS-1eo" secondAttribute="top" constant="8" id="BIJ-LA-F9i"/>
                             <constraint firstItem="kHt-F8-Cas" firstAttribute="top" secondItem="H6x-px-qK4" secondAttribute="top" id="HAD-LS-tSh"/>
                             <constraint firstItem="kHt-F8-Cas" firstAttribute="leading" secondItem="H6x-px-qK4" secondAttribute="leading" id="Z09-Dk-oxF"/>
                             <constraint firstItem="voX-SN-bdG" firstAttribute="width" secondItem="yYX-KS-1eo" secondAttribute="width" id="b3d-Yw-ync"/>
-                            <constraint firstAttribute="trailing" secondItem="X2P-79-4KL" secondAttribute="trailing" constant="12" id="it1-wW-UWK"/>
-                            <constraint firstItem="rC5-o5-g6C" firstAttribute="leading" secondItem="yYX-KS-1eo" secondAttribute="leading" constant="8" id="mdD-fZ-hSw"/>
                             <constraint firstItem="kHt-F8-Cas" firstAttribute="bottom" secondItem="yYX-KS-1eo" secondAttribute="bottom" id="qa3-9s-qJK"/>
-                            <constraint firstItem="X2P-79-4KL" firstAttribute="top" secondItem="yYX-KS-1eo" secondAttribute="top" constant="12" id="zp1-Uz-TaY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="JiY-2b-B7C"/>
+                    <navigationItem key="navigationItem" title="Profile" id="JiY-2b-B7C">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="BackButton" id="Fqa-ly-fwK">
+                            <connections>
+                                <action selector="goBackToHome:" destination="hHh-Aw-Muk" id="Lzc-LP-9mI"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="power.circle" catalog="system" id="Ahx-D3-cc7">
+                            <connections>
+                                <action selector="onLogout:" destination="hHh-Aw-Muk" id="num-T2-4SG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <size key="freeformSize" width="414" height="1200"/>
                     <connections>
                         <outlet property="aboutLabel" destination="N9y-0Z-JNf" id="yM2-CU-5EI"/>
-                        <outlet property="backButton" destination="rC5-o5-g6C" id="Aff-fy-wTo"/>
                         <outlet property="dogAboutLabel" destination="AW8-od-tBg" id="bPj-iy-ptD"/>
                         <outlet property="dogAgeLabel" destination="weN-AE-7gM" id="PU6-bf-2f7"/>
                         <outlet property="dogBreedLabel" destination="N3D-j9-75v" id="KoB-Pj-zAg"/>
@@ -2403,6 +2381,7 @@
                         <outlet property="dogView" destination="voX-SN-bdG" id="7Jc-iO-pQF"/>
                         <outlet property="fixedLabel" destination="naW-ve-slD" id="bMp-X9-KDL"/>
                         <outlet property="genderIconView" destination="A6L-z6-ye6" id="w4K-7V-bA2"/>
+                        <outlet property="logoutButton" destination="Ahx-D3-cc7" id="Eg4-4n-qBv"/>
                         <outlet property="ownerAgeLabel" destination="cmE-lZ-U4f" id="Tp8-50-z4P"/>
                         <outlet property="ownerEducationLabel" destination="i6c-4j-xDe" id="5y4-jV-hAO"/>
                         <outlet property="ownerGenderLabel" destination="zeo-mi-IKR" id="zld-FN-dhP"/>
@@ -2429,6 +2408,7 @@
                         <viewLayoutGuide key="safeArea" id="9Mo-ng-O33"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="IrR-Tj-79U"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bey-uI-Nbv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3084,12 +3064,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Uiy-4s-txx"/>
+        <segue reference="vde-f4-w1l"/>
         <segue reference="STN-mr-VmD"/>
         <segue reference="PRj-Jt-FEH"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="BackButtonLarge" width="45" height="45"/>
+        <image name="BackButton" width="40" height="40"/>
         <image name="CameraButton" width="100" height="45"/>
         <image name="Feed" width="60" height="60"/>
         <image name="Feed-Active" width="60" height="60"/>
@@ -3107,6 +3087,7 @@
         <image name="logo_transparent_300x300" width="300" height="300"/>
         <image name="male_gender" width="21" height="21"/>
         <image name="noMatch" width="60" height="60"/>
+        <image name="power.circle" catalog="system" width="128" height="121"/>
         <image name="pupple_logo" width="120" height="120"/>
         <image name="size_icon" width="19" height="19"/>
         <image name="snapchat" width="20" height="20"/>

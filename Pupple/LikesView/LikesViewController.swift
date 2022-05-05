@@ -94,7 +94,7 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let user = PFUser.current()!
+        guard let user = PFUser.current() else {return}
 
         let query = PFQuery(className: "Dog")
         query.whereKey("ownerid", equalTo: user)
@@ -295,13 +295,20 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
 
             } //end of dog query
         } // end of dog prof segue
-        else if (segue.identifier == "ProfileDetailsLikes") {
+        else if (segue.identifier == "profileDetailsLikes") {
             // will perform segue to owner profile on press
+            
+            let destinationVC: UserProfileViewController = segue.destination as! UserProfileViewController
+            destinationVC.segueName = segue.identifier
+            
         } // end of profile details
     } // end of function
     
     
-
+    @IBAction func goToProfile(_ sender: Any) {
+        self.performSegue(withIdentifier: "profileDetailsLikes", sender: self)
+    }
+    
 } // end of LikesViewController
 
 extension LikesViewController : UIBarPositioningDelegate, UINavigationBarDelegate {
