@@ -55,28 +55,48 @@ class UserProfileViewController: UIViewController {
     
     @IBOutlet weak var ownerSnapchatButton: UIButton!
     
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
+    var segueName: String? // Used to determine which segue you came from
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        modalPresentationCapturesStatusBarAppearance = true
+   
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        self.tabBarController?.tabBar.isHidden = true
         ownerImageview.layer.cornerRadius = 50
-        self.backButton.imageView?.contentMode = .scaleAspectFill
         
         userParse()
+ 
+    }
+    
+    @IBAction func goBackToHome(_ sender: Any) {
+        self.dismiss(animated: false, completion: {
+           
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabbarVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController") as! UITabBarController
+            
+            // To determine which view in the tab bar to return to
+            switch self.segueName{
+            case "profileDetailsLikes":
+                tabbarVC.selectedIndex = 0
+                
+            case "profileDetails":
+                tabbarVC.selectedIndex = 1
+                
+            case "profileDetailsMatches":
+                tabbarVC.selectedIndex = 2
+                
+            default:
+                tabbarVC.selectedIndex = 1
+            }
         
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return}
+            delegate.window?.rootViewController = tabbarVC
+            delegate.window?.makeKeyAndVisible()
+            self.navigationController?.popToRootViewController(animated: true)
+        })
     }
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    // Creates a new tab bar controller view to portray any edit changes when going back from profile eg: user's profile picture
-    @IBAction func goToNewTabBar(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tabbarVC = storyboard.instantiateViewController(withIdentifier: "HomeTabBarController") as! UITabBarController
-   
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return}
-        delegate.window?.rootViewController = tabbarVC
-        self.present(tabbarVC, animated: false, completion: nil)
-    }
+    
     override func viewWillLayoutSubviews() {
         aboutLabel.sizeToFit()
         dogAboutLabel.sizeToFit()

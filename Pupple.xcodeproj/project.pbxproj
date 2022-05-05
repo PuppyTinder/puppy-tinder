@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1728972F27FE7B4D00EEDA68 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728972E27FE7B4D00EEDA68 /* FeedViewController.swift */; };
+		1735437A2823662B00C6F57F /* MessagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173543792823662B00C6F57F /* MessagesModel.swift */; };
 		175473662803EA2600FC685C /* SignupSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175473652803EA2600FC685C /* SignupSuccessViewController.swift */; };
 		1766D52C2819A9DA00656492 /* DogBreed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1766D52B2819A9DA00656492 /* DogBreed.swift */; };
 		1766D530281A39E300656492 /* ToolbarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1766D52F281A39E300656492 /* ToolbarExtension.swift */; };
@@ -63,6 +64,7 @@
 /* Begin PBXFileReference section */
 		07F5ECA4293686987F873306 /* Pods-Pupple-PuppleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupple-PuppleUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pupple-PuppleUITests/Pods-Pupple-PuppleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1728972E27FE7B4D00EEDA68 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		173543792823662B00C6F57F /* MessagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesModel.swift; sourceTree = "<group>"; };
 		175473652803EA2600FC685C /* SignupSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupSuccessViewController.swift; sourceTree = "<group>"; };
 		1766D52B2819A9DA00656492 /* DogBreed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreed.swift; sourceTree = "<group>"; };
 		1766D52F281A39E300656492 /* ToolbarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarExtension.swift; sourceTree = "<group>"; };
@@ -147,6 +149,29 @@
 			path = "Login & Signup";
 			sourceTree = "<group>";
 		};
+		1735437C2823C26900C6F57F /* ProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				17E959F6280F45BB00CF56BA /* DogProfileFeedViewController.swift */,
+				63DEE45F28137FDE007F2431 /* UserProfileViewController.swift */,
+				63FC6FF0281678EC00720AA3 /* EditProfileViewController.swift */,
+				639177402819AA39008D6707 /* editOwnerProfileViewController.swift */,
+			);
+			path = ProfileVC;
+			sourceTree = "<group>";
+		};
+		1735437F2823C2AD00C6F57F /* FeedVC */ = {
+			isa = PBXGroup;
+			children = (
+				1728972E27FE7B4D00EEDA68 /* FeedViewController.swift */,
+				F16A6CAE280F629400DE9652 /* UIViewConstraints.swift */,
+				17E686C8280B5B7300C4015C /* KolodaCardView.swift */,
+				17E686C6280B5B2200C4015C /* KolodaCardView.xib */,
+				17E686AE28069D0700C4015C /* NibView.swift */,
+			);
+			path = FeedVC;
+			sourceTree = "<group>";
+		};
 		1766D52D2819C1FE00656492 /* DogBreedModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,15 +213,15 @@
 		17D8626327FCA4F300180D59 /* Pupple */ = {
 			isa = PBXGroup;
 			children = (
+				1735437F2823C2AD00C6F57F /* FeedVC */,
+				1735437C2823C26900C6F57F /* ProfileVC */,
 				F14396C62821A2CC0072B4CF /* Messages */,
 				44A6CF3A281D914B007F1252 /* Match */,
 				170CE1B5281B0A520027BC94 /* Login & Signup */,
 				1766D52E281A39CA00656492 /* Extension */,
 				1766D52D2819C1FE00656492 /* DogBreedModel */,
 				F1075335280B41BE006C4037 /* LikesView */,
-				17E686C3280B5A9100C4015C /* KolodaCardFolder */,
 				17D8629527FD31BD00180D59 /* Storyboards */,
-				17D8629427FD31A400180D59 /* ViewControllers */,
 				17D8626427FCA4F300180D59 /* AppDelegate.swift */,
 				17D8626627FCA4F300180D59 /* SceneDelegate.swift */,
 				17D8626827FCA4F300180D59 /* ViewController.swift */,
@@ -223,18 +248,6 @@
 			path = PuppleUITests;
 			sourceTree = "<group>";
 		};
-		17D8629427FD31A400180D59 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				639177402819AA39008D6707 /* editOwnerProfileViewController.swift */,
-				63FC6FF0281678EC00720AA3 /* EditProfileViewController.swift */,
-				63DEE45F28137FDE007F2431 /* UserProfileViewController.swift */,
-				1728972E27FE7B4D00EEDA68 /* FeedViewController.swift */,
-				17E959F6280F45BB00CF56BA /* DogProfileFeedViewController.swift */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
 		17D8629527FD31BD00180D59 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,17 +255,6 @@
 				17E95A01280FA3E700CF56BA /* Main.storyboard */,
 			);
 			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		17E686C3280B5A9100C4015C /* KolodaCardFolder */ = {
-			isa = PBXGroup;
-			children = (
-				17E686AE28069D0700C4015C /* NibView.swift */,
-				17E686C6280B5B2200C4015C /* KolodaCardView.xib */,
-				17E686C8280B5B7300C4015C /* KolodaCardView.swift */,
-				F16A6CAE280F629400DE9652 /* UIViewConstraints.swift */,
-			);
-			path = KolodaCardFolder;
 			sourceTree = "<group>";
 		};
 		40536E49586341F31456B98F /* Pods */ = {
@@ -291,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				F14396CB2821A6C40072B4CF /* ChatViewController.swift */,
+				173543792823662B00C6F57F /* MessagesModel.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				639177412819AA39008D6707 /* editOwnerProfileViewController.swift in Sources */,
 				44A6CF40281D91EE007F1252 /* RecentMatchViewController.swift in Sources */,
 				17E686AF28069D0700C4015C /* NibView.swift in Sources */,
+				1735437A2823662B00C6F57F /* MessagesModel.swift in Sources */,
 				17D8629927FD329D00180D59 /* WelcomeViewController.swift in Sources */,
 				17D8626927FCA4F300180D59 /* ViewController.swift in Sources */,
 				63FC6FF1281678ED00720AA3 /* EditProfileViewController.swift in Sources */,

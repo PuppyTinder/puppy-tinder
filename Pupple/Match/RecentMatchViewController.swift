@@ -19,7 +19,7 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
     //MARK: - Vars
     var matches = [PFObject]() // creates an empty array of matches
     let app_color = UIColor(red: 196/255, green: 164/255, blue: 132/255, alpha: 1)
-    
+    var selected_row: Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         userProfile()
@@ -47,7 +47,7 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
     
     func matchQuery() {
         
-        let user = PFUser.current()!
+        guard let user = PFUser.current() else { return }
         
         let userDogquery = PFQuery(className: "Dog")
         userDogquery.includeKeys(["name", "matches", "dog_photo", "ownerid"])
@@ -127,10 +127,19 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selected_row = indexPath.row
+        self.performSegue(withIdentifier: "conversationSegue", sender: indexPath.row)
+    }
 
+    @IBAction func goToProfile(_ sender: Any) {
+        self.performSegue(withIdentifier: "profileDetailsMatches", sender: self)
+    }
 }
 
 extension RecentMatchViewController {
+    
     
     func userProfile()
     {
@@ -269,12 +278,16 @@ extension RecentMatchViewController {
             } //end of dog query
         } // end of dog prof segue
         else if (segue.identifier == "conversationSegue") {
-            let cell = sender as! MatchandMessageTableViewCell
             let chatViewController = segue.destination as! ChatViewController
-            let match = matches[messageTableView!.indexPath(for:cell)!.item]
+            let match = matches[selected_row!]
             chatViewController.matchdog = match
+            chatViewController.title = match["name"] as! String
         } // end of convo segue
-        
+        else if (segue.identifier == "profileDetailsMatches")
+        {
+            let userProfileViewController = segue.destination as! UserProfileViewController
+            userProfileViewController.segueName = segue.identifier
+        }
     } // end of function
 
 }
