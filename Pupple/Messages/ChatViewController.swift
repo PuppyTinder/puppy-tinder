@@ -28,7 +28,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     var user : PFUser = PFUser.current()!
     var matchdog : PFObject? // dog of the matched user passed in from RecentMatchViewController
-    
+    var matchUser: PFObject?
 //    private(set) lazy var refreshControl: UIRefreshControl = {
 //        let control = UIRefreshControl()
 //        control.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
@@ -46,7 +46,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         self.navigationItem.setHidesBackButton(true, animated: false) // Hide the original back button because it doesn't dismiss/pop properly
         self.tabBarController?.tabBar.isHidden = true
         backButton()
-        
+    
         configureMessageCollectionView()
         configureMessageInputBar()
     
@@ -58,8 +58,8 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
 
             for msg in self.dbmessages! {
                 let sender = msg["sender"] as! PFUser // user that sent the message
-                let other = self.matchdog!["ownerid"] as! PFUser // matched user
-                let otherUser = PFQuery(className: "_User") // query to get matched user's photo data
+                //let other = self.matchdog!["ownerid"] as! PFUser // matched user
+                let other = self.matchUser! // matched user
                 // Check whether the sender of the message is the current user or the matched user
                 if(sender.objectId! == self.user.objectId!)
                 {
@@ -67,7 +67,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
                 }
                 else if(sender.objectId! == other.objectId!)
                 {
-                    self.messages.append(Message(text: msg["content"] as! String, user: User(senderId: other.objectId!, displayName: "Match"), messageId: msg.objectId!, date: msg.createdAt!))
+                    self.messages.append(Message(text: msg["content"] as! String, user: User(senderId: other.objectId!, displayName: self.matchUser?["firstname"] as! String), messageId: msg.objectId!, date: msg.createdAt!))
                 }
                 
             }
@@ -92,7 +92,8 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
                                  print("Something was created!!! \(msg)")
 
 
-                                 let other = (self.matchdog!["ownerid"] as! PFUser).objectId
+                                 //let other = (self.matchdog!["ownerid"] as! PFUser).objectId
+                                 let other = self.matchUser?.objectId
                                  let sender = (msg["sender"] as! PFUser).objectId
                                  let recipient = (msg["recipient"] as! PFUser).objectId
                                  let content = msg["content"] as! String
@@ -120,8 +121,8 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }
 
     func getConversation(completion : @escaping ( _ data : PFObject? ) -> ()) {
-        let users = [self.matchdog!["ownerid"], user]
-        
+        //let users = [self.matchdog!["ownerid"], user]
+        let users = [matchUser, user]
     
         let query = PFQuery(className: "Conversation")
         query.whereKey("users", containsAllObjectsIn: users as [Any])
@@ -188,9 +189,6 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }
     
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        //avatarView.isHidden = true //temporary because i cant figure out uiimages for the life of me
-        let other = self.matchdog!["ownerid"] as! PFUser // matched user
-        let otherUser = PFQuery(className: "_User") // query to get matched user's photo data
         
         if user.objectId! == message.sender.senderId
         {
@@ -203,21 +201,15 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
             }
             
         }
-        else if message.sender.senderId == other.objectId!
+        else if message.sender.senderId == matchUser?.objectId!
         {
-            otherUser.getObjectInBackground(withId: other.objectId!) { matchUser, error in
-                if let matchUser = matchUser
+            let matchedUserImageFile = matchUser?["user_photo"] as! PFFileObject
+            matchedUserImageFile.getDataInBackground { data, error in
+                if let data = data
                 {
-                    let matchedUserImageFile = matchUser["user_photo"] as! PFFileObject
-                    matchedUserImageFile.getDataInBackground { data, error in
-                        if let data = data
-                        {
-                            avatarView.set(avatar: Avatar(image: UIImage(data: data), initials: ""))
-                        }
-                    }
+                    avatarView.set(avatar: Avatar(image: UIImage(data: data), initials: ""))
                 }
             }
-            
         }
 
     }  // end of configure Avatar

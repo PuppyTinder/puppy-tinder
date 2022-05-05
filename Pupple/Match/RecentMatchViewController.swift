@@ -17,7 +17,8 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var profileBarButton: UIBarButtonItem!
     //MARK: - Vars
-    var matches = [PFObject]() // creates an empty array of matches
+    var matches = [PFObject]() // array of dog matches
+    var matchesUsers = [String:PFObject]() // dictionary of dog  matches' owners, string refers to dog's objectid to lookup the owner
     let app_color = UIColor(red: 196/255, green: 164/255, blue: 132/255, alpha: 1)
     var selected_row: Int?
     override func viewDidLoad() {
@@ -35,6 +36,7 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         matchQuery()
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -62,11 +64,22 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
                     let dogMatches = currentUserDog["matches"] as! [PFObject]
                     self.matches = dogMatches
                     self.matchCollectionView.reloadData() //reload the collection view data
-                    self.messageTableView.reloadData() //reload the table view data
+                    //self.messageTableView.reloadData() //reload the table view data
+                }
+            }
+            for match in self.matches
+            {
+                let ownerDogMatchQuery = PFQuery(className: "_User")
+                ownerDogMatchQuery.includeKeys(["user_photo", "firstname", "lastname"])
+                ownerDogMatchQuery.getObjectInBackground(withId: (match["ownerid"] as! PFUser).objectId!) { matchOwner, error in
+                    if let matchOwner = matchOwner
+                    {
+                        self.matchesUsers[match.objectId!] = matchOwner
+                    }
+                    self.messageTableView.reloadData()
                 }
             }
         }// end of query
-     
         
     }
     
@@ -97,7 +110,7 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
         
         let match = matches[indexPath.row]
         
-        cell.userNameLabel.text = match["name"] as! String
+        cell.userNameLabel.text = matchesUsers[match.objectId!]?["firstname"] as? String
         cell.lastMessageLabel.text = ""
         
         let imageFile = match["dog_photo"] as! PFFileObject
@@ -106,24 +119,10 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
         
         cell.dogImageView.af.setImage(withURL: url!)
         
-        let matchOwner = match["ownerid"] as! PFUser
-        let userDogOwnerquery = PFQuery(className: "_User")
-        userDogOwnerquery.includeKeys(["user_photo","firstname"])
-        
-        userDogOwnerquery.getObjectInBackground(withId: matchOwner.objectId!) { owner, error in
-            if owner != nil
-            {
-                let userImageFile = owner!["user_photo"] as! PFFileObject
-                let userImageUrl = userImageFile.url!
-                let userUrl = URL(string: userImageUrl)
-                
-                cell.userImageView.af.setImage(withURL: userUrl!)
-            }
-            else
-            {
-                print("Owner not found.")
-            }
-        }
+        let userImageFile = matchesUsers[match.objectId!]?["user_photo"] as? PFFileObject
+        guard let userUrlString = userImageFile?.url! else { return cell }
+        let userUrl = URL(string: userUrlString)
+        cell.userImageView.af.setImage(withURL: userUrl!)
         
         return cell
     }
@@ -281,7 +280,10 @@ extension RecentMatchViewController {
             let chatViewController = segue.destination as! ChatViewController
             let match = matches[selected_row!]
             chatViewController.matchdog = match
-            chatViewController.title = match["name"] as! String
+            // Find the user matching the dog's ownerid
+            chatViewController.matchUser = matchesUsers[match.objectId!]
+            chatViewController.title = matchesUsers[match.objectId!]?["firstname"] as! String
+            
         } // end of convo segue
         else if (segue.identifier == "profileDetailsMatches")
         {
