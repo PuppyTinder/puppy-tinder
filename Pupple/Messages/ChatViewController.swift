@@ -89,6 +89,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
             
             DispatchQueue.main.async {
                 self.messagesCollectionView.reloadData()
+                self.messagesCollectionView.scrollToLastItem(animated: true)
             }
             
         }
@@ -130,19 +131,14 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
                                  let recipient = (msg["recipient"] as! PFUser).objectId
                                  let content = msg["content"] as! String
                                  
-                                 print("Sender:", sender)
-                                 print("User:", self.user.objectId)
-                    
-                                 print("Recipient:", recipient)
-                                 print("Other guy:", other)
                                  if (sender == self.user.objectId && recipient == other) || (sender == other && recipient == self.user.objectId) {
-                                     print("message received to right conversation")
                                      self.messages.append(Message(text: content, user: User(senderId: self.user.objectId!, displayName: self.user["firstname"] as! String), messageId: msg.objectId!, date: msg.createdAt!))
                                  }
                                  
 
                                  DispatchQueue.main.async {
                                      self.messagesCollectionView.reloadData()
+                                     self.messagesCollectionView.scrollToLastItem(animated: true)
                                  }
 
                              }
@@ -255,6 +251,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }
     */
 
+    
 }
 
 
@@ -262,6 +259,9 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 
     @objc
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        
+        inputBar.sendButton.startAnimating()
+        inputBar.inputTextView.placeholder = "Sending..."
         
         guard !text.replacingOccurrences(of: " ", with: "").isEmpty else { return }
         
@@ -292,6 +292,10 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             }
         }
         
+        
+        
+        inputBar.sendButton.stopAnimating()
+        inputBar.inputTextView.placeholder = "Aa"
         inputBar.inputTextView.text = ""
     }
 //
