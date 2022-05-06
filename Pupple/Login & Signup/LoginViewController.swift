@@ -27,15 +27,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let password = passwordTextField.text!
         
         PFUser.logInWithUsername(inBackground: username, password: password) { (user, error) in
-            if user != nil
+            if let user = user
             {
-                //self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                let main = UIStoryboard(name: "Main", bundle: nil)
-                let tabBarController = main.instantiateViewController(withIdentifier: "HomeTabBarController")
-                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return}
-                delegate.window?.rootViewController = tabBarController
-                self.usernameTextField.text = ""
-                self.passwordTextField.text = ""
+                if user["emailVerified"] != nil && user["emailVerified"] as! Bool == true
+                {
+                    let main = UIStoryboard(name: "Main", bundle: nil)
+                    let tabBarController = main.instantiateViewController(withIdentifier: "HomeTabBarController")
+                    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return}
+                    delegate.window?.rootViewController = tabBarController
+                    self.usernameTextField.text = ""
+                    self.passwordTextField.text = ""
+                }
+                else
+                {
+                    self.emailVerification()
+                }
+                
             }
             else
             {
@@ -52,11 +59,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // When username or password is incorrect
     func showWarning() {
         let alertController: UIAlertController = UIAlertController(title: "Error!", message: "Incorrect username and/or password was entered.", preferredStyle: .alert)
-        let dismiss: UIAlertAction = UIAlertAction(title: "Dismiss", style: .default) { (action) -> Void in NSLog("Alert dismissed")}
-        alertController.addAction(dismiss)
+       
         self.present(alertController, animated: true, completion: nil)
-            
+        let delay = DispatchTime.now() + 3
+        DispatchQueue.main.asyncAfter(deadline: delay) {
+            alertController.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    func emailVerification() {
+        let alertController: UIAlertController = UIAlertController(title: "Please verify your email!", message: "You must verify your email to use Pupple.", preferredStyle: .alert)
+       
+        self.present(alertController, animated: true, completion: nil)
+        let delay = DispatchTime.now() + 3
+        DispatchQueue.main.asyncAfter(deadline: delay) {
+            alertController.dismiss(animated: true, completion: nil)
+        }
+    }
     
     /*
     // MARK: - Navigation

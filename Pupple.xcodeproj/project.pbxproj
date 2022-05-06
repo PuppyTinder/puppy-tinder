@@ -12,6 +12,7 @@
 		175473662803EA2600FC685C /* SignupSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175473652803EA2600FC685C /* SignupSuccessViewController.swift */; };
 		1766D52C2819A9DA00656492 /* DogBreed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1766D52B2819A9DA00656492 /* DogBreed.swift */; };
 		1766D530281A39E300656492 /* ToolbarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1766D52F281A39E300656492 /* ToolbarExtension.swift */; };
+		176CA644282598BF004AB523 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176CA643282598BF004AB523 /* ForgotPasswordViewController.swift */; };
 		17AA69FF27FD495D00C6E41D /* SignUpViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AA69FE27FD495D00C6E41D /* SignUpViewController2.swift */; };
 		17D8626527FCA4F300180D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8626427FCA4F300180D59 /* AppDelegate.swift */; };
 		17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8626627FCA4F300180D59 /* SceneDelegate.swift */; };
@@ -68,6 +69,7 @@
 		175473652803EA2600FC685C /* SignupSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupSuccessViewController.swift; sourceTree = "<group>"; };
 		1766D52B2819A9DA00656492 /* DogBreed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreed.swift; sourceTree = "<group>"; };
 		1766D52F281A39E300656492 /* ToolbarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarExtension.swift; sourceTree = "<group>"; };
+		176CA643282598BF004AB523 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		17AA69FE27FD495D00C6E41D /* SignUpViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController2.swift; sourceTree = "<group>"; };
 		17D8626127FCA4F300180D59 /* Pupple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pupple.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17D8626427FCA4F300180D59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				17D8629827FD329D00180D59 /* WelcomeViewController.swift */,
 				17D8629A27FD430300180D59 /* SignUpViewController.swift */,
 				17D8629627FD327200180D59 /* LoginViewController.swift */,
+				176CA643282598BF004AB523 /* ForgotPasswordViewController.swift */,
 			);
 			path = "Login & Signup";
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				F16A6CAB280F516D00DE9652 /* LikesViewController.swift in Sources */,
 				17E686C9280B5B7300C4015C /* KolodaCardView.swift in Sources */,
 				17D8626727FCA4F300180D59 /* SceneDelegate.swift in Sources */,
+				176CA644282598BF004AB523 /* ForgotPasswordViewController.swift in Sources */,
 				1766D52C2819A9DA00656492 /* DogBreed.swift in Sources */,
 				17E959F7280F45BB00CF56BA /* DogProfileFeedViewController.swift in Sources */,
 				44A6CF3E281D91C1007F1252 /* RecentMatchCollectionViewCell.swift in Sources */,

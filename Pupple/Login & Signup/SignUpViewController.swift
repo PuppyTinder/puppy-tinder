@@ -12,6 +12,7 @@ import PhoneNumberKit
 
 class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -22,19 +23,19 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var photoButton: UIButton!
+    @IBOutlet weak var placeholderImageView: UIImageView!
     
     let datePicker = UIDatePicker()
     let imagePicker = UIImagePickerController()
-    let defaults = UserDefaults.standard // Used to store the currently entered user information and pass it on to the next segue
     
-    // Keys to access the values passed in
-    let USERNAME_KEY = "Username Key"
-    let PASSWORD_KEY = "Password Key"
-    let FIRSTNAME_KEY = "Firstname Key"
-    let LASTNAME_KEY = "Lastname Key"
-    let BIRTHDAY_KEY = "Birthday Key"
-    let MOBILE_NUMBER_KEY = "Mobile Number Key"
-    let LOCATION_KEY = "Location Key"
+    var username: String? = ""
+    var password: String? = ""
+    var firstname: String? = ""
+    var lastname: String? = ""
+    var birthday: String? = ""
+    var phone: String? = ""
+    var location: String? = ""
+    var email: String? = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,13 +91,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         let size = CGSize(width: 141, height: 133)
         let scaledImage = image.af.imageScaled(to: size)
         userImageView.image = scaledImage
-        
+        placeholderImageView.isHidden = true
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func setUsername(_ sender: Any) {
-        let username = usernameTextField.text!
-        defaults.set(username, forKey: USERNAME_KEY)
+        username = usernameTextField.text!
     }
     
     @IBAction func setPassword(_ sender: Any) {
@@ -107,19 +107,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         }
         else
         {
-            let password = passwordTextField.text!
-            defaults.set(password, forKey: PASSWORD_KEY)
+            password = passwordTextField.text!
         }
     }
     
     @IBAction func setFirstName(_ sender: Any) {
-        let firstname = firstnameTextField.text!
-        defaults.set(firstname, forKey: FIRSTNAME_KEY)
+        firstname = firstnameTextField.text!
     }
     
     @IBAction func setLastName(_ sender: Any) {
-        let lastname = lastnameTextField.text!
-        defaults.set(lastname, forKey: LASTNAME_KEY)
+        lastname = lastnameTextField.text!
     }
     
     @IBAction func setDOB(_ sender: Any) {
@@ -143,68 +140,72 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             }
             else
             {
-                let birthday = birthdayTextField.text!
-                defaults.set(birthday, forKey: BIRTHDAY_KEY)
+                birthday = birthdayTextField.text!
+
             }
         }
     }
     
     @IBAction func setMobileNumber(_ sender: Any) {
-        let phone = mobileNumberTextField.text!
-        defaults.set(phone, forKey: MOBILE_NUMBER_KEY)
+        phone = mobileNumberTextField.text!
+
     }
     
     @IBAction func setLocation(_ sender: Any) {
-        let location = locationTextField.text!
-        defaults.set(location, forKey: LOCATION_KEY)
+        location = locationTextField.text!
+  
     }
     
-    // Go to page 2 of the sign up form and preserve the values from the first page
-    @IBAction func goToNextPage(_ sender: Any) {
-        let username = usernameTextField.text!
-        let password = passwordTextField.text!
-        let firstname = firstnameTextField.text!
-        let lastname = lastnameTextField.text!
-        let birthday = birthdayTextField.text!
-        let phone = mobileNumberTextField.text!
-        let location = locationTextField.text!
-        
-        let user = PFUser()
-        let imageData = userImageView.image!.pngData()
-        let file = PFFileObject(name: "user.png", data: imageData!)
-        
-        user.username = username
-        user.password = password
-        user["firstname"] = firstname
-        user["lastname"] = lastname
-        user["birthday"] = birthday
-        user["phone_number"] = phone
-        user["location"] = location
-        
-        user.signUpInBackground { (success, error) in
-            if (success)
-            {
-                user["user_photo"] = file
-                user.saveInBackground()
-                self.resetInput()
-                self.performSegue(withIdentifier: "signUpPage2Segue", sender: nil)
-            }
-            else
-            {
-                self.showWarning()
-            }
+    @IBAction func setEmail(_ sender: Any) {
+        // Used to verify if a valid email express was inputted
+        if emailTextField.text != ""
+        {
+            let emailRegularExpression = "^[A-Z0-9a-z.-_]+@[A-Z0-9a-z-_.]+\\.[A-Za-z]{2,6}$"
+                    
+            if let text = self.emailTextField.text,
+                   text.range(of: emailRegularExpression, options: .regularExpression) != nil
+                    {
+                        email = emailTextField.text!
+                    }
+                    else {
+                        emailVerificationAlert()
+                        emailTextField.text = ""
+                    }
         }
     }
     
-    func resetInput()
-    {
-        usernameTextField.text = ""
-        passwordTextField.text = ""
-        firstnameTextField.text = ""
-        lastnameTextField.text = ""
-        birthdayTextField.text = ""
-        mobileNumberTextField.text = ""
-        locationTextField.text = ""
+    
+    // Go to page 2 of the sign up form and preserve the values from the first page
+    @IBAction func goToNextPage(_ sender: Any) {
+   
+        if(username == "" || password == "" || firstname == "" || lastname == "" || birthday == "" || phone == "" || location == "" || email == "" || userImageView.image == nil)
+        {
+            showWarning()
+        }
+        else
+        {
+            self.performSegue(withIdentifier: "signUpPage2Segue", sender: self)
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "signUpPage2Segue")
+        {
+            if(username != "" || password != "" || firstname != "" || lastname != "" || birthday != "" || phone != "" || location != "" || email != "" || userImageView.image != nil)
+            {
+                let signUpVC: SignUpViewController2 = segue.destination as! SignUpViewController2
+                signUpVC.username = usernameTextField.text!
+                signUpVC.password = passwordTextField.text!
+                signUpVC.email = emailTextField.text!
+                signUpVC.birthday = birthdayTextField.text!
+                signUpVC.firstname = firstnameTextField.text!
+                signUpVC.lastname = lastnameTextField.text!
+                signUpVC.location = locationTextField.text!
+                signUpVC.mobileNumber = mobileNumberTextField.text!
+                signUpVC.userPhotoData = userImageView.image!.pngData()
+            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -236,6 +237,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         self.birthdayTextField.delegate = self
         self.mobileNumberTextField.delegate = self
         self.locationTextField.delegate = self
+        self.emailTextField.delegate = self
         
         userImageView.layer.masksToBounds = true
         userImageView.layer.cornerRadius = userImageView.bounds.width/2
@@ -250,7 +252,17 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         //alertController.addAction(dismiss)
         self.present(alertController, animated: true, completion: nil)
          
-        let delay = DispatchTime.now() + 3
+        let delay = DispatchTime.now() + 2
+        DispatchQueue.main.asyncAfter(deadline: delay) {
+            alertController.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func emailVerificationAlert(){
+        let alertController: UIAlertController = UIAlertController(title: "Please enter a valid email address!", message: "Your email address is required for authentication.", preferredStyle: .alert)
+        self.present(alertController, animated: true, completion: nil)
+        
+        let delay = DispatchTime.now() + 2
         DispatchQueue.main.asyncAfter(deadline: delay) {
             alertController.dismiss(animated: true, completion: nil)
         }
@@ -260,7 +272,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         let alertController: UIAlertController = UIAlertController(title: "Underage!", message: "You must be at least 13 years old or older to use Pupple.", preferredStyle: .alert)
         self.present(alertController, animated: true, completion: nil)
         
-        let delay = DispatchTime.now() + 3
+        let delay = DispatchTime.now() + 2
         DispatchQueue.main.asyncAfter(deadline: delay) {
             alertController.dismiss(animated: true, completion: nil)
         }
@@ -270,7 +282,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         let alertController: UIAlertController = UIAlertController(title: "Password too short!", message: "A minimum of 6 characters is required.", preferredStyle: .alert)
         self.present(alertController, animated: true, completion: nil)
         
-        let delay = DispatchTime.now() + 3
+        let delay = DispatchTime.now() + 2
         DispatchQueue.main.asyncAfter(deadline: delay) {
             alertController.dismiss(animated: true, completion: nil)
         }
@@ -292,17 +304,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             self.view.frame.origin.y = 0
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 

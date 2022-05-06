@@ -11,7 +11,7 @@ class SignupSuccessViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.signupComplete), userInfo: nil, repeats: false)
     }
     
