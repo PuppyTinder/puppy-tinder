@@ -234,6 +234,17 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         return MessageStyle.bubbleTail(.bottomLeft, .curved)
     }
     
+    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        if message.sender.senderId == user.objectId
+        {
+            return NSAttributedString(string: user["firstname"] as! String)
+        }
+        return NSAttributedString(string: matchUser?["firstname"] as! String)
+    }
+    
+    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 20
+    }
 }
 
 extension ChatViewController {

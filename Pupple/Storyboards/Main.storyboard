@@ -2271,7 +2271,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="square.and.pencil" catalog="system"/>
                                                 <connections>
-                                                    <segue destination="eVP-Cq-ycu" kind="show" identifier="editOwnerProfile" id="mBh-kC-3ml"/>
+                                                    <segue destination="eVP-Cq-ycu" kind="presentation" identifier="editOwnerProfile" modalPresentationStyle="automatic" id="mBh-kC-3ml"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emk-KV-yqD">
@@ -3064,7 +3064,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vde-f4-w1l"/>
+        <segue reference="k7o-V7-DkQ"/>
         <segue reference="STN-mr-VmD"/>
         <segue reference="PRj-Jt-FEH"/>
     </inferredMetricsTieBreakers>

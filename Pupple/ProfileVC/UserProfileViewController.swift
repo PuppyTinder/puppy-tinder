@@ -64,7 +64,7 @@ class UserProfileViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.tabBarController?.tabBar.isHidden = true
         ownerImageview.layer.cornerRadius = 50
-        
+        navigationItem.titleView = UIImageView(image: UIImage(named: "profilelogo"))
         userParse()
  
     }

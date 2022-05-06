@@ -336,6 +336,7 @@ extension LikesViewController : UIBarPositioningDelegate, UINavigationBarDelegat
         navigationController?.navigationBar.delegate = self
         navigationController?.navigationBar.barTintColor = app_color
         profileBarButtonItem.setBackButtonBackgroundVerticalPositionAdjustment(CGFloat(-8), for: UIBarMetrics.default)
+        navigationItem.titleView = UIImageView(image: UIImage(named: "titlelogo"))
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
