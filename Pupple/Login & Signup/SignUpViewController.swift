@@ -99,8 +99,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     }
     
     @IBAction func setPassword(_ sender: Any) {
-        let password = passwordTextField.text!
-        defaults.set(password, forKey: PASSWORD_KEY)
+        if(passwordTextField.text!.count < 6)
+        {
+            passwordSizeVerification()
+            passwordTextField.text = ""
+        }
+        else
+        {
+            let password = passwordTextField.text!
+            defaults.set(password, forKey: PASSWORD_KEY)
+        }
     }
     
     @IBAction func setFirstName(_ sender: Any) {
@@ -114,8 +122,27 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     }
     
     @IBAction func setDOB(_ sender: Any) {
-        let birthday = birthdayTextField.text!
-        defaults.set(birthday, forKey: BIRTHDAY_KEY)
+        // Calculate age
+        let dob = birthdayTextField.text!
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy"
+        dateFormatter.date(from: dob)
+        let calendar = Calendar.current
+        let now = Date()
+        let ageComponents = calendar.dateComponents([.year], from: dateFormatter.date(from: dob)!, to: now)
+        let age = ageComponents.year!
+        //let ageString = String(age)
+        // Verify if user is at least 13 years old
+        if(age < 13)
+        {
+            birthdayVerification()
+            birthdayTextField.text = ""
+        }
+        else
+        {
+            let birthday = birthdayTextField.text!
+            defaults.set(birthday, forKey: BIRTHDAY_KEY)
+        }
     }
     
     @IBAction func setMobileNumber(_ sender: Any) {
@@ -214,12 +241,36 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     // Missing text field information
     func showWarning() {
-        let alertController: UIAlertController = UIAlertController(title: "Error!", message: "Please fill in every field.", preferredStyle: .alert)
-        let dismiss: UIAlertAction = UIAlertAction(title: "Dismiss", style: .default) { (action) -> Void in NSLog("Alert dismissed")}
-        alertController.addAction(dismiss)
+        let alertController: UIAlertController = UIAlertController(title: "Error!", message: "Please fill in missing fields.", preferredStyle: .alert)
+        //let dismiss: UIAlertAction = UIAlertAction(title: "Dismiss", style: .default) { (action) -> Void in NSLog("Alert dismissed")}
+        //alertController.addAction(dismiss)
         self.present(alertController, animated: true, completion: nil)
-            
+         
+        let delay = DispatchTime.now() + 3
+        DispatchQueue.main.asyncAfter(deadline: delay) {
+            alertController.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    func birthdayVerification(){
+        let alertController: UIAlertController = UIAlertController(title: "Underage!", message: "You must be at least 13 years old or older to use Pupple.", preferredStyle: .alert)
+        self.present(alertController, animated: true, completion: nil)
+        
+        let delay = DispatchTime.now() + 3
+        DispatchQueue.main.asyncAfter(deadline: delay) {
+            alertController.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func passwordSizeVerification(){
+        let alertController: UIAlertController = UIAlertController(title: "Password too short!", message: "A minimum of 6 characters is required.", preferredStyle: .alert)
+        self.present(alertController, animated: true, completion: nil)
+        
+        let delay = DispatchTime.now() + 3
+        DispatchQueue.main.asyncAfter(deadline: delay) {
+            alertController.dismiss(animated: true, completion: nil)
+        }
+    }
     
     @objc func adjustInputView(notification: Notification)
     {

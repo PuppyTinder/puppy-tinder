@@ -938,7 +938,7 @@
                                     <action selector="goToNextPage:" destination="3qT-b1-dUu" eventType="touchUpInside" id="Ho6-v6-yCx"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKU-4S-sfX">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKU-4S-sfX">
                                 <rect key="frame" x="15" y="213" width="100" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="2Ul-93-AzT"/>
@@ -952,7 +952,7 @@
                                     <action selector="onCamera:" destination="eVP-Cq-ycu" eventType="touchUpInside" id="ffV-QY-H6m"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hk0-Yj-d4j">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hk0-Yj-d4j">
                                 <rect key="frame" x="280" y="213" width="100" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="3I0-21-v5l"/>
@@ -1217,7 +1217,7 @@
                                     <outletCollection property="gestureRecognizers" destination="H0n-7y-142" appends="YES" id="x43-Vc-Jum"/>
                                 </connections>
                             </imageView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lY3-bP-MbO">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lY3-bP-MbO">
                                 <rect key="frame" x="18.5" y="214" width="100" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="J7s-Nm-Iel"/>
@@ -1231,7 +1231,7 @@
                                     <action selector="onCamera:" destination="h1v-me-OPL" eventType="touchUpInside" id="dZL-dp-8n2"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ua6-uA-k5b">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ua6-uA-k5b">
                                 <rect key="frame" x="283.5" y="214" width="100" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="6Ug-0j-qK7"/>
