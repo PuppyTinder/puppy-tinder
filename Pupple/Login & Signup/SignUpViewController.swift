@@ -8,6 +8,7 @@
 import UIKit
 import Parse
 import AlamofireImage
+import PhoneNumberKit
 
 class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -34,11 +35,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     let BIRTHDAY_KEY = "Birthday Key"
     let MOBILE_NUMBER_KEY = "Mobile Number Key"
     let LOCATION_KEY = "Location Key"
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeUI()
-     
+        
         // Pushes view up when keyboard appears
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -123,25 +124,28 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     @IBAction func setDOB(_ sender: Any) {
         // Calculate age
-        let dob = birthdayTextField.text!
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yy"
-        dateFormatter.date(from: dob)
-        let calendar = Calendar.current
-        let now = Date()
-        let ageComponents = calendar.dateComponents([.year], from: dateFormatter.date(from: dob)!, to: now)
-        let age = ageComponents.year!
-        //let ageString = String(age)
-        // Verify if user is at least 13 years old
-        if(age < 13)
+        if(birthdayTextField.text != "")
         {
-            birthdayVerification()
-            birthdayTextField.text = ""
-        }
-        else
-        {
-            let birthday = birthdayTextField.text!
-            defaults.set(birthday, forKey: BIRTHDAY_KEY)
+            let dob = birthdayTextField.text!
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd/yy"
+            dateFormatter.date(from: dob)
+            let calendar = Calendar.current
+            let now = Date()
+            let ageComponents = calendar.dateComponents([.year], from: dateFormatter.date(from: dob)!, to: now)
+            let age = ageComponents.year!
+            
+            // Verify if user is at least 13 years old
+            if(age < 13)
+            {
+                birthdayVerification()
+                birthdayTextField.text = ""
+            }
+            else
+            {
+                let birthday = birthdayTextField.text!
+                defaults.set(birthday, forKey: BIRTHDAY_KEY)
+            }
         }
     }
     

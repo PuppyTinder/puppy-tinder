@@ -3,6 +3,7 @@
 
 target 'Pupple' do
   # Comment the next line if you don't want to use dynamic frameworks
+  source 'https://github.com/CocoaPods/Specs.git'
   use_frameworks!
 
   # Pods for Pupple
@@ -12,6 +13,7 @@ target 'Pupple' do
   pod 'pop', '~> 1.0'
   pod 'MessageKit'
   pod 'ParseLiveQuery'
+  pod 'PhoneNumberKit', '~> 3.3'
   
   target 'PuppleTests' do
     inherit! :search_paths
