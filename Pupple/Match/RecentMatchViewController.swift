@@ -18,7 +18,8 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var profileBarButton: UIBarButtonItem!
     //MARK: - Vars
     var matches = [PFObject]() // array of dog matches
-    var matchesUsers = [String:PFObject]() // dictionary of dog  matches' owners, string refers to dog's objectid to lookup the owner
+    var matchesUsers = [String:PFObject]() // dictionary of dog  matches' owners, key =  dog's objectid to lookup the owner
+    var mostRecentMessages = [String:String]() // dictionary of most recent messages, key = matched user's id
     let app_color = UIColor(red: 196/255, green: 164/255, blue: 132/255, alpha: 1)
     var selected_row: Int?
     override func viewDidLoad() {
@@ -75,10 +76,26 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
                     if let matchOwner = matchOwner
                     {
                         self.matchesUsers[match.objectId!] = matchOwner
+                        let conversationQuery = PFQuery(className: "Conversation")
+                        let conversationMatch = [matchOwner, user]
+                        conversationQuery.includeKeys(["messages"])
+                        conversationQuery.whereKey("users", containsAllObjectsIn: conversationMatch as [Any])
+                        conversationQuery.getFirstObjectInBackground { conversation, error in
+                            if let conversation = conversation
+                            {
+                                let conversation_messages = conversation["messages"] as! [PFObject]
+                                if(conversation_messages.count != 0)
+                                {
+                                    let most_recent_message = conversation_messages[conversation_messages.count - 1] // get the last message in the array
+                                    self.mostRecentMessages[matchOwner.objectId!] = most_recent_message["content"] as! String
+                                }
+                            }
+                            self.messageTableView.reloadData()
+                        }
                     }
-                    self.messageTableView.reloadData()
                 }
             }
+            
         }// end of query
         
     }
@@ -123,6 +140,8 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
         guard let userUrlString = userImageFile?.url! else { return cell }
         let userUrl = URL(string: userUrlString)
         cell.userImageView.af.setImage(withURL: userUrl!)
+        let matchOwner = matchesUsers[match.objectId!] as! PFUser
+        cell.lastMessageLabel.text = mostRecentMessages[matchOwner.objectId!] 
         
         return cell
     }
