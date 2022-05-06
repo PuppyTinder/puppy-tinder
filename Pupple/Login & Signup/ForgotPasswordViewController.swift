@@ -8,14 +8,14 @@
 import UIKit
 import Parse
 
-class ForgotPasswordViewController: UIViewController {
+class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.emailTextField.delegate = self
+        self.emailTextField.becomeFirstResponder()
     }
 
     @IBAction func resetPassword(_ sender: Any) {
@@ -36,6 +36,11 @@ class ForgotPasswordViewController: UIViewController {
         else { emptyTextField(); return }
         
        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     func success(){
