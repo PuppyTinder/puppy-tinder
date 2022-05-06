@@ -221,7 +221,8 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
                     let dogAgeNum = dog["age"] as? Int
                     var dogAge: String = "N/A"
                     if(dogAgeNum != nil) {dogAge = String(dogAgeNum!) + " years old"}
-                    var dogAbout = dog["about"] as? String
+                    let dogAbout = dog["about"] as? String
+                    dogProfileViewController.dogAboutLabel.text = dogAbout
                     
                     if (vaccinated){ dogProfileViewController.vaccinatedLabel.text = "Yes"}
                     else { dogProfileViewController.vaccinatedLabel.text = "No"}
@@ -230,10 +231,7 @@ class LikesViewController: UIViewController, UICollectionViewDataSource, UIColle
                     else { dogProfileViewController.fixedLabel.text = "No"}
                     
                     dogProfileViewController.dogAgeLabel.text = dogAge
-                    
-                    if(dogAbout == nil) { dogAbout = ""}
-                    dogProfileViewController.dogAboutLabel.text = dogAbout
-                    
+            
                     let dogGender = dog["gender"] as! String
                     if(dogGender == "Male") {dogProfileViewController.genderImageView.image = UIImage(named: "male_gender")}
                     else if (dogGender == "Female") {dogProfileViewController.genderImageView.image = UIImage(named: "female_gender")}
