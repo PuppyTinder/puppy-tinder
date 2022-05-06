@@ -182,6 +182,7 @@ extension RecentMatchViewController {
         navigationController?.navigationBar.barTintColor = app_color
         navigationController?.tabBarItem.selectedImage = navigationController?.tabBarItem.selectedImage?.withRenderingMode(.alwaysOriginal)
         profileBarButton.setBackButtonBackgroundVerticalPositionAdjustment(CGFloat(-8), for: UIBarMetrics.default)
+        navigationItem.titleView = UIImageView(image: UIImage(named: "titlelogo"))
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
