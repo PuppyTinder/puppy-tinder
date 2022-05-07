@@ -236,4 +236,4 @@ width="300" />
 - User can message the owner of another dog!
 
 
-<img src="https://i.imgur.com/sPc0q1t.gif" width="300" />
+<img src="http://g.recordit.co/aicWodhZx3.gif" width="300" />
