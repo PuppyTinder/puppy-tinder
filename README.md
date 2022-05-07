@@ -225,4 +225,15 @@ width="300" />
 - User can edit profiles (owner and dog)
 - User can see a list of dogs that have liked you and a list of dogs that you have liked
 - User can logout
+- 
 <img src="http://g.recordit.co/m5PLZRWeeX.gif" width="300" />
+
+
+### Sprint 4
+
+- User can view a list of dogs they've matched with
+- User can view a list of conversations with other dogs that they've had
+- User can message the owner of another dog!
+
+
+<img src="https://i.imgur.com/sPc0q1t.gif" width="300" />
