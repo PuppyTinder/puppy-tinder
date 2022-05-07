@@ -49,21 +49,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
    /* ------ Functions to store user input ------ */
     
-    // Will launch camera when image is selected
-    @IBAction func onCameraButton(_ sender: Any) {
-        
-        if(cameraButton.isHidden == true && photoButton.isHidden == true)
-        {
-            cameraButton.isHidden = false
-            photoButton.isHidden = false
-        }
-        else
-        {
-            cameraButton.isHidden = true
-            photoButton.isHidden = true
-        }
-    }
-    
+    // Will launch camera when button is selected
     @IBAction func onCamera(_ sender: Any) {
         imagePicker.delegate = self
         imagePicker.allowsEditing = true

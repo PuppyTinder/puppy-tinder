@@ -161,20 +161,6 @@ class editOwnerProfileViewController: UIViewController, UITextFieldDelegate, UIT
 
     }
     
-    
-    @IBAction func photoTap(_ sender: Any) {
-        if(cameraButton.isHidden == true && photoButton.isHidden == true)
-        {
-            cameraButton.isHidden = false
-            photoButton.isHidden = false
-        }
-        else
-        {
-            cameraButton.isHidden = true
-            photoButton.isHidden = true
-        }
-    }
-    
     @IBAction func onCamera(_ sender: Any) {
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
