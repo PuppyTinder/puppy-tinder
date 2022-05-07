@@ -127,7 +127,14 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
         
         let match = matches[indexPath.row]
         
-        cell.userNameLabel.text = matchesUsers[match.objectId!]?["firstname"] as? String
+        let matchUserName = matchesUsers[match.objectId!]?["firstname"] as? String
+        let dogName = match["name"] as? String
+        
+        if(matchUserName != nil && dogName != nil)
+        {
+            cell.userNameLabel.text = "Match: " + dogName! + "    Owner: " + matchUserName!
+        }
+        
         cell.lastMessageLabel.text = ""
         
         let imageFile = match["dog_photo"] as! PFFileObject
