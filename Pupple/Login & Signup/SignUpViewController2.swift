@@ -61,7 +61,7 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
             let array = self.breedDictionary.message!.keys.sorted()
             for breed in array
             {
-                self.breedArray.append(breed)
+                self.breedArray.append(breed.capitalized)
             }
             
         }
@@ -151,7 +151,7 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         
         dog["name"] = dog_name
         dog["gender"] = dog_gender
-        dog["breed"] = breed
+        dog["breed"] = breed.capitalized
         dog["size"] = size
         dog["vaccinated"] = vaccinated
         dog["fixed"] = neutered

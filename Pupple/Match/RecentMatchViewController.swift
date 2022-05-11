@@ -62,7 +62,7 @@ class RecentMatchViewController: UIViewController, UICollectionViewDataSource, U
                 dogArray = userDog!
                 
                 for currentUserDog in dogArray {
-                    let dogMatches = currentUserDog["matches"] as! [PFObject]
+                    let dogMatches = currentUserDog["matches"] as? [PFObject] ?? []
                     self.matches = dogMatches
                     self.matchCollectionView.reloadData() //reload the collection view data
                     //self.messageTableView.reloadData() //reload the table view data
