@@ -48,6 +48,10 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
     var location: String?
     var email: String?
     
+    
+    // Images
+    var dogImage : UIImage?
+    var userImage: UIImage?
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeUI()
@@ -94,6 +98,7 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         let size = CGSize(width: 141, height: 133)
         let scaledImage = image.af.imageScaled(to: size)
         dogImageView.image = scaledImage
+        dogImage = image
         placeholderImageView.isHidden = true
         dismiss(animated: true, completion: nil)
     }
@@ -110,7 +115,8 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         let dog_gender = genderTextField.text!
         let breed = breedTextField.text!
         let size = sizeTextField.text!
-        let dogImageData = dogImageView.image!.pngData()
+        //let dogImageData = dogImageView.image!.pngData()
+        let dogImageData = dogImage?.pngData() // get the original image aspect ratio 
         
         let user = PFUser() // Create the user
         let dog = PFObject(className: "Dog") // Create a dog
