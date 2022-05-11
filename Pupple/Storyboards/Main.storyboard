@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20034" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20017"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -211,16 +211,16 @@
                                     <constraint firstAttribute="width" constant="281" id="z6O-78-ce3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Case-Sensitive" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kf0-lq-hH5">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Case-Sensitive" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kf0-lq-hH5">
                                 <rect key="frame" x="60" y="472" width="281" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="BKz-AW-oWh"/>
                                     <constraint firstAttribute="width" constant="281" id="e4M-tW-RqX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQS-j1-cXs">
                                 <rect key="frame" x="60" y="440" width="89" height="24"/>
@@ -901,7 +901,7 @@
                                     <constraint firstAttribute="height" constant="30" id="m7z-Ra-1Uw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                 <connections>
                                     <action selector="setUsername:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="Tyq-2p-Kb2"/>
                                 </connections>
@@ -913,7 +913,7 @@
                                     <constraint firstAttribute="height" constant="30" id="Kab-lu-L9P"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="setPassword:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="2Ck-Qf-Tgw"/>
                                 </connections>
@@ -925,7 +925,7 @@
                                     <constraint firstAttribute="height" constant="30" id="g7O-Dg-JS4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                 <connections>
                                     <action selector="setFirstName:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="s9b-WI-zpG"/>
                                 </connections>
@@ -937,7 +937,7 @@
                                     <constraint firstAttribute="width" constant="190" id="C9U-VY-4CC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                 <connections>
                                     <action selector="setLastName:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="iAl-RS-F9o"/>
                                 </connections>
@@ -949,7 +949,7 @@
                                     <constraint firstAttribute="width" constant="190" id="FOo-f9-0e2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                 <connections>
                                     <action selector="setDOB:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="8l0-Ka-2j3"/>
                                 </connections>
@@ -961,7 +961,7 @@
                                     <constraint firstAttribute="height" constant="30" id="gtJ-Kh-dfh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                 <connections>
                                     <action selector="setMobileNumber:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="hby-CF-3c7"/>
                                 </connections>
@@ -991,7 +991,7 @@
                                     <constraint firstAttribute="width" constant="190" id="zvp-bz-ukW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                 <connections>
                                     <action selector="setLocation:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="z0c-La-LLX"/>
                                     <action selector="setMobileNumber:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="h8O-Wi-7h5"/>
@@ -1061,7 +1061,7 @@
                                     <constraint firstAttribute="width" constant="190" id="gtX-Aa-puC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="done"/>
                                 <connections>
                                     <action selector="setEmail:" destination="3qT-b1-dUu" eventType="editingDidEnd" id="W64-lG-Xhe"/>
                                 </connections>
@@ -1227,7 +1227,7 @@
                                     <constraint firstAttribute="height" constant="30" id="PG7-Je-Bcg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Male or Female?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VWx-0P-KT3">
                                 <rect key="frame" x="196" y="378" width="190" height="30"/>
@@ -1236,7 +1236,7 @@
                                     <constraint firstAttribute="width" constant="190" id="glL-jB-K7w"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="eg: Shih Tzu" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nbr-BZ-Bre">
                                 <rect key="frame" x="196" y="424" width="190" height="30"/>
@@ -1245,7 +1245,7 @@
                                     <constraint firstAttribute="width" constant="190" id="nda-bv-Jwo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Small, Medium, or Large?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sjP-zl-oK3">
                                 <rect key="frame" x="196" y="470" width="190" height="30"/>
@@ -1254,7 +1254,7 @@
                                     <constraint firstAttribute="width" constant="190" id="xnh-DU-koQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Yes or No?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="86C-nD-UFb">
                                 <rect key="frame" x="196" y="516" width="190" height="30"/>
@@ -1263,7 +1263,7 @@
                                     <constraint firstAttribute="width" constant="190" id="kIK-1T-6xG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Yes or No?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RVC-al-SLE">
                                 <rect key="frame" x="196" y="562" width="190" height="30"/>
@@ -1272,7 +1272,7 @@
                                     <constraint firstAttribute="width" constant="190" id="QDL-kX-6O3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zaw-Yo-Swj">
                                 <rect key="frame" x="142" y="649" width="118" height="40"/>
