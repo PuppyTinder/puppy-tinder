@@ -125,6 +125,7 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         user["phone_number"] = mobileNumber
         user["location"] = location
         let userFile = PFFileObject(name: "user.png", data: userPhotoData!)
+        user["user_photo"] = userFile
         
         //Set dog details
         var vaccinated : Bool?
@@ -160,13 +161,11 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         user.signUpInBackground { success, error in
             if success
             {
-                user["user_photo"] = userFile
-                user.saveInBackground()
                 dog["ownerid"] = user
+                dog["dog_photo"] = dogFile
                 dog.saveInBackground { success, error in
                     if success
                     {
-                        dog["dog_photo"] = dogFile
                         dog.saveInBackground()
                         self.performSegue(withIdentifier: "signupSuccessSegue", sender: nil)
                     }

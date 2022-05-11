@@ -8,7 +8,7 @@
 import UIKit
 
 class SignupSuccessViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
