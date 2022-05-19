@@ -143,7 +143,7 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
   | breed           | string            | Breed of the dog |
   | vaccinated      | boolean           | If the dog is vaccinated or not |
   | fixed           | boolean           | If the dog is fixed or not|
-  | images          | file              | Image of the dog |
+  | image           | file              | Image of the dog |
   | bio             | string            | Dog biography: imformation of the dog |
   | city            | string            | City where dog is located|
   | state           | string            | State where dog is located |
@@ -154,8 +154,8 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
   | --------------- | ----------------- | ------------|
   | id              | int               | Conversation id    |
   | created_at      | timestamp         | Time of conversation creation |
-  | message         | array of msg id   | Messages in the conversation|
-  | users           | array of user id  | User ids |
+  | messages        | array of msgs     | Messages in the conversation|
+  | dogs            | array of dogs     | Dog ids |
   
   
 ##### Messages
@@ -164,7 +164,8 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
   | id              | int               | Messages id |
   | created_at      | timestamp         | Time message was sent |
   | message         | string            | Content of the messages|
-  | users           | ptr to user       | User ids |
+  | sender          | ptr to user       | User id |
+  | recipient       | ptr to user       | User id |
   | convo_id        | ptr to convo      | conversation id |
 
 
@@ -188,9 +189,8 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 * Message Screen 
     * (Create/Post) Compose and send a message 
     * (Read/Get) Get messages with another user 
-
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+ 
+- The Dog API https://thedogapi.com/ for a list of official dog breeds
 
 ## Updates
 
@@ -226,7 +226,6 @@ width="300" />
 - User can edit profiles (owner and dog)
 - User can see a list of dogs that have liked you and a list of dogs that you have liked
 - User can logout
-- 
 <img src="http://g.recordit.co/m5PLZRWeeX.gif" width="300" />
 
 
