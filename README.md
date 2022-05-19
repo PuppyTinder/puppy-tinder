@@ -73,10 +73,9 @@ A Tinder-like app that allows dog owners to find a playmate for their dogs.
 * Welcome Screen
     * No Account: Create profile screen
     * Account: Login
-* Feed
+* Feed, Likes, Matches
     * Dog & Owner Profile
-* Owner Profile
-    * Dog Profile
+* Owner & Dog Profile
 * Matches
     * Conversation
 
