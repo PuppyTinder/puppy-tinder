@@ -11,6 +11,9 @@
 ### Description
 A Tinder-like app that allows dog owners to find a playmate for their dogs.
 
+### MVP Slide Deck
+Click [here](https://docs.google.com/presentation/d/1Qpr55RPmLqqVPcJ7YX44Q_GFPZXR50YeXrakF_OOr8o/edit?usp=sharing) to view our MVP Slide Deck showing our app's features.
+ 
 ### App Evaluation
 
 - **Category:** Social Networking
