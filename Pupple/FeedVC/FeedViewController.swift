@@ -57,28 +57,28 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
             self.viewModels = data!
             self.viewModels.shuffle() // Randomize the order of cards
             
-            if(breedPreference != "")
+            if(breedPreference != "" && breedPreference != nil)
             {
                 self.viewModels = self.viewModels.filter {
                     $0.breedLabel.text as! String == breedPreference
                 }
             }
             
-            if(genderPreference != "")
+            if(genderPreference != "" && genderPreference != nil)
             {
                 self.viewModels = self.viewModels.filter({ card in
                     card.gender  == genderPreference
                 })
             }
             
-            if(locationPreference != "")
+            if(locationPreference != "" && locationPreference != nil)
             {
                 self.viewModels = self.viewModels.filter({ card in
                     (card.locationLabel.text!).lowercased().contains((locationPreference?.lowercased())!)
                 })
             }
             
-            if(sizePreference != "")
+            if(sizePreference != "" && sizePreference != nil)
             {
                 self.viewModels = self.viewModels.filter({ card in
                     card.size == sizePreference
