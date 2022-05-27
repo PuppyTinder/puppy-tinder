@@ -41,10 +41,11 @@ Click [here](https://docs.google.com/presentation/d/1Qpr55RPmLqqVPcJ7YX44Q_GFPZX
 
 **Optional Nice-to-have Stories**
 - [x] User can edit a profile.
-* User can set their preferences for dog profiles
+- [x] User can set their preferences for dog profiles
 * User can create an event (e.g. playdate)
 * User can view events
 * User can report a dog profile
+* More accurate location setting and filter
 
 ### Screen Archetypes
 * Welcome Screen
