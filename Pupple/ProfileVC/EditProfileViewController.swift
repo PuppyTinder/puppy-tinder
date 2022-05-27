@@ -285,10 +285,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         return false
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
 
             if text == "\n" {
