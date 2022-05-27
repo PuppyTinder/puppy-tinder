@@ -306,6 +306,10 @@ class SignUpViewController2: UIViewController, UITextFieldDelegate, UIPickerView
         return false
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     func initializeUI() {
         nameTextField.delegate = self
         genderTextField.delegate = self

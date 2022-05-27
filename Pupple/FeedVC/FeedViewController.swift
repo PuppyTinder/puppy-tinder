@@ -34,6 +34,7 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
     // To filter preferences
     let defaults = UserDefaults.standard
     let GENDER_KEY = "gender_key"
+    let SIZE_KEY = "size_key"
     let BREED_KEY = "breed_key"
     let LOCATION_KEY = "location_key"
     
@@ -48,6 +49,7 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
         kolodaView.delegate = self
         
         let breedPreference = defaults.string(forKey: BREED_KEY)
+        let sizePreference = defaults.string(forKey: SIZE_KEY)
         let genderPreference = defaults.string(forKey: GENDER_KEY)
         let locationPreference = defaults.string(forKey: LOCATION_KEY)
         
@@ -76,14 +78,17 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                 })
             }
             
+            if(sizePreference != "")
+            {
+                self.viewModels = self.viewModels.filter({ card in
+                    card.size == sizePreference
+                })
+            }
+            
             self.kolodaView.reloadData()
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "dogProfileSegue")
@@ -218,6 +223,7 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                             let gender = dog["gender"] as! String
                             let dog_owner = dog["ownerid"] as! PFObject
                             let location = dog_owner["location"] as! String
+                            let size = dog["size"] as! String
                             let genderImage: UIImage!
                             
                             // Parse the image for the dog
@@ -251,6 +257,7 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                             cardExampleView.ownerImageView.af.setImage(withURL: owner_image_url)
                             cardExampleView.dogObjectId = dog.objectId!
                             cardExampleView.gender = gender
+                            cardExampleView.size = size
                             
                             // Apply view constraints to container & imageviews
                             cardExampleView.containerUIView.layer.borderWidth = 1

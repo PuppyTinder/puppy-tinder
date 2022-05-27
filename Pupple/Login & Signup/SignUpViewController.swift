@@ -199,6 +199,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         return false
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     // Date of Birth TextField Input Functions
     func createDateKeyboard() {
         birthdayTextField.inputView = datePicker
