@@ -31,6 +31,12 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
     var dogImageView: UIImageView?
     var ownerImageView: UIImageView?
     
+    // To filter preferences
+    let defaults = UserDefaults.standard
+    let GENDER_KEY = "gender_key"
+    let BREED_KEY = "breed_key"
+    let LOCATION_KEY = "location_key"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         userProfile()
@@ -41,9 +47,35 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
         kolodaView.dataSource = self
         kolodaView.delegate = self
         
+        let breedPreference = defaults.string(forKey: BREED_KEY)
+        let genderPreference = defaults.string(forKey: GENDER_KEY)
+        let locationPreference = defaults.string(forKey: LOCATION_KEY)
+        
         parse { data in
             self.viewModels = data!
             self.viewModels.shuffle() // Randomize the order of cards
+            
+            if(breedPreference != "")
+            {
+                self.viewModels = self.viewModels.filter {
+                    $0.breedLabel.text as! String == breedPreference
+                }
+            }
+            
+            if(genderPreference != "")
+            {
+                self.viewModels = self.viewModels.filter({ card in
+                    card.gender  == genderPreference
+                })
+            }
+            
+            if(locationPreference != "")
+            {
+                self.viewModels = self.viewModels.filter({ card in
+                    (card.locationLabel.text!).lowercased().contains((locationPreference?.lowercased())!)
+                })
+            }
+            
             self.kolodaView.reloadData()
         }
     }
@@ -144,7 +176,9 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                     
                 }
             }
-        }     else if (segue.identifier == "profileDetails"){
+        }
+        
+        else if (segue.identifier == "profileDetails"){
                 // will perform segue to owner profile on press
             let profileViewController: UserProfileViewController = segue.destination as! UserProfileViewController
             profileViewController.segueName = segue.identifier
@@ -207,6 +241,7 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                             let owner_image_url = URL(string: owner_url_string)!
             
                             // Instantiate view for each card
+                           
                             let cardExampleView = KolodaCardView()
                             cardExampleView.dogNameLabel.text = dog_name
                             cardExampleView.breedLabel.text = breed
@@ -215,7 +250,8 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                             cardExampleView.dogImageView.af.setImage(withURL: dog_image_url)
                             cardExampleView.ownerImageView.af.setImage(withURL: owner_image_url)
                             cardExampleView.dogObjectId = dog.objectId!
-                         
+                            cardExampleView.gender = gender
+                            
                             // Apply view constraints to container & imageviews
                             cardExampleView.containerUIView.layer.borderWidth = 1
                             cardExampleView.containerUIView.layer.cornerRadius = 20
@@ -223,7 +259,7 @@ class FeedViewController: UIViewController, UIBarPositioningDelegate, UINavigati
                             cardExampleView.dogImageView.layer.cornerRadius = 20
                             cardExampleView.dogImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
                             cardExampleView.ownerImageView.layer.cornerRadius = 30
-
+                            
                             cardArray.append(cardExampleView)
                         }
                         completion(cardArray)
