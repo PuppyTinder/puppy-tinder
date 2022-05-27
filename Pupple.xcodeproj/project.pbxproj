@@ -28,6 +28,7 @@
 		17E686AF28069D0700C4015C /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686AE28069D0700C4015C /* NibView.swift */; };
 		17E686C7280B5B2200C4015C /* KolodaCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17E686C6280B5B2200C4015C /* KolodaCardView.xib */; };
 		17E686C9280B5B7300C4015C /* KolodaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E686C8280B5B7300C4015C /* KolodaCardView.swift */; };
+		17E7625928405A4D00B2B39F /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7625828405A4D00B2B39F /* FilterViewController.swift */; };
 		17E959F7280F45BB00CF56BA /* DogProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E959F6280F45BB00CF56BA /* DogProfileFeedViewController.swift */; };
 		17E95A02280FA3E700CF56BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17E95A01280FA3E700CF56BA /* Main.storyboard */; };
 		44A6CF3E281D91C1007F1252 /* RecentMatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6CF3D281D91C1007F1252 /* RecentMatchCollectionViewCell.swift */; };
@@ -89,6 +90,7 @@
 		17E686AE28069D0700C4015C /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
 		17E686C6280B5B2200C4015C /* KolodaCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KolodaCardView.xib; sourceTree = "<group>"; };
 		17E686C8280B5B7300C4015C /* KolodaCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KolodaCardView.swift; sourceTree = "<group>"; };
+		17E7625828405A4D00B2B39F /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		17E959F6280F45BB00CF56BA /* DogProfileFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogProfileFeedViewController.swift; sourceTree = "<group>"; };
 		17E95A01280FA3E700CF56BA /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1B1332EA5544C2BA38C70FD3 /* Pods-Pupple-PuppleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pupple-PuppleUITests.release.xcconfig"; path = "Target Support Files/Pods-Pupple-PuppleUITests/Pods-Pupple-PuppleUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				17E686C8280B5B7300C4015C /* KolodaCardView.swift */,
 				17E686C6280B5B2200C4015C /* KolodaCardView.xib */,
 				17E686AE28069D0700C4015C /* NibView.swift */,
+				17E7625828405A4D00B2B39F /* FilterViewController.swift */,
 			);
 			path = FeedVC;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				17D8626927FCA4F300180D59 /* ViewController.swift in Sources */,
 				63FC6FF1281678ED00720AA3 /* EditProfileViewController.swift in Sources */,
 				17D8626527FCA4F300180D59 /* AppDelegate.swift in Sources */,
+				17E7625928405A4D00B2B39F /* FilterViewController.swift in Sources */,
 				63DEE46028137FDE007F2431 /* UserProfileViewController.swift in Sources */,
 				1728972F27FE7B4D00EEDA68 /* FeedViewController.swift in Sources */,
 				F16A6CAD280F535B00DE9652 /* LikeCollectionViewCell.swift in Sources */,
